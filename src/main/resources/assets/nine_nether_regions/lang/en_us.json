@@ -2,6 +2,8 @@
   "item.nine_nether_regions.hellalloy_ingot": "Hellalloy Ingot",
   "item.nine_nether_regions.styx_ingot": "Styx Ingot",
 
+  "itemGroup.nine_nether_regions_materials_tab": "Nine Nether Regions:materials",
+
   "nine_nether_regions.configuration.title": "Nine Nether Regions Configs",
   "nine_nether_regions.configuration.section.nine_nether_regions.common.toml": "Nine Nether Regions Configs",
   "nine_nether_regions.configuration.section.nine_nether_regions.common.toml.title": "Nine Nether Regions Configs",

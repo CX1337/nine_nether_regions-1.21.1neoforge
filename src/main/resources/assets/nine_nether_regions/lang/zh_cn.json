@@ -1,4 +1,14 @@
 {
   "item.nine_nether_regions.hellalloy_ingot": "幽冥合金锭",
-  "item.nine_nether_regions.styx_ingot": "冥河锭"
+  "item.nine_nether_regions.styx_ingot": "冥河锭",
+
+  "itemGroup.nine_nether_regions_materials_tab": "九幽引：材料",
+
+  "nine_nether_regions.configuration.title": "九幽引：配置",
+  "nine_nether_regions.configuration.section.nine_nether_regions.common.toml": "Nine Nether Regions Configs",
+  "nine_nether_regions.configuration.section.nine_nether_regions.common.toml.title": "Nine Nether Regions Configs",
+  "nine_nether_regions.configuration.items": "Item List",
+  "nine_nether_regions.configuration.logDirtBlock": "Log Dirt Block",
+  "nine_nether_regions.configuration.magicNumberIntroduction": "Magic Number Text",
+  "nine_nether_regions.configuration.magicNumber": "Magic Number"
 }
