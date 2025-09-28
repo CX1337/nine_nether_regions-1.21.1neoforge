@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "nine_nether_regions:block/underworld_bricks"
+  }
+}

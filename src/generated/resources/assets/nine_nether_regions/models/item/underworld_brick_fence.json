@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_inventory",
+  "textures": {
+    "texture": "nine_nether_regions:block/underworld_bricks"
+  }
+}

@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "nine_nether_regions:item/styx_ingot"
-  }
-}
