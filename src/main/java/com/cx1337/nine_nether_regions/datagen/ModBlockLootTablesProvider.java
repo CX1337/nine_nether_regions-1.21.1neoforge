@@ -49,7 +49,7 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
 
         //非精准采集不掉落自身的矿石按下述方式写。
         add(ModBlocks.UNDERWORLD_CRYSTAL_ORE.get(),
-                block -> createMultipleOreDrops(ModBlocks.UNDERWORLD_CRYSTAL_ORE.get(), ModItems.UNDERWORLD_CRYSTAL.get(), 1, 2));
+                block -> createMultipleOreDrops(ModBlocks.UNDERWORLD_CRYSTAL_ORE.get(), ModItems.UNDERWORLD_CRYSTAL.get(), 1, 4));
 
     }
     protected LootTable.Builder createMultipleOreDrops(Block pBlock, Item item, float minDrops, float maxDrops) {

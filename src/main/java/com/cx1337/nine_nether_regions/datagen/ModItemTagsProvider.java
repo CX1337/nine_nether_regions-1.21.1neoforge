@@ -7,6 +7,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,5 +25,11 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 
         tag(ItemTags.HOGLIN_FOOD)
                 .add(ModItems.GHOSTLIUM.get());
+
+        tag(Tags.Items.ARMORS)
+                .add(ModItems.HELLALLOY_HELMET.get())
+                .add(ModItems.HELLALLOY_CHESTPLATE.get())
+                .add(ModItems.HELLALLOY_LEGGINGS.get())
+                .add(ModItems.HELLALLOY_BOOTS.get());
     }
 }

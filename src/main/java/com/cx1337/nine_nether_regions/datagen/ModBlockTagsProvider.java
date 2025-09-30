@@ -2,8 +2,10 @@ package com.cx1337.nine_nether_regions.datagen;
 
 import com.cx1337.nine_nether_regions.NineNetherRegions;
 import com.cx1337.nine_nether_regions.block.ModBlocks;
+import com.cx1337.nine_nether_regions.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.nbt.Tag;
 import net.minecraft.tags.BlockTags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -24,11 +26,30 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.FENCE_GATES)
                 .add(ModBlocks.UNDERWORLD_BRICK_FENCE_GATE.get());
 
+        tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
+                .add(ModBlocks.HELLALLOY_BLOCK.get())
+                .add(ModBlocks.STYX_BLOCK.get());
+
+        tag(BlockTags.INCORRECT_FOR_STONE_TOOL)
+                .add(ModBlocks.HELLALLOY_BLOCK.get())
+                .add(ModBlocks.STYX_BLOCK.get());
+
+        tag(BlockTags.INCORRECT_FOR_GOLD_TOOL)
+                .add(ModBlocks.HELLALLOY_BLOCK.get())
+                .add(ModBlocks.STYX_BLOCK.get());
+
+        tag(BlockTags.INCORRECT_FOR_IRON_TOOL)
+                .add(ModBlocks.HELLALLOY_BLOCK.get())
+                .add(ModBlocks.STYX_BLOCK.get());
+
         tag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL)
                 .add(ModBlocks.HELLALLOY_BLOCK.get())
                 .add(ModBlocks.STYX_BLOCK.get());
 
         tag(BlockTags.INCORRECT_FOR_NETHERITE_TOOL)
+                .add(ModBlocks.STYX_BLOCK.get());
+
+        tag(ModTags.Blocks.NEEDS_HELLALLOY_TOOL)
                 .add(ModBlocks.STYX_BLOCK.get());
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE)

@@ -2,6 +2,7 @@ package com.cx1337.nine_nether_regions;
 
 import com.cx1337.nine_nether_regions.block.ModBlocks;
 import com.cx1337.nine_nether_regions.item.ModCreativeModeTabs;
+import com.cx1337.nine_nether_regions.item.ModEvents;
 import com.cx1337.nine_nether_regions.item.ModItems;
 import org.slf4j.Logger;
 
@@ -49,6 +50,7 @@ public class NineNetherRegions {
         modEventBus.addListener(this::commonSetup);
 
         ModItems.register(modEventBus);
+        ModEvents.register(modEventBus);
         ModCreativeModeTabs.register(modEventBus);
         ModBlocks.register(modEventBus);
         // Register ourselves for server and other game events we are interested in.

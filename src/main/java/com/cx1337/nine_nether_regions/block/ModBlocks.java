@@ -30,6 +30,7 @@ public class ModBlocks {
                     .instrument(NoteBlockInstrument.BASS)
                     .strength(2.5F,24.0F)
                     .sound(SoundType.AMETHYST_CLUSTER)
+                    .requiresCorrectToolForDrops()
                     .lightLevel(p_50872_ -> 12)));
 
     public static final DeferredBlock<Block> GLOWING_UNDERWORLD_BRICKS =
@@ -65,7 +66,7 @@ public class ModBlocks {
                     .mapColor(MapColor.COLOR_RED)
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .requiresCorrectToolForDrops()
-                    .strength(84.0F,44444.0F)
+                    .strength(99.0F,44444.0F)
                     .sound(SoundType.NETHERITE_BLOCK)
                     .lightLevel(p_50872_ -> 4)){
                 @Override

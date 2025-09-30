@@ -1,6 +1,5 @@
-package com.cx1337.nine_nether_regions.item.custom;
+package com.cx1337.nine_nether_regions.item;
 
-import com.cx1337.nine_nether_regions.item.ModItems;
 import com.cx1337.nine_nether_regions.util.ModTags;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;

@@ -34,6 +34,10 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.HELLALLOY_HOE);
                         output.accept(ModItems.HELLALLOY_PICKAXE);
                         output.accept(ModItems.HELLALLOY_SHOVEL);
+                        output.accept(ModItems.HELLALLOY_HELMET);
+                        output.accept(ModItems.HELLALLOY_CHESTPLATE);
+                        output.accept(ModItems.HELLALLOY_LEGGINGS);
+                        output.accept(ModItems.HELLALLOY_BOOTS);
                         output.accept(ModItems.HELLALLOY_SWORD);
 
                         output.accept(ModItems.STYX_INGOT);

@@ -142,17 +142,53 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.HELLALLOY_SWORD, 1)
                 .pattern(" QR")
-                .pattern("Q%Q")
-                .pattern("#Q ")
+                .pattern("TRQ")
+                .pattern("#T ")
                 .define('#', ModItems.ALLOY_HILT)
-                .define('%', ModItems.HELL_NUCLEUS)
                 .define('R', ModItems.HELLALLOY_INGOT)
                 .define('Q', ModItems.HELLALLOY_ROD)
+                .define('T', ModItems.NETHERITE_ROD)
                 .unlockedBy(getHasName(ModItems.ALLOY_HILT), has(ModItems.ALLOY_HILT))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.HELLALLOY_HELMET, 1)
+                .pattern("#$#")
+                .pattern("# #")
+                .define('#', ModItems.HELLALLOY_INGOT)
+                .define('$', Items.AMETHYST_CLUSTER)
+                .unlockedBy(getHasName(ModItems.HELLALLOY_INGOT), has(ModItems.HELLALLOY_INGOT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.HELLALLOY_CHESTPLATE, 1)
+                .pattern("# #")
+                .pattern("#$#")
+                .pattern("###")
+                .define('#', ModItems.HELLALLOY_INGOT)
+                .define('$', ModItems.HELL_NUCLEUS)
+                .unlockedBy(getHasName(ModItems.HELLALLOY_INGOT), has(ModItems.HELLALLOY_INGOT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.HELLALLOY_LEGGINGS, 1)
+                .pattern("###")
+                .pattern("$ $")
+                .pattern("# #")
+                .define('#', ModItems.HELLALLOY_INGOT)
+                .define('$', Items.AMETHYST_CLUSTER)
+                .unlockedBy(getHasName(ModItems.HELLALLOY_INGOT), has(ModItems.HELLALLOY_INGOT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.HELLALLOY_BOOTS, 1)
+                .pattern("R R")
+                .pattern("$ $")
+                .pattern("# #")
+                .define('#', ModItems.HELLALLOY_INGOT)
+                .define('$', Items.AMETHYST_CLUSTER)
+                .define('R', ModItems.HELLALLOY_ROD)
+                .unlockedBy(getHasName(ModItems.HELLALLOY_INGOT), has(ModItems.HELLALLOY_INGOT))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.HELLALLOY_AXE, 1)
-                .pattern("R% ")
+                .pattern("%R ")
                 .pattern("%# ")
                 .pattern(" # ")
                 .define('#', ModItems.NETHERITE_ROD)
