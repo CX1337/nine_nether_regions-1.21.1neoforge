@@ -15,6 +15,8 @@ public class ModZhCnLangProvider extends LanguageProvider {
     protected void addTranslations() {
         add(ModItems.ALLOY_HILT.get(), "合金剑柄");
         add(ModItems.AMETHYST_BEETROOT.get(), "紫晶甜菜根");
+        add(ModItems.AMETHYST_DAGGER.get(), "紫晶短剑");
+        add(ModItems.DIAMOND_BOWSTRING.get(), "钻石弓弦");
         add(ModItems.GHOSTLIUM.get(), "幽冥质");
         add(ModItems.HELL_NUCLEUS.get(), "§4炼狱晶核");
         add(ModItems.HELLALLOY_INGOT.get(), "§a幽冥合金锭");
@@ -27,6 +29,7 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add(ModItems.HELLALLOY_LEGGINGS.get(), "§a幽冥合金护腿");
         add(ModItems.HELLALLOY_BOOTS.get(), "§a幽冥合金靴子");
         add(ModItems.HELLALLOY_SWORD.get(), "§a§l幽冥合金剑");
+        add(ModItems.HELLALLOY_LONGBOW.get(), "§a§l幽冥合金长弓");
         add(ModItems.HELLALLOY_ROD.get(), "§a幽冥合金棒");
         add(ModItems.NETHERITE_ROD.get(), "下界合金棒");
         add(ModItems.STYX_INGOT.get(), "§5§l冥河锭");
@@ -40,6 +43,7 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add(ModBlocks.HELLIGHT.get(), "冥光体");
         add(ModBlocks.NULL_BLOCK.get(), "§c§k？？？？？");
         add(ModBlocks.NULL_GRASSBLOCK.get(), "§c§k！！！！！");
+        add(ModBlocks.PINESAP.get(), "水晶兰");
         add(ModBlocks.STYX_BLOCK.get(), "§5§l冥河块");
         add(ModBlocks.UNDERWORLDRACK.get(), "冥界岩");
         add(ModBlocks.UNDERWORLD_BRICKS.get(), "冥界砖块");
@@ -66,13 +70,14 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add("tooltip.nine_nether_regions.styx_ingot", "§8§o正如冥河渡客的意志，坚不可摧。");
         add("tooltip.nine_nether_regions.alloy_hilt", "§8§o它可以被当作武器来使用，但这永远不会是它的真正作用。");
         add("tooltip.nine_nether_regions.hell_nucleus", "§8§o无尽能源。");
-        add("tooltip.nine_nether_regions.hellalloy_helmet_alt", "§8§o自修复：如果该装备耐久未满，在护甲栏或玩家背包中时该装备会自动恢复耐久值§1（每2秒回复8点）§r§8§o。\n单件效果：装备在护甲栏时，持续为玩家提供§6夜视§r§8§o、§6水下呼吸§r§8§o效果（全效果1级），同时清除玩家身上的§7失明§r§8§o、§7黑暗§r§8§o效果。\n全套效果：持续为玩家提供§6抗性提升§r§8§o（3级）和§6生命恢复§r§8§o（2级）效果。");
+        add("tooltip.nine_nether_regions.hellalloy_helmet_alt", "§8§o自修复：如果该装备耐久未满，在护甲栏或玩家背包中时该装备会自动恢复耐久值§1（每2秒回复8点）§r§8§o。\n单件效果：装备在护甲栏时，持续为玩家提供§6夜视§r§8§o效果（1级），同时清除玩家身上的§7失明§r§8§o、§7黑暗§r§8§o效果。\n全套效果：对绝大多数伤害持有34%减伤，同时每10tick强制恢复玩家1点生命值，持续为玩家提供§6抗性提升§r§8§o（2级）效果。");
         add("tooltip.nine_nether_regions.hellalloy_helmet", "§8§o按下§r§3§oAlt§r§8§o以显示更多。");
-        add("tooltip.nine_nether_regions.hellalloy_chestplate_alt", "§8§o自修复：如果该装备耐久未满，在护甲栏或玩家背包中时该装备会自动恢复耐久值§1（每2秒回复8点）§r§8§o。\n单件效果：装备在护甲栏时，持续为玩家提供§6力量§r§8§o、§6急迫§r§8§o（全效果2级）和§6抗火§r§8§o（1级），同时清除玩家身上的§7凋零§r§8§o、§7中毒§r§8§o和§7挖掘疲劳§r§8§o效果。\n全套效果：持续为玩家提供§6抗性提升§r§8§o（3级）和§6生命恢复§r§8§o（2级）效果。");
+        add("tooltip.nine_nether_regions.hellalloy_chestplate_alt", "§8§o自修复：如果该装备耐久未满，在护甲栏或玩家背包中时该装备会自动恢复耐久值§1（每2秒回复8点）§r§8§o。\n单件效果：装备在护甲栏时，持续为玩家提供§6抗火§r§8§o效果（1级）同时使玩家不会着火，清除玩家身上的§7凋零§r§8§o、§7中毒§r§8§o和§7挖掘疲劳§r§8§o效果。\n全套效果：对绝大多数伤害持有34%减伤，同时每10tick强制恢复玩家1点生命值，持续为玩家提供§6抗性提升§r§8§o（2级）效果。");
         add("tooltip.nine_nether_regions.hellalloy_chestplate", "§8§o按下§r§3§oAlt§r§8§o以显示更多。");
-        add("tooltip.nine_nether_regions.hellalloy_leggings_alt", "§8§o自修复：如果该装备耐久未满，在护甲栏或玩家背包中时该装备会自动恢复耐久值§1（每2秒回复8点）§r§8§o。\n单件效果：装备在护甲栏时，持续为玩家提供§6迅捷§r§8§o（1级）同时清除玩家身上的§7反胃§r§8§o效果。\n全套效果：持续为玩家提供§6抗性提升§r§8§o（3级）和§6生命恢复§r§8§o（2级）效果。");
+        add("tooltip.nine_nether_regions.hellalloy_leggings_alt", "§8§o自修复：如果该装备耐久未满，在护甲栏或玩家背包中时该装备会自动恢复耐久值§1（每2秒回复8点）§r§8§o。\n单件效果：装备在护甲栏时，持续为玩家提供§6跳跃提升§r§8§o效果（1级）同时清除玩家身上的§7反胃§r§8§o效果。\n全套效果：对绝大多数伤害持有34%减伤，同时每10tick强制恢复玩家1点生命值，持续为玩家提供§6抗性提升§r§8§o（2级）效果。");
         add("tooltip.nine_nether_regions.hellalloy_leggings", "§8§o按下§r§3§oAlt§r§8§o以显示更多。");
-        add("tooltip.nine_nether_regions.hellalloy_boots_alt", "§8§o自修复：如果该装备耐久未满，在护甲栏或玩家背包中时该装备会自动恢复耐久值§1（每2秒回复8点）§r§8§o。\n单件效果：装备在护甲栏时持续清除玩家身上的§7缓慢§r§8§o效果。\n全套效果：持续为玩家提供§6抗性提升§r§8§o（3级）和§6生命恢复§r§8§o（2级）效果。");
+        add("tooltip.nine_nether_regions.hellalloy_boots_alt", "§8§o自修复：如果该装备耐久未满，在护甲栏或玩家背包中时该装备会自动恢复耐久值§1（每2秒回复8点）§r§8§o。\n单件效果：装备在护甲栏时，持续为玩家提供§6迅捷§r§8§o效果（2级）同时清除玩家身上的§7缓慢§r§8§o效果。\n全套效果：对绝大多数伤害持有34%减伤，同时每10tick强制恢复玩家1点生命值，持续为玩家提供§6抗性提升§r§8§o（2级）效果。");
         add("tooltip.nine_nether_regions.hellalloy_boots", "§8§o按下§r§3§oAlt§r§8§o以显示更多。");
+        add("tooltip.nine_nether_regions.hellalloy_longbow", "§8§o更精准，更强大。");
     }
 }

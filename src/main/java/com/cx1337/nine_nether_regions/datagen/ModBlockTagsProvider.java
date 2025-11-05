@@ -26,6 +26,12 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.FENCE_GATES)
                 .add(ModBlocks.UNDERWORLD_BRICK_FENCE_GATE.get());
 
+        tag(BlockTags.FLOWERS)
+                .add(ModBlocks.PINESAP.get());
+
+        tag(BlockTags.FLOWER_POTS)
+                .add(ModBlocks.PINESAP.get());
+
         tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
                 .add(ModBlocks.HELLALLOY_BLOCK.get())
                 .add(ModBlocks.STYX_BLOCK.get());

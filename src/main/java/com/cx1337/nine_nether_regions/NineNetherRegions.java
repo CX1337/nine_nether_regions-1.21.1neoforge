@@ -4,6 +4,8 @@ import com.cx1337.nine_nether_regions.block.ModBlocks;
 import com.cx1337.nine_nether_regions.item.ModCreativeModeTabs;
 import com.cx1337.nine_nether_regions.item.ModEvents;
 import com.cx1337.nine_nether_regions.item.ModItems;
+import com.cx1337.nine_nether_regions.util.ModItemProperties;
+import net.neoforged.fml.common.EventBusSubscriber;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -34,6 +36,8 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import static net.neoforged.neoforge.internal.versions.neoforge.NeoForgeVersion.MOD_ID;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(NineNetherRegions.MODID)
@@ -88,5 +92,13 @@ public class NineNetherRegions {
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
+    }
+
+    @EventBusSubscriber(modid = NineNetherRegions.MODID)
+    public class ClientModEvents {
+        @SubscribeEvent
+        public static void onClientSetup(FMLCommonSetupEvent event) {
+            ModItemProperties.addCustomItemProperties();
+        }
     }
 }

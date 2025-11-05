@@ -52,6 +52,13 @@ public class ModBlockStatesProvider extends BlockStateProvider {
         blockItem(ModBlocks.UNDERWORLD_BRICK_STAIRS);
         //blockItem(ModBlocks.???_TRAPDOOR, "_bottom");
 
+        ModelFile cross = models().cross("pinesap", modLoc("block/pinesap")).renderType("cutout");
+        simpleBlock(ModBlocks.PINESAP.get(), cross);
+        ModelFile pot = models().withExistingParent("potted_pinesap", mcLoc("flower_pot_cross"))
+                        .texture("plant", modLoc("block/pinesap"))
+                        .renderType("cutout");
+        simpleBlock(ModBlocks.POTTED_PINESAP.get(), pot);
+
     }
 
     private void blockWithItem(DeferredBlock<?> deferredBlock) {

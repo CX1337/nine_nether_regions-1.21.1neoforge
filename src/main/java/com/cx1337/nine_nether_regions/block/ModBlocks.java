@@ -3,6 +3,8 @@ package com.cx1337.nine_nether_regions.block;
 import com.cx1337.nine_nether_regions.NineNetherRegions;
 import com.cx1337.nine_nether_regions.item.ModItems;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -13,6 +15,7 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -32,6 +35,22 @@ public class ModBlocks {
                     .sound(SoundType.AMETHYST_CLUSTER)
                     .requiresCorrectToolForDrops()
                     .lightLevel(p_50872_ -> 12)));
+
+    public static final DeferredBlock<FlowerBlock> PINESAP =
+            registerBlocks("pinesap", () -> new FlowerBlock(MobEffects.LUCK, 24, BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_LIGHT_GREEN)
+                    .noCollission()
+                    .instabreak()
+                    .sound(SoundType.GLASS)
+                    .lightLevel(p_50872_ -> 12)
+                    .pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_PINESAP =
+           BLOCKS.register("potted_pinesap", () -> new FlowerPotBlock(() -> (FlowerPotBlock)  Blocks.FLOWER_POT, ModBlocks.PINESAP, BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_LIGHT_GREEN)
+                   .noOcclusion()
+                    .instabreak()
+                    .lightLevel(p_50872_ -> 12)
+                    .pushReaction(PushReaction.DESTROY)));
 
     public static final DeferredBlock<Block> GLOWING_UNDERWORLD_BRICKS =
             registerBlocks("glowing_underworld_bricks", () -> new Block(BlockBehaviour.Properties.of()

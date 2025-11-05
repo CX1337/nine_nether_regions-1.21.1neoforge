@@ -1,0 +1,6 @@
+{
+    "parent": "nine_nether_regions:item/hellalloy_longbow",
+    "textures": {
+        "layer0": "nine_nether_regions:item/hellalloy_longbow_pulling_1"
+    }
+}

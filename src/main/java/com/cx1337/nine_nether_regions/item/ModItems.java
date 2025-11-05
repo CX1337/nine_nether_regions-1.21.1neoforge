@@ -5,19 +5,27 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.BowItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.extensions.IItemExtension;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -25,10 +33,57 @@ public class ModItems {
     public static final DeferredRegister.Items ITEMS =
             DeferredRegister.createItems(NineNetherRegions.MODID);
 
+    public static void register(IEventBus eventBus) {
+        ITEMS.register(eventBus);
+    }
+
     private abstract static class ArmorItemExt extends ArmorItem implements IItemExtension{
         ArmorItemExt(Holder<ArmorMaterial> mat, Type type, Properties props) {super(mat, type, props);}
         public abstract int getDamagePerUseRaw(float rawDamage, ItemStack stack, LivingEntity entity, EquipmentSlot slot);
     }
+
+    //紫水晶短剑
+    public static final Tier AMETHYST = new Tier() {
+        @Override
+        public int getUses() {
+            return 114;
+        }
+
+        @Override
+        public float getSpeed() {
+            return 12;
+        }
+
+        @Override
+        public float getAttackDamageBonus() {
+            return 0;
+        }
+        @Override
+        public TagKey<Block> getIncorrectBlocksForDrops() {
+            return null;
+        }
+        @Override
+        public int getEnchantmentValue() {
+            return 10;
+        }
+        @Override
+        public Ingredient getRepairIngredient() {
+            return null;
+        }
+    };
+    public static final DeferredItem<SwordItem> AMETHYST_DAGGER =
+           ITEMS.register("amethyst_dagger", () -> new SwordItem(AMETHYST, new Item.Properties()
+                   .attributes(SwordItem.createAttributes(AMETHYST, 4, -1.6F)).rarity(Rarity.COMMON)){
+
+               //每次攻击40%概率回2血量。
+               @Override
+               public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
+                   if (player.level().random.nextFloat() < 0.40f && player.getHealth() < player.getMaxHealth()) {
+                       player.heal(2.0f);
+                   }
+                   return false; // 不拦截左键
+               }
+           });
 
     //材料和杂项。
     public static final DeferredItem<Item> HELLALLOY_INGOT =
@@ -69,8 +124,41 @@ public class ModItems {
     public static final DeferredItem<Item> AMETHYST_BEETROOT =
             ITEMS.register("amethyst_beetroot", () -> new Item(new Item.Properties().food(ModFoodProperties.AMETHYST_BEETROOT)
                     .rarity(Rarity.COMMON)));
+
+    public static final DeferredItem<Item> DIAMOND_BOWSTRING =
+            ITEMS.register("diamond_bowstring", () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+
     //食物注册后需在ModFoodProperties中补全信息。
     //类似可用作燃料的方块/物品注册后需在ModDataMapProvider补全信息。
+
+    //弓。
+    public static final DeferredItem<Item> HELLALLOY_LONGBOW =
+            ITEMS.register("hellalloy_longbow", () -> new BowItem(new Item.Properties().fireResistant()
+                    .rarity(Rarity.RARE).durability(6446)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.hellalloy_longbow"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+
+                @Override
+                protected void shootProjectile(LivingEntity shooter, Projectile projectile, int index, float velocity, float inaccuracy, float angle,
+                                               @Nullable LivingEntity target) {
+                    //箭矢初速度3倍
+                    float modifiedVelocity = velocity * 3.0F;
+
+                    super.shootProjectile(shooter, projectile, index, modifiedVelocity, inaccuracy, angle, target);
+
+                    if (projectile instanceof AbstractArrow arrow) {
+                        arrow.setBaseDamage(4.0F);
+                    }
+                }
+
+                @Override
+                public int getDefaultProjectileRange() {
+                    return 32;
+                }
+            });
 
     //盔甲。
     public static final DeferredItem<ArmorItem> HELLALLOY_HELMET =
@@ -83,9 +171,18 @@ public class ModItems {
                 }
 
                 @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.HELLALLOY.getEnchantmentValue();
+                }
+
+                @Override
                 public void inventoryTick(ItemStack stack, Level level, Entity entity,
                                           int slot, boolean selected) {
-                    /* ---------- 1. 修耐久（只在服务端） ---------- */
+                   //耐久修复
                     if (!level.isClientSide
                             && entity instanceof LivingEntity living
                             && living.tickCount % 40 == 0
@@ -93,26 +190,20 @@ public class ModItems {
                         stack.setDamageValue(Math.max(0, stack.getDamageValue() - 8));
                     }
 
-                    /* ---------- 2. 给玩家效果（只在服务端 + 头盔槽） ---------- */
-                    if (level.isClientSide) return;          // 客户端直接返回
+                    if (level.isClientSide) return;
                     if (!(entity instanceof Player player)) return;
 
-                    // 判断是不是头盔槽（也可以用 slot == 39，但这样更通用）
                     if (player.getItemBySlot(EquipmentSlot.HEAD) != stack) return;
 
-                    // 加夜视
+                    //效果
                     player.addEffect(new MobEffectInstance(
                             MobEffects.NIGHT_VISION,310,0,true,false,false
                     ));
-                    // 加水下呼吸
-                    player.addEffect(new MobEffectInstance(
-                            MobEffects.WATER_BREATHING,310,0,true,false,false
-                    ));
-                    // 移除失明
+
                     if (player.hasEffect(MobEffects.BLINDNESS)) {
                         player.removeEffect(MobEffects.BLINDNESS);
                     }
-                    //移除黑暗
+
                     if (player.hasEffect(MobEffects.DARKNESS)) {
                         player.removeEffect(MobEffects.DARKNESS);
                     }
@@ -138,6 +229,15 @@ public class ModItems {
                 }
 
                 @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.HELLALLOY.getEnchantmentValue();
+                }
+
+                @Override
                 public void inventoryTick(ItemStack stack, Level level, Entity entity,
                                           int slot, boolean selected) {
                     if (!level.isClientSide
@@ -156,13 +256,12 @@ public class ModItems {
                             MobEffects.FIRE_RESISTANCE,310,0,true,false,false
                     ));
 
-                    player.addEffect(new MobEffectInstance(
-                            MobEffects.DIG_SPEED,310,1,true,false,false
-                    ));
-
-                    player.addEffect(new MobEffectInstance(
-                            MobEffects.DAMAGE_BOOST,310,1,true,false,false
-                    ));
+                    if (player.isOnFire()){
+                        player.clearFire();
+                    }
+                    if (player.getRemainingFireTicks() > 0){
+                        player.setRemainingFireTicks(0);
+                    }
 
                     if (player.hasEffect(MobEffects.WITHER)) {
                         player.removeEffect(MobEffects.WITHER);
@@ -196,6 +295,15 @@ public class ModItems {
                 }
 
                 @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.HELLALLOY.getEnchantmentValue();
+                }
+
+                @Override
                 public void inventoryTick(ItemStack stack, Level level, Entity entity,
                                           int slot, boolean selected) {
                     if (!level.isClientSide
@@ -211,7 +319,7 @@ public class ModItems {
                     if (player.getItemBySlot(EquipmentSlot.LEGS) != stack) return;
 
                     player.addEffect(new MobEffectInstance(
-                            MobEffects.MOVEMENT_SPEED,310,1,true,false,false
+                            MobEffects.JUMP,310,0,true,false,false
                     ));
 
                     if (player.hasEffect(MobEffects.CONFUSION)) {
@@ -240,6 +348,15 @@ public class ModItems {
                 }
 
                 @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.HELLALLOY.getEnchantmentValue();
+                }
+
+                @Override
                 public void inventoryTick(ItemStack stack, Level level, Entity entity,
                                           int slot, boolean selected) {
                     if (!level.isClientSide
@@ -253,6 +370,10 @@ public class ModItems {
                     if (!(entity instanceof Player player)) return;
 
                     if (player.getItemBySlot(EquipmentSlot.FEET) != stack) return;
+
+                    player.addEffect(new MobEffectInstance(
+                            MobEffects.MOVEMENT_SPEED,310,1,true,false,false
+                    ));
 
                     if (player.hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) {
                         player.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
@@ -275,6 +396,15 @@ public class ModItems {
                         ITEMS.register("hellalloy_pickaxe", () -> new PickaxeItem(ModToolTiers.HELLALLOY, new Item.Properties()
                                 .attributes(PickaxeItem.createAttributes(ModToolTiers.HELLALLOY, 1.0F, -2.6F)).rarity(Rarity.RARE).fireResistant()){
                             @Override
+                            public boolean isEnchantable(ItemStack stack) {
+                                return true;
+                            }
+                            @Override
+                            public int getEnchantmentValue() {
+                                return ModToolTiers.HELLALLOY.getEnchantmentValue();
+                            }
+
+                            @Override
                             public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                                 tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.hellalloy_pickaxe"));
                                 super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
@@ -283,6 +413,15 @@ public class ModItems {
     public static final DeferredItem<ShovelItem> HELLALLOY_SHOVEL =
                         ITEMS.register("hellalloy_shovel", () -> new ShovelItem(ModToolTiers.HELLALLOY, new Item.Properties()
                                 .attributes(ShovelItem.createAttributes(ModToolTiers.HELLALLOY, 1.5F, -2.8F)).rarity(Rarity.RARE).fireResistant()){
+                            @Override
+                            public boolean isEnchantable(ItemStack stack) {
+                                return true;
+                            }
+                            @Override
+                            public int getEnchantmentValue() {
+                                return ModToolTiers.HELLALLOY.getEnchantmentValue();
+                            }
+
                             @Override
                             public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                                 tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.hellalloy_shovel"));
@@ -293,6 +432,15 @@ public class ModItems {
                         ITEMS.register("hellalloy_axe", () -> new AxeItem(ModToolTiers.HELLALLOY, new Item.Properties()
                                 .attributes(AxeItem.createAttributes(ModToolTiers.HELLALLOY, 6.0F, -2.8F)).rarity(Rarity.RARE).fireResistant()){
                             @Override
+                            public boolean isEnchantable(ItemStack stack) {
+                                return true;
+                            }
+                            @Override
+                            public int getEnchantmentValue() {
+                                return ModToolTiers.HELLALLOY.getEnchantmentValue();
+                            }
+
+                            @Override
                             public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                                 tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.hellalloy_axe"));
                                 super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
@@ -301,6 +449,15 @@ public class ModItems {
     public static final DeferredItem<HoeItem> HELLALLOY_HOE =
                         ITEMS.register("hellalloy_hoe", () -> new HoeItem(ModToolTiers.HELLALLOY, new Item.Properties()
                                 .attributes(HoeItem.createAttributes(ModToolTiers.HELLALLOY, 0.5F, -1.0F)).rarity(Rarity.RARE).fireResistant()){
+                            @Override
+                            public boolean isEnchantable(ItemStack stack) {
+                                return true;
+                            }
+                            @Override
+                            public int getEnchantmentValue() {
+                                return ModToolTiers.HELLALLOY.getEnchantmentValue();
+                            }
+
                             @Override
                             public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                                 tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.hellalloy_hoe"));
@@ -317,6 +474,7 @@ public class ModItems {
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });
+
 
     //幽冥合金剑
     public static final DeferredItem<SwordItem> HELLALLOY_SWORD =
@@ -335,6 +493,15 @@ public class ModItems {
                         }
                     }
                     return super.onLeftClickEntity(stack, player, target);
+                }
+
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.HELLALLOY.getEnchantmentValue();
                 }
 
                 @Override
@@ -358,9 +525,4 @@ public class ModItems {
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });
-
-
-    public static void register(IEventBus eventBus) {
-        ITEMS.register(eventBus);
-    }
 }

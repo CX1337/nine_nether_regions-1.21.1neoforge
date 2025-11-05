@@ -36,6 +36,9 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.HELLIGHT.get());
         dropSelf(ModBlocks.NULL_BLOCK.get());
         dropSelf(ModBlocks.NULL_GRASSBLOCK.get());
+        dropSelf(ModBlocks.PINESAP.get());
+        add(ModBlocks.POTTED_PINESAP.get(),
+                createPotFlowerItemTable(ModBlocks.PINESAP.get()));
         dropSelf(ModBlocks.STYX_BLOCK.get());
         dropSelf(ModBlocks.UNDERWORLDRACK.get());
         dropSelf(ModBlocks.UNDERWORLD_BRICKS.get());

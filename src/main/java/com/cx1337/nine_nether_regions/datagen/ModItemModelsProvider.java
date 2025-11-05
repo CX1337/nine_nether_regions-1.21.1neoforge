@@ -41,6 +41,7 @@ public class ModItemModelsProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         basicItem(ModItems.AMETHYST_BEETROOT.get());
+        basicItem(ModItems.DIAMOND_BOWSTRING.get());
         basicItem(ModItems.GHOSTLIUM.get());
         basicItem(ModItems.HELL_NUCLEUS.get());
         basicItem(ModItems.HELLALLOY_INGOT.get());
@@ -57,6 +58,7 @@ public class ModItemModelsProvider extends ItemModelProvider {
 
         //工具武器类的物品均放在handheldItem中。
         handheldItem(ModItems.ALLOY_HILT.get());
+        handheldItem(ModItems.AMETHYST_DAGGER.get());
         handheldItem(ModItems.HELLALLOY_AXE.get());
         handheldItem(ModItems.HELLALLOY_HOE.get());
         handheldItem(ModItems.HELLALLOY_PICKAXE.get());
@@ -68,6 +70,10 @@ public class ModItemModelsProvider extends ItemModelProvider {
         buttonItem(ModBlocks.UNDERWORLD_BRICK_BUTTON,ModBlocks.UNDERWORLD_BRICKS);
         fenceItem(ModBlocks.UNDERWORLD_BRICK_FENCE, ModBlocks.UNDERWORLD_BRICKS);
         wallItem(ModBlocks.UNDERWORLD_BRICK_WALL, ModBlocks.UNDERWORLD_BRICKS);
+
+        //花
+        withExistingParent("pinesap", mcLoc("item/generated"))
+                .texture("layer0", modLoc("block/pinesap"));
     }
 
 

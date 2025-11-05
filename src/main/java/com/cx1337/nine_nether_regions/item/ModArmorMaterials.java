@@ -24,8 +24,8 @@ public class ModArmorMaterials {
                 attribute.put(ArmorItem.Type.LEGGINGS, 8);
                 attribute.put(ArmorItem.Type.CHESTPLATE, 10);
                 attribute.put(ArmorItem.Type.HELMET, 5);
-                attribute.put(ArmorItem.Type.BODY,13);
-            }), 28, 4F, 0.7F, () -> ModItems.HELLALLOY_INGOT.get(),
+                attribute.put(ArmorItem.Type.BODY,20);
+            }), 28, 4.5F, 0.7F, () -> ModItems.HELLALLOY_INGOT.get(),
             ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, "models/hellalloy"));
 
     private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> typeProtection,

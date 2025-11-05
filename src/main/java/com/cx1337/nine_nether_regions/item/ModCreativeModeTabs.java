@@ -22,12 +22,14 @@ public class ModCreativeModeTabs {
                     .displayItems((parameters, output) -> {
                         output.accept(ModItems.NETHERITE_ROD);
                         output.accept(ModItems.HELLALLOY_ROD);
+                        output.accept(ModItems.DIAMOND_BOWSTRING);
                         output.accept(ModItems.UNDERWORLD_BRICK);
                         output.accept(ModItems.UNDERWORLD_CRYSTAL);
                         output.accept(ModItems.GHOSTLIUM);
                         output.accept(ModItems.HELL_NUCLEUS);
                         output.accept(ModItems.AMETHYST_BEETROOT);
                         output.accept(ModItems.ALLOY_HILT);
+                        output.accept(ModItems.AMETHYST_DAGGER);
 
                         output.accept(ModItems.HELLALLOY_INGOT);
                         output.accept(ModItems.HELLALLOY_AXE);
@@ -39,6 +41,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.HELLALLOY_LEGGINGS);
                         output.accept(ModItems.HELLALLOY_BOOTS);
                         output.accept(ModItems.HELLALLOY_SWORD);
+                        output.accept(ModItems.HELLALLOY_LONGBOW);
 
                         output.accept(ModItems.STYX_INGOT);
                     }).build());
@@ -54,6 +57,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.UNDERWORLD_CRYSTAL_ORE);
                         output.accept(ModBlocks.HELLIGHT);
                         output.accept(ModBlocks.HELLALLOY_BLOCK);
+                        output.accept(ModBlocks.PINESAP);
                         output.accept(ModBlocks.STYX_BLOCK);
                         output.accept(ModBlocks.UNDERWORLDRACK);
                         output.accept(ModBlocks.UNDERWORLD_BRICKS);

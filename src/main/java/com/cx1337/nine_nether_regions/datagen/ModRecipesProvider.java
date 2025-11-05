@@ -63,6 +63,14 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy(getHasName(Items.BEETROOT), has(Items.BEETROOT))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.AMETHYST_DAGGER, 1)
+                .pattern("#")
+                .pattern("$")
+                .define('#', Items.AMETHYST_SHARD)
+                .define('$', Items.STICK)
+                .unlockedBy(getHasName(Items.AMETHYST_SHARD), has(Items.AMETHYST_SHARD))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.GLOWING_UNDERWORLD_BRICKS, 5)
                 .pattern("#$#")
                 .pattern("$#$")
@@ -73,12 +81,30 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy(getHasName(ModBlocks.UNDERWORLD_BRICKS), has(ModBlocks.UNDERWORLD_BRICKS))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.DIAMOND_BOWSTRING, 1)
+                .pattern("# ")
+                .pattern(" #")
+                .pattern("# ")
+                .define('#', Items.DIAMOND)
+                .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.HELLALLOY_BLOCK, 1)
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
                 .define('#', ModItems.HELLALLOY_INGOT)
                 .unlockedBy(getHasName(ModItems.HELLALLOY_INGOT), has(ModItems.HELLALLOY_INGOT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.HELLALLOY_LONGBOW, 1)
+                .pattern("*##")
+                .pattern("# $")
+                .pattern("#$ ")
+                .define('#', ModItems.HELLALLOY_ROD)
+                .define('*', Items.AMETHYST_SHARD)
+                .define('$', ModItems.DIAMOND_BOWSTRING)
+                .unlockedBy(getHasName(ModItems.HELLALLOY_ROD), has(ModItems.HELLALLOY_ROD))
                 .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STYX_BLOCK, 1)
