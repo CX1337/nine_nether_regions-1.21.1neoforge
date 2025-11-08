@@ -20,16 +20,29 @@ public class ModCreativeModeTabs {
                     .icon(() -> new ItemStack(ModItems.STYX_INGOT.get()))
                     .title(Component.translatable("itemGroup.nine_nether_regions_materials_tab"))
                     .displayItems((parameters, output) -> {
+                        output.accept(ModItems.AMETHYST_DAGGER);
+                        output.accept(ModItems.ALLOY_HILT);
+
                         output.accept(ModItems.NETHERITE_ROD);
                         output.accept(ModItems.HELLALLOY_ROD);
                         output.accept(ModItems.DIAMOND_BOWSTRING);
                         output.accept(ModItems.UNDERWORLD_BRICK);
                         output.accept(ModItems.UNDERWORLD_CRYSTAL);
                         output.accept(ModItems.GHOSTLIUM);
-                        output.accept(ModItems.HELL_NUCLEUS);
                         output.accept(ModItems.AMETHYST_BEETROOT);
-                        output.accept(ModItems.ALLOY_HILT);
-                        output.accept(ModItems.AMETHYST_DAGGER);
+
+                        output.accept(ModItems.STEEL_BASE);
+                        output.accept(ModItems.STEEL_INGOT);
+                        output.accept(ModItems.STEEL_NUGGET);
+                        output.accept(ModItems.STEEL_AXE);
+                        output.accept(ModItems.STEEL_HOE);
+                        output.accept(ModItems.STEEL_PICKAXE);
+                        output.accept(ModItems.STEEL_SHOVEL);
+                        output.accept(ModItems.STEEL_SWORD);
+                        output.accept(ModItems.STEEL_HELMET);
+                        output.accept(ModItems.STEEL_CHESTPLATE);
+                        output.accept(ModItems.STEEL_LEGGINGS);
+                        output.accept(ModItems.STEEL_BOOTS);
 
                         output.accept(ModItems.HELLALLOY_INGOT);
                         output.accept(ModItems.HELLALLOY_AXE);
@@ -51,14 +64,19 @@ public class ModCreativeModeTabs {
                     .icon(() -> new ItemStack(ModBlocks.GLOWING_UNDERWORLD_BRICKS.get()))
                     .title(Component.translatable("itemGroup.nine_nether_regions_blocks_tab"))
                     .displayItems((parameters, output) -> {
+                        output.accept(ModBlocks.HELLIGHT);
+                        output.accept(ModBlocks.HELL_NUCLEUS);
+                        output.accept(ModBlocks.PINESAP);
+                        output.accept(ModBlocks.UNDERWORLD_CRYSTAL_ORE);
+
+                        output.accept(ModBlocks.HELLALLOY_BLOCK);
+                        output.accept(ModBlocks.STEEL_BLOCK);
+                        output.accept(ModBlocks.STYX_BLOCK);
+
                         output.accept(ModBlocks.GLOWING_UNDERWORLD_BRICKS);
                         output.accept(ModBlocks.GLOWING_UNDERWORLD_BRICK_SLAB);
                         output.accept(ModBlocks.GLOWING_UNDERWORLD_BRICK_STAIRS);
-                        output.accept(ModBlocks.UNDERWORLD_CRYSTAL_ORE);
-                        output.accept(ModBlocks.HELLIGHT);
-                        output.accept(ModBlocks.HELLALLOY_BLOCK);
-                        output.accept(ModBlocks.PINESAP);
-                        output.accept(ModBlocks.STYX_BLOCK);
+
                         output.accept(ModBlocks.UNDERWORLDRACK);
                         output.accept(ModBlocks.UNDERWORLD_BRICKS);
                         output.accept(ModBlocks.UNDERWORLD_BRICK_BUTTON);
@@ -67,6 +85,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.UNDERWORLD_BRICK_SLAB);
                         output.accept(ModBlocks.UNDERWORLD_BRICK_STAIRS);
                         output.accept(ModBlocks.UNDERWORLD_BRICK_WALL);
+
                         output.accept(ModBlocks.NULL_BLOCK);
                         output.accept(ModBlocks.NULL_GRASSBLOCK);
                     }).build());

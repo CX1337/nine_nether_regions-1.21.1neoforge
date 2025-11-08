@@ -1,6 +1,7 @@
 package com.cx1337.nine_nether_regions.item;
 
 import com.cx1337.nine_nether_regions.NineNetherRegions;
+import com.cx1337.nine_nether_regions.item.special.HellalloyShieldItem;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
@@ -18,6 +19,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.AABB;
@@ -37,10 +39,6 @@ public class ModItems {
         ITEMS.register(eventBus);
     }
 
-    private abstract static class ArmorItemExt extends ArmorItem implements IItemExtension{
-        ArmorItemExt(Holder<ArmorMaterial> mat, Type type, Properties props) {super(mat, type, props);}
-        public abstract int getDamagePerUseRaw(float rawDamage, ItemStack stack, LivingEntity entity, EquipmentSlot slot);
-    }
 
     //紫水晶短剑
     public static final Tier AMETHYST = new Tier() {
@@ -75,17 +73,36 @@ public class ModItems {
            ITEMS.register("amethyst_dagger", () -> new SwordItem(AMETHYST, new Item.Properties()
                    .attributes(SwordItem.createAttributes(AMETHYST, 4, -1.6F)).rarity(Rarity.COMMON)){
 
-               //每次攻击40%概率回2血量。
+               //每次攻击40%概率回1血量。
                @Override
                public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
                    if (player.level().random.nextFloat() < 0.40f && player.getHealth() < player.getMaxHealth()) {
-                       player.heal(2.0f);
+                       player.heal(1.0f);
                    }
-                   return false; // 不拦截左键
+                   return false;
                }
            });
 
     //材料和杂项。
+    public static final DeferredItem<Item> STEEL_BASE =
+            ITEMS.register("steel_base", () -> new Item(new Item.Properties().rarity(Rarity.COMMON)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.steel_base"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+    public static final DeferredItem<Item> STEEL_INGOT =
+            ITEMS.register("steel_ingot", () -> new Item(new Item.Properties().rarity(Rarity.COMMON)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.steel_ingot"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+    public static final DeferredItem<Item> STEEL_NUGGET =
+            ITEMS.register("steel_nugget", () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+
     public static final DeferredItem<Item> HELLALLOY_INGOT =
             ITEMS.register("hellalloy_ingot", () -> new Item(new Item.Properties().rarity(Rarity.RARE).fireResistant()){
                 @Override
@@ -102,6 +119,8 @@ public class ModItems {
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });
+    public static final DeferredItem<Item> DIAMOND_BOWSTRING =
+            ITEMS.register("diamond_bowstring", () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
     public static final DeferredItem<Item> UNDERWORLD_BRICK =
             ITEMS.register("underworld_brick", () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
     public static final DeferredItem<Item> UNDERWORLD_CRYSTAL =
@@ -110,14 +129,6 @@ public class ModItems {
             ITEMS.register("netherite_rod", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant()));
     public static final DeferredItem<Item> HELLALLOY_ROD =
             ITEMS.register("hellalloy_rod", () -> new Item(new Item.Properties().rarity(Rarity.RARE).fireResistant()));
-    public static final DeferredItem<Item> HELL_NUCLEUS =
-            ITEMS.register("hell_nucleus", () -> new Item(new Item.Properties().rarity(Rarity.EPIC).fireResistant()){
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.hell_nucleus"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
     public static final DeferredItem<Item> GHOSTLIUM =
             ITEMS.register("ghostlium", () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
 
@@ -125,8 +136,7 @@ public class ModItems {
             ITEMS.register("amethyst_beetroot", () -> new Item(new Item.Properties().food(ModFoodProperties.AMETHYST_BEETROOT)
                     .rarity(Rarity.COMMON)));
 
-    public static final DeferredItem<Item> DIAMOND_BOWSTRING =
-            ITEMS.register("diamond_bowstring", () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+
 
     //食物注册后需在ModFoodProperties中补全信息。
     //类似可用作燃料的方块/物品注册后需在ModDataMapProvider补全信息。
@@ -161,14 +171,64 @@ public class ModItems {
             });
 
     //盔甲。
-    public static final DeferredItem<ArmorItem> HELLALLOY_HELMET =
-            ITEMS.register("hellalloy_helmet", () ->new ArmorItemExt(ModArmorMaterials.HELLALLOY_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
-                    new Item.Properties() .durability(ArmorItem.Type.HELMET.getDurability(99)).rarity(Rarity.EPIC).fireResistant()){
+    //精钢盔甲。
+    public static final DeferredItem<ArmorItem> STEEL_HELMET =
+            ITEMS.register("steel_helmet", () ->new ArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties() .durability(ArmorItem.Type.HELMET.getDurability(33)).rarity(Rarity.COMMON)){
 
                 @Override
-                public int getDamagePerUseRaw(float rawDamage, ItemStack stack, LivingEntity entity, EquipmentSlot slot) {
-                    return 24;
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
                 }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.STEEL.getEnchantmentValue();
+                }
+            });
+    public static final DeferredItem<ArmorItem> STEEL_CHESTPLATE =
+            ITEMS.register("steel_chestplate", () ->new ArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties() .durability(ArmorItem.Type.CHESTPLATE.getDurability(30)).rarity(Rarity.COMMON)){
+
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.STEEL.getEnchantmentValue();
+                }
+            });
+    public static final DeferredItem<ArmorItem> STEEL_LEGGINGS =
+            ITEMS.register("steel_leggings", () ->new ArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties() .durability(ArmorItem.Type.LEGGINGS.getDurability(31)).rarity(Rarity.COMMON)){
+
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.STEEL.getEnchantmentValue();
+                }
+            });
+    public static final DeferredItem<ArmorItem> STEEL_BOOTS =
+            ITEMS.register("steel_boots", () ->new ArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+                    new Item.Properties() .durability(ArmorItem.Type.BOOTS.getDurability(32)).rarity(Rarity.COMMON)){
+
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.STEEL.getEnchantmentValue();
+                }
+            });
+
+    //幽冥合金盔甲。
+    public static final DeferredItem<ArmorItem> HELLALLOY_HELMET =
+            ITEMS.register("hellalloy_helmet", () ->new ArmorItem(ModArmorMaterials.HELLALLOY_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties() .durability(ArmorItem.Type.HELMET.getDurability(99)).rarity(Rarity.EPIC).fireResistant()){
 
                 @Override
                 public boolean isEnchantable(ItemStack stack) {
@@ -187,7 +247,7 @@ public class ModItems {
                             && entity instanceof LivingEntity living
                             && living.tickCount % 40 == 0
                             && stack.getDamageValue() > 0) {
-                        stack.setDamageValue(Math.max(0, stack.getDamageValue() - 8));
+                        stack.setDamageValue(Math.max(0, stack.getDamageValue() - 4));
                     }
 
                     if (level.isClientSide) return;
@@ -220,13 +280,8 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<ArmorItem> HELLALLOY_CHESTPLATE =
-            ITEMS.register("hellalloy_chestplate", () ->new ArmorItemExt(ModArmorMaterials.HELLALLOY_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+            ITEMS.register("hellalloy_chestplate", () ->new ArmorItem(ModArmorMaterials.HELLALLOY_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
                     new Item.Properties() .durability(ArmorItem.Type.CHESTPLATE.getDurability(99)).rarity(Rarity.EPIC).fireResistant()){
-
-                @Override
-                public int getDamagePerUseRaw(float rawDamage, ItemStack stack, LivingEntity entity, EquipmentSlot slot) {
-                    return 24;
-                }
 
                 @Override
                 public boolean isEnchantable(ItemStack stack) {
@@ -244,7 +299,7 @@ public class ModItems {
                             && entity instanceof LivingEntity living
                             && living.tickCount % 40 == 0
                             && stack.getDamageValue() > 0) {
-                        stack.setDamageValue(Math.max(0, stack.getDamageValue() - 8));
+                        stack.setDamageValue(Math.max(0, stack.getDamageValue() - 4));
                     }
 
                     if (level.isClientSide) return;
@@ -284,15 +339,9 @@ public class ModItems {
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });
-
     public static final DeferredItem<ArmorItem> HELLALLOY_LEGGINGS =
-            ITEMS.register("hellalloy_leggings", () ->new ArmorItemExt(ModArmorMaterials.HELLALLOY_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+            ITEMS.register("hellalloy_leggings", () ->new ArmorItem(ModArmorMaterials.HELLALLOY_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
                     new Item.Properties() .durability(ArmorItem.Type.LEGGINGS.getDurability(99)).rarity(Rarity.EPIC).fireResistant()){
-
-                @Override
-                public int getDamagePerUseRaw(float rawDamage, ItemStack stack, LivingEntity entity, EquipmentSlot slot) {
-                    return 24;
-                }
 
                 @Override
                 public boolean isEnchantable(ItemStack stack) {
@@ -310,7 +359,7 @@ public class ModItems {
                             && entity instanceof LivingEntity living
                             && living.tickCount % 40 == 0
                             && stack.getDamageValue() > 0) {
-                        stack.setDamageValue(Math.max(0, stack.getDamageValue() - 8));
+                        stack.setDamageValue(Math.max(0, stack.getDamageValue() - 4));
                     }
 
                     if (level.isClientSide) return;
@@ -337,15 +386,9 @@ public class ModItems {
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });
-
     public static final DeferredItem<ArmorItem> HELLALLOY_BOOTS =
-            ITEMS.register("hellalloy_boots", () ->new ArmorItemExt(ModArmorMaterials.HELLALLOY_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+            ITEMS.register("hellalloy_boots", () ->new ArmorItem(ModArmorMaterials.HELLALLOY_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
                     new Item.Properties() .durability(ArmorItem.Type.BOOTS.getDurability(99)).rarity(Rarity.EPIC).fireResistant()){
-
-                @Override
-                public int getDamagePerUseRaw(float rawDamage, ItemStack stack, LivingEntity entity, EquipmentSlot slot) {
-                    return 24;
-                }
 
                 @Override
                 public boolean isEnchantable(ItemStack stack) {
@@ -363,7 +406,7 @@ public class ModItems {
                             && entity instanceof LivingEntity living
                             && living.tickCount % 40 == 0
                             && stack.getDamageValue() > 0) {
-                        stack.setDamageValue(Math.max(0, stack.getDamageValue() - 8));
+                        stack.setDamageValue(Math.max(0, stack.getDamageValue() - 4));
                     }
 
                     if (level.isClientSide) return;
@@ -392,6 +435,69 @@ public class ModItems {
             });
 
     //工具。
+    //精钢工具。
+    public static final DeferredItem<PickaxeItem> STEEL_PICKAXE =
+            ITEMS.register("steel_pickaxe", () -> new PickaxeItem(ModToolTiers.STEEL, new Item.Properties()
+                    .attributes(PickaxeItem.createAttributes(ModToolTiers.STEEL, 1.0F, -2.6F)).rarity(Rarity.COMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.STEEL.getEnchantmentValue();
+                }
+            });
+    public static final DeferredItem<ShovelItem> STEEL_SHOVEL =
+            ITEMS.register("steel_shovel", () -> new ShovelItem(ModToolTiers.STEEL, new Item.Properties()
+                    .attributes(ShovelItem.createAttributes(ModToolTiers.STEEL, 1.5F, -2.8F)).rarity(Rarity.COMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.STEEL.getEnchantmentValue();
+                }
+            });
+    public static final DeferredItem<AxeItem> STEEL_AXE =
+            ITEMS.register("steel_axe", () -> new AxeItem(ModToolTiers.STEEL, new Item.Properties()
+                    .attributes(AxeItem.createAttributes(ModToolTiers.STEEL, 4.0F, -3.0F)).rarity(Rarity.COMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.STEEL.getEnchantmentValue();
+                }
+            });
+    public static final DeferredItem<HoeItem> STEEL_HOE =
+            ITEMS.register("steel_hoe", () -> new HoeItem(ModToolTiers.STEEL, new Item.Properties()
+                    .attributes(HoeItem.createAttributes(ModToolTiers.STEEL, 0.5F, -1.0F)).rarity(Rarity.COMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.STEEL.getEnchantmentValue();
+                }
+            });
+    public static final DeferredItem<SwordItem> STEEL_SWORD =
+            ITEMS.register("steel_sword", () -> new SwordItem(ModToolTiers.STEEL, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModToolTiers.STEEL, 4.0F, -2.4F)).rarity(Rarity.COMMON)) {
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.STEEL.getEnchantmentValue();
+                }
+            });
+
+    //幽冥合金工具。
     public static final DeferredItem<PickaxeItem> HELLALLOY_PICKAXE =
                         ITEMS.register("hellalloy_pickaxe", () -> new PickaxeItem(ModToolTiers.HELLALLOY, new Item.Properties()
                                 .attributes(PickaxeItem.createAttributes(ModToolTiers.HELLALLOY, 1.0F, -2.6F)).rarity(Rarity.RARE).fireResistant()){
@@ -465,6 +571,7 @@ public class ModItems {
                             }
                         });
 
+    //特殊。
     public static final DeferredItem<SwordItem> ALLOY_HILT =
             ITEMS.register("alloy_hilt", () -> new SwordItem(ModToolTiers.HELLALLOY, new Item.Properties()
                     .attributes(SwordItem.createAttributes(ModToolTiers.HELLALLOY, -6.0F, -1.0F)).rarity(Rarity.EPIC).fireResistant()){
@@ -475,6 +582,9 @@ public class ModItems {
                 }
             });
 
+    //幽冥合金禁卫盾。
+    public static final DeferredItem<HellalloyShieldItem> HELLALLOY_ROYALGUARD_SHIELD =
+            ITEMS.registerItem("hellalloy_royalguard_shield", HellalloyShieldItem::new, new Item.Properties().fireResistant());
 
     //幽冥合金剑
     public static final DeferredItem<SwordItem> HELLALLOY_SWORD =

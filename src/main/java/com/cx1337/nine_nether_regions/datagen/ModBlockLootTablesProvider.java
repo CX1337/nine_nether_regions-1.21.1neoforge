@@ -11,6 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
@@ -34,12 +35,14 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.GLOWING_UNDERWORLD_BRICK_STAIRS.get());
         dropSelf(ModBlocks.HELLALLOY_BLOCK.get());
         dropSelf(ModBlocks.HELLIGHT.get());
+        dropSelf(ModBlocks.HELL_NUCLEUS.get());
         dropSelf(ModBlocks.NULL_BLOCK.get());
         dropSelf(ModBlocks.NULL_GRASSBLOCK.get());
         dropSelf(ModBlocks.PINESAP.get());
         add(ModBlocks.POTTED_PINESAP.get(),
                 createPotFlowerItemTable(ModBlocks.PINESAP.get()));
         dropSelf(ModBlocks.STYX_BLOCK.get());
+        dropSelf(ModBlocks.STEEL_BLOCK.get());
         dropSelf(ModBlocks.UNDERWORLDRACK.get());
         dropSelf(ModBlocks.UNDERWORLD_BRICKS.get());
         dropSelf(ModBlocks.UNDERWORLD_BRICK_BUTTON.get());

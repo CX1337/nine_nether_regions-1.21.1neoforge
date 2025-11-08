@@ -34,7 +34,8 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 
         tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
                 .add(ModBlocks.HELLALLOY_BLOCK.get())
-                .add(ModBlocks.STYX_BLOCK.get());
+                .add(ModBlocks.STYX_BLOCK.get())
+                .add(ModBlocks.STEEL_BLOCK.get());
 
         tag(BlockTags.INCORRECT_FOR_STONE_TOOL)
                 .add(ModBlocks.HELLALLOY_BLOCK.get())
@@ -42,7 +43,8 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 
         tag(BlockTags.INCORRECT_FOR_GOLD_TOOL)
                 .add(ModBlocks.HELLALLOY_BLOCK.get())
-                .add(ModBlocks.STYX_BLOCK.get());
+                .add(ModBlocks.STYX_BLOCK.get())
+                .add(ModBlocks.STEEL_BLOCK.get());
 
         tag(BlockTags.INCORRECT_FOR_IRON_TOOL)
                 .add(ModBlocks.HELLALLOY_BLOCK.get())
@@ -65,6 +67,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 .add(ModBlocks.HELLALLOY_BLOCK.get())
                 .add(ModBlocks.HELLIGHT.get())
                 .add(ModBlocks.STYX_BLOCK.get())
+                .add(ModBlocks.STEEL_BLOCK.get())
                 .add(ModBlocks.UNDERWORLDRACK.get())
                 .add(ModBlocks.UNDERWORLD_BRICKS.get())
                 .add(ModBlocks.UNDERWORLD_BRICK_BUTTON.get())
@@ -79,6 +82,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 .add(ModBlocks.GLOWING_UNDERWORLD_BRICKS.get())
                 .add(ModBlocks.GLOWING_UNDERWORLD_BRICK_SLAB.get())
                 .add(ModBlocks.GLOWING_UNDERWORLD_BRICK_STAIRS.get())
+                .add(ModBlocks.STEEL_BLOCK.get())
                 .add(ModBlocks.UNDERWORLDRACK.get())
                 .add(ModBlocks.UNDERWORLD_BRICKS.get())
                 .add(ModBlocks.UNDERWORLD_BRICK_BUTTON.get())
@@ -99,6 +103,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 .add(ModBlocks.NULL_GRASSBLOCK.get())
                 .add(ModBlocks.HELLALLOY_BLOCK.get())
                 .add(ModBlocks.HELLIGHT.get())
+                .add(ModBlocks.HELL_NUCLEUS.get())
                 .add(ModBlocks.STYX_BLOCK.get())
                 .add(ModBlocks.UNDERWORLD_CRYSTAL_ORE.get());
 

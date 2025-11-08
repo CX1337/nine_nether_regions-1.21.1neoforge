@@ -6,7 +6,6 @@ import com.cx1337.nine_nether_regions.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
@@ -22,16 +21,22 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
         super(output, registries);
     }
 
+    //熔炼原料注册点。
     public static final List<ItemLike> UNDERWORLD_BRICK = List.of(ModBlocks.UNDERWORLDRACK);
+    public static final List<ItemLike> STEEL_INGOT = List.of(ModItems.STEEL_BASE);
+    public static final List<ItemLike> STEEL_NUGGET = List.of(ModItems.STEEL_HELMET, ModItems.STEEL_CHESTPLATE,
+    ModItems.STEEL_LEGGINGS, ModItems.STEEL_BOOTS, ModItems.STEEL_AXE, ModItems.STEEL_HOE, ModItems.STEEL_PICKAXE,
+            ModItems.STEEL_SHOVEL, ModItems.STEEL_SWORD);
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, Items.ENCHANTED_GOLDEN_APPLE, 1)
-                .pattern("###")
+                .pattern("#R#")
                 .pattern("#$#")
                 .pattern("###")
                 .define('#', Blocks.GOLD_BLOCK)
-                .define('$', Items.APPLE)
+                .define('$', Items.GOLDEN_APPLE)
+                .define('R', Items.ENCHANTED_BOOK)
                 .unlockedBy(getHasName(Items.APPLE), has(Items.APPLE))
                 .save(recipeOutput, NineNetherRegions.MODID + ":" +"enc_gold_apple");
 
@@ -45,7 +50,7 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy(getHasName(Blocks.DRAGON_EGG), has(Blocks.DRAGON_EGG))
                 .save(recipeOutput, NineNetherRegions.MODID + ":" +"dragon_egg_new");
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.HELL_NUCLEUS, 1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.HELL_NUCLEUS, 1)
                 .pattern("###")
                 .pattern("#$#")
                 .pattern("#R#")
@@ -97,6 +102,17 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy(getHasName(ModItems.HELLALLOY_INGOT), has(ModItems.HELLALLOY_INGOT))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.HELLALLOY_ROYALGUARD_SHIELD, 1)
+                .pattern("#%#")
+                .pattern("R$R")
+                .pattern("#%#")
+                .define('#', ModItems.HELLALLOY_ROD)
+                .define('%', Items.AMETHYST_BLOCK)
+                .define('R', ModItems.NETHERITE_ROD)
+                .define('$', ModItems.HELLALLOY_INGOT)
+                .unlockedBy(getHasName(ModItems.HELLALLOY_INGOT), has(ModItems.HELLALLOY_INGOT))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.HELLALLOY_LONGBOW, 1)
                 .pattern("*##")
                 .pattern("# $")
@@ -105,6 +121,106 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .define('*', Items.AMETHYST_SHARD)
                 .define('$', ModItems.DIAMOND_BOWSTRING)
                 .unlockedBy(getHasName(ModItems.HELLALLOY_ROD), has(ModItems.HELLALLOY_ROD))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_BASE, 1)
+                .pattern("###")
+                .pattern(" $ ")
+                .pattern("###")
+                .define('#', Items.IRON_INGOT)
+                .define('$', Items.COAL)
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_INGOT, 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', ModItems.STEEL_NUGGET)
+                .unlockedBy(getHasName(ModItems.STEEL_NUGGET), has(ModItems.STEEL_NUGGET))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STEEL_BLOCK, 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', ModItems.STEEL_INGOT)
+                .unlockedBy(getHasName(ModItems.STEEL_INGOT), has(ModItems.STEEL_INGOT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.STEEL_AXE, 1)
+                .pattern("## ")
+                .pattern("#$ ")
+                .pattern(" $ ")
+                .define('#', ModItems.STEEL_INGOT)
+                .define('$', Items.STICK)
+                .unlockedBy(getHasName(ModItems.STEEL_INGOT), has(ModItems.STEEL_INGOT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.STEEL_HOE, 1)
+                .pattern("## ")
+                .pattern(" $ ")
+                .pattern(" $ ")
+                .define('#', ModItems.STEEL_INGOT)
+                .define('$', Items.STICK)
+                .unlockedBy(getHasName(ModItems.STEEL_INGOT), has(ModItems.STEEL_INGOT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.STEEL_PICKAXE, 1)
+                .pattern("###")
+                .pattern(" $ ")
+                .pattern(" $ ")
+                .define('#', ModItems.STEEL_INGOT)
+                .define('$', Items.STICK)
+                .unlockedBy(getHasName(ModItems.STEEL_INGOT), has(ModItems.STEEL_INGOT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.STEEL_SHOVEL, 1)
+                .pattern(" # ")
+                .pattern(" $ ")
+                .pattern(" $ ")
+                .define('#', ModItems.STEEL_INGOT)
+                .define('$', Items.STICK)
+                .unlockedBy(getHasName(ModItems.STEEL_INGOT), has(ModItems.STEEL_INGOT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.STEEL_SWORD, 1)
+                .pattern(" # ")
+                .pattern(" # ")
+                .pattern(" $ ")
+                .define('#', ModItems.STEEL_INGOT)
+                .define('$', Items.STICK)
+                .unlockedBy(getHasName(ModItems.STEEL_INGOT), has(ModItems.STEEL_INGOT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.STEEL_HELMET, 1)
+                .pattern("###")
+                .pattern("# #")
+                .define('#', ModItems.STEEL_INGOT)
+                .unlockedBy(getHasName(ModItems.STEEL_INGOT), has(ModItems.STEEL_INGOT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.STEEL_CHESTPLATE, 1)
+                .pattern("# #")
+                .pattern("###")
+                .pattern("###")
+                .define('#', ModItems.STEEL_INGOT)
+                .unlockedBy(getHasName(ModItems.STEEL_INGOT), has(ModItems.STEEL_INGOT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.STEEL_LEGGINGS, 1)
+                .pattern("###")
+                .pattern("# #")
+                .pattern("# #")
+                .define('#', ModItems.STEEL_INGOT)
+                .unlockedBy(getHasName(ModItems.STEEL_INGOT), has(ModItems.STEEL_INGOT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.STEEL_BOOTS, 1)
+                .pattern("# #")
+                .pattern("# #")
+                .define('#', ModItems.STEEL_INGOT)
+                .unlockedBy(getHasName(ModItems.STEEL_INGOT), has(ModItems.STEEL_INGOT))
                 .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STYX_BLOCK, 1)
@@ -162,7 +278,7 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .define('R', ModItems.HELLALLOY_INGOT)
                 .define('%', Items.NETHERITE_SWORD)
                 .define('$', ModItems.UNDERWORLD_BRICK)
-                .define('T', ModItems.HELL_NUCLEUS)
+                .define('T', ModBlocks.HELL_NUCLEUS)
                 .unlockedBy(getHasName(Items.NETHERITE_SWORD), has(Items.NETHERITE_SWORD))
                 .save(recipeOutput);
 
@@ -190,7 +306,7 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("#$#")
                 .pattern("###")
                 .define('#', ModItems.HELLALLOY_INGOT)
-                .define('$', ModItems.HELL_NUCLEUS)
+                .define('$', ModBlocks.HELL_NUCLEUS)
                 .unlockedBy(getHasName(ModItems.HELLALLOY_INGOT), has(ModItems.HELLALLOY_INGOT))
                 .save(recipeOutput);
 
@@ -263,18 +379,33 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy(getHasName(ModBlocks.HELLALLOY_BLOCK), has(ModBlocks.HELLALLOY_BLOCK))
                 .save(recipeOutput);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.STEEL_NUGGET, 9)
+                .requires(ModItems.STEEL_INGOT)
+                .unlockedBy(getHasName(ModItems.STEEL_INGOT), has(ModItems.STEEL_INGOT))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.STEEL_INGOT, 9)
+                .requires(ModBlocks.STEEL_BLOCK)
+                .unlockedBy(getHasName(ModBlocks.STEEL_BLOCK), has(ModBlocks.STEEL_BLOCK))
+                .save(recipeOutput, NineNetherRegions.MODID + ":" +"steel_ingot_no2");
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.STYX_INGOT, 9)
                 .requires(ModBlocks.STYX_BLOCK)
                 .unlockedBy(getHasName(ModBlocks.STYX_BLOCK), has(ModBlocks.STYX_BLOCK))
                 .save(recipeOutput);
 
-        oreSmelting(recipeOutput, UNDERWORLD_BRICK, RecipeCategory.MISC, ModItems.UNDERWORLD_BRICK, 0.20f, 150, "underworld_bricks");
-        oreBlasting(recipeOutput, UNDERWORLD_BRICK, RecipeCategory.MISC, ModItems.UNDERWORLD_BRICK, 4.44f, 300, "underworld_bricks");
+        //需要熔炼的物品请先到顶部注册。
+        oreSmelting(recipeOutput, UNDERWORLD_BRICK, RecipeCategory.MISC, ModItems.UNDERWORLD_BRICK, 0.10f, 150, "underworld_bricks");
+        oreBlasting(recipeOutput, UNDERWORLD_BRICK, RecipeCategory.MISC, ModItems.UNDERWORLD_BRICK, 0.44f, 300, "underworld_bricks");
+        oreBlasting(recipeOutput, STEEL_INGOT, RecipeCategory.MISC, ModItems.STEEL_INGOT, 0.10f, 200, "steel_ingot");
+        oreSmelting(recipeOutput, STEEL_NUGGET, RecipeCategory.MISC, ModItems.STEEL_NUGGET, 0.10f, 200, "steel_nugget");
 
+        //标准栅栏/栅栏门预留。
         //fenceBuilder(ModBlocks.???_FENCE.get(), Ingredient.of(ModItems/Blocks:???)).group("???")
         //        .unlockedBy("has_???", has(???)).save(recipeOutput);
-        //fenceGateBuilder(ModBlocks.UNDERWORLD_BRICK_FENCE_GATE.get(), Ingredient.of(ModBlocks.UNDERWORLD_BRICKS)).group("underworld_bricks")
-        //        .unlockedBy("has_underworld_bricks", has(ModBlocks.UNDERWORLD_BRICKS)).save(recipeOutput);
+        //fenceGateBuilder(ModBlocks.???_FENCE_GATE.get(), Ingredient.of(ModBlocks.???)).group("???")
+        //        .unlockedBy("has_???", has(ModBlocks.???)).save(recipeOutput);
+
         wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.UNDERWORLD_BRICK_WALL.get(), ModBlocks.UNDERWORLD_BRICKS.get());
 
         stairBuilder(ModBlocks.GLOWING_UNDERWORLD_BRICK_STAIRS.get(), Ingredient.of(ModBlocks.GLOWING_UNDERWORLD_BRICKS)).group("glowing_underworld_bricks")

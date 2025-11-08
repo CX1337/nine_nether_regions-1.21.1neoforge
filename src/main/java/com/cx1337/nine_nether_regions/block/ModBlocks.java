@@ -2,22 +2,31 @@ package com.cx1337.nine_nether_regions.block;
 
 import com.cx1337.nine_nether_regions.NineNetherRegions;
 import com.cx1337.nine_nether_regions.item.ModItems;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.List;
@@ -73,6 +82,15 @@ public class ModBlocks {
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });
+
+    public static final DeferredBlock<Block> STEEL_BLOCK =
+            registerBlocks("steel_block", () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_LIGHT_GRAY)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .requiresCorrectToolForDrops()
+                    .strength(8.0F,12.0F)
+                    .sound(SoundType.METAL)){
+            });
     public static final DeferredBlock<Block> HELLIGHT =
             registerBlocks("hellight", () -> new Block(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_LIGHT_BLUE)
@@ -80,6 +98,39 @@ public class ModBlocks {
                     .strength(1.5F,6.0F)
                     .sound(SoundType.SCULK_CATALYST)
                     .lightLevel(p_50872_ -> 15)));
+    public static final DeferredBlock<Block> HELL_NUCLEUS =
+            registerBlocks("hell_nucleus", () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.NETHER)
+                    .instrument(NoteBlockInstrument.BANJO)
+                    .strength(3.5F,200.0F)
+                    .sound(SoundType.AMETHYST)
+                    .lightLevel(p_50872_ -> 15)
+            ){
+                @Override
+                public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+                    if (!entity.fireImmune()){
+                        entity.setRemainingFireTicks(300);
+                    }
+                    super.stepOn(level, pos, state, entity);
+                }
+
+                @Override
+                protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+                    return Block.box(4.0D, 0.0D, 4.0D, 12.0D, 8.0D, 12.0D);
+                }
+
+                @Override
+                protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+                    return Block.box(4.0D, 0.0D, 4.0D, 12.0D, 8.0D, 12.0D);
+                }
+
+                @Override
+                public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.hell_nucleus"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
     public static final DeferredBlock<Block> STYX_BLOCK =
             registerBlocks("styx_block", () -> new Block(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_RED)
@@ -180,7 +231,7 @@ public class ModBlocks {
                     .sound(SoundType.NETHER_BRICKS)));
 
 
-    private static <T extends Block> void registerBlockItems(String name, DeferredBlock<T> block) {
+    public static <T extends Block> void registerBlockItems(String name, DeferredBlock<T> block) {
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 

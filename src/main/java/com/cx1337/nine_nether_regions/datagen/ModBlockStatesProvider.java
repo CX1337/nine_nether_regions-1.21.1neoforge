@@ -24,6 +24,7 @@ public class ModBlockStatesProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.NULL_BLOCK);
         blockWithItem(ModBlocks.NULL_GRASSBLOCK);
         blockWithItem(ModBlocks.STYX_BLOCK);
+        blockWithItem(ModBlocks.STEEL_BLOCK);
         blockWithItem(ModBlocks.UNDERWORLDRACK);
         blockWithItem(ModBlocks.UNDERWORLD_BRICKS);
         blockWithItem(ModBlocks.UNDERWORLD_CRYSTAL_ORE);
@@ -58,7 +59,6 @@ public class ModBlockStatesProvider extends BlockStateProvider {
                         .texture("plant", modLoc("block/pinesap"))
                         .renderType("cutout");
         simpleBlock(ModBlocks.POTTED_PINESAP.get(), pot);
-
     }
 
     private void blockWithItem(DeferredBlock<?> deferredBlock) {

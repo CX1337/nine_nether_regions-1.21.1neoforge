@@ -6,15 +6,12 @@ import com.cx1337.nine_nether_regions.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.minecraft.world.item.armortrim.TrimMaterials;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -43,9 +40,11 @@ public class ModItemModelsProvider extends ItemModelProvider {
         basicItem(ModItems.AMETHYST_BEETROOT.get());
         basicItem(ModItems.DIAMOND_BOWSTRING.get());
         basicItem(ModItems.GHOSTLIUM.get());
-        basicItem(ModItems.HELL_NUCLEUS.get());
         basicItem(ModItems.HELLALLOY_INGOT.get());
         basicItem(ModItems.STYX_INGOT.get());
+        basicItem(ModItems.STEEL_BASE.get());
+        basicItem(ModItems.STEEL_INGOT.get());
+        basicItem(ModItems.STEEL_NUGGET.get());
         basicItem(ModItems.UNDERWORLD_BRICK.get());
         basicItem(ModItems.UNDERWORLD_CRYSTAL.get());
         basicItem(ModItems.HELLALLOY_ROD.get());
@@ -53,6 +52,9 @@ public class ModItemModelsProvider extends ItemModelProvider {
 
         //盔甲。
         for (var sup : List.of(ModItems.HELLALLOY_HELMET, ModItems.HELLALLOY_CHESTPLATE,ModItems.HELLALLOY_LEGGINGS, ModItems.HELLALLOY_BOOTS)){
+            basicItem(sup.get());
+        }
+        for (var sup : List.of(ModItems.STEEL_HELMET, ModItems.STEEL_CHESTPLATE,ModItems.STEEL_LEGGINGS, ModItems.STEEL_BOOTS)){
             basicItem(sup.get());
         }
 
@@ -64,6 +66,11 @@ public class ModItemModelsProvider extends ItemModelProvider {
         handheldItem(ModItems.HELLALLOY_PICKAXE.get());
         handheldItem(ModItems.HELLALLOY_SHOVEL.get());
         handheldItem(ModItems.HELLALLOY_SWORD.get());
+        handheldItem(ModItems.STEEL_AXE.get());
+        handheldItem(ModItems.STEEL_HOE.get());
+        handheldItem(ModItems.STEEL_PICKAXE.get());
+        handheldItem(ModItems.STEEL_SHOVEL.get());
+        handheldItem(ModItems.STEEL_SWORD.get());
 
         //basicItem(ModBlocks.???_DOOR.asItem),门和活板门有专用贴图需要绘制。
 

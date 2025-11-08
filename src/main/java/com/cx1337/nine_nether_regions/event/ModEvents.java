@@ -1,17 +1,24 @@
-package com.cx1337.nine_nether_regions.item;
+package com.cx1337.nine_nether_regions.event;
 
+import com.cx1337.nine_nether_regions.block.ModBlocks;
+import com.cx1337.nine_nether_regions.item.ModItems;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
-
-import javax.swing.*;
 
 public class ModEvents {
     private int tickCounter = 0;
@@ -20,8 +27,13 @@ public class ModEvents {
         NeoForge.EVENT_BUS.register(new ModEvents());
     }
 
-    @net.neoforged.bus.api.SubscribeEvent
+    //幽冥合金套全套效果。
+    @SubscribeEvent
     public void onPlayerTick(PlayerTickEvent.Post event) {
+        if (event.getEntity().level().isClientSide) {
+            return;
+        }
+
         Player player = event.getEntity();
         boolean fullSet =
                 player.getItemBySlot(EquipmentSlot.HEAD).is(ModItems.HELLALLOY_HELMET.get()) &&
@@ -57,7 +69,7 @@ public class ModEvents {
     }
 
     //减伤
-    @net.neoforged.bus.api.SubscribeEvent
+    @SubscribeEvent
     public void onLivingHurt(LivingDamageEvent.Pre event) {
         if (event.getEntity() instanceof Player player) {
 

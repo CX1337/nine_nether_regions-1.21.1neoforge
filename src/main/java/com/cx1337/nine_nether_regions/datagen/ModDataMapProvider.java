@@ -20,6 +20,6 @@ public class ModDataMapProvider extends DataMapProvider {
         this.builder(NeoForgeDataMaps.FURNACE_FUELS)
                 .add(ModItems.UNDERWORLD_CRYSTAL.getId(), new FurnaceFuel(3200), false)
                 .add(ModBlocks.UNDERWORLD_CRYSTAL_ORE.getId(), new FurnaceFuel(32000), false)
-                .add(ModItems.HELL_NUCLEUS.getId(), new FurnaceFuel(44440000), false);
+                .add(ModBlocks.HELL_NUCLEUS.getId(), new FurnaceFuel(4444000), false);
 }
 }
