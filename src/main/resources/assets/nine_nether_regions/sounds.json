@@ -1,0 +1,10 @@
+{
+  "dawn_of_the_apocalypse": {
+    "sounds": [
+      {
+        "name": "nine_nether_regions:dawn_of_the_apocalypse",
+        "stream": true
+      }
+    ]
+  }
+}

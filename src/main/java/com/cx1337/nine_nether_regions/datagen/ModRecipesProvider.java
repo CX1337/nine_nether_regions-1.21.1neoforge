@@ -27,6 +27,7 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
     public static final List<ItemLike> STEEL_NUGGET = List.of(ModItems.STEEL_HELMET, ModItems.STEEL_CHESTPLATE,
     ModItems.STEEL_LEGGINGS, ModItems.STEEL_BOOTS, ModItems.STEEL_AXE, ModItems.STEEL_HOE, ModItems.STEEL_PICKAXE,
             ModItems.STEEL_SHOVEL, ModItems.STEEL_SWORD);
+    public static final List<ItemLike> RED_GLASS = List.of(ModBlocks.BLOODY_SAND);
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
@@ -50,7 +51,25 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy(getHasName(Blocks.DRAGON_EGG), has(Blocks.DRAGON_EGG))
                 .save(recipeOutput, NineNetherRegions.MODID + ":" +"dragon_egg_new");
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.HELL_NUCLEUS, 1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COMPACT_OBSIDIAN, 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', Blocks.OBSIDIAN)
+                .unlockedBy(getHasName(Blocks.OBSIDIAN), has(Blocks.OBSIDIAN))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.REINFORCED_OBSIDIAN, 1)
+                .pattern("#$#")
+                .pattern("$R$")
+                .pattern("#$#")
+                .define('$', Blocks.CRYING_OBSIDIAN)
+                .define('#', ModBlocks.COMPACT_OBSIDIAN)
+                .define('R', ModBlocks.HELLALLOY_BLOCK)
+                .unlockedBy(getHasName(ModBlocks.COMPACT_OBSIDIAN), has(ModBlocks.COMPACT_OBSIDIAN))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.HELL_NUCLEUS, 1)
                 .pattern("###")
                 .pattern("#$#")
                 .pattern("#R#")
@@ -92,6 +111,15 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("# ")
                 .define('#', Items.DIAMOND)
                 .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.EMPTY_FABRIC, 3)
+                .pattern("###")
+                .pattern("$$$")
+                .pattern("###")
+                .define('#', Items.STRING)
+                .define('$', Items.WHITE_WOOL)
+                .unlockedBy(getHasName(Items.WHITE_WOOL), has(Items.WHITE_WOOL))
                 .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.HELLALLOY_BLOCK, 1)
@@ -395,6 +423,7 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .save(recipeOutput);
 
         //需要熔炼的物品请先到顶部注册。
+        oreSmelting(recipeOutput, RED_GLASS, RecipeCategory.MISC, Blocks.RED_STAINED_GLASS, 0.10f, 150, "underworld_bricks");
         oreSmelting(recipeOutput, UNDERWORLD_BRICK, RecipeCategory.MISC, ModItems.UNDERWORLD_BRICK, 0.10f, 150, "underworld_bricks");
         oreBlasting(recipeOutput, UNDERWORLD_BRICK, RecipeCategory.MISC, ModItems.UNDERWORLD_BRICK, 0.44f, 300, "underworld_bricks");
         oreBlasting(recipeOutput, STEEL_INGOT, RecipeCategory.MISC, ModItems.STEEL_INGOT, 0.10f, 200, "steel_ingot");

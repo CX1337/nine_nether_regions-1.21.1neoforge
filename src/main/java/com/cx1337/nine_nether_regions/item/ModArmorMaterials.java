@@ -21,12 +21,12 @@ public class ModArmorMaterials {
     //幽冥合金盔甲
     public static final Holder<ArmorMaterial> HELLALLOY_ARMOR_MATERIAL = register("hellalloy",
             Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
-                attribute.put(ArmorItem.Type.BOOTS, 5);
-                attribute.put(ArmorItem.Type.LEGGINGS, 8);
-                attribute.put(ArmorItem.Type.CHESTPLATE, 10);
-                attribute.put(ArmorItem.Type.HELMET, 5);
+                attribute.put(ArmorItem.Type.BOOTS, 4);
+                attribute.put(ArmorItem.Type.LEGGINGS, 7);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 9);
+                attribute.put(ArmorItem.Type.HELMET, 4);
                 attribute.put(ArmorItem.Type.BODY, 20);
-            }), 28, 4.5F, 0.7F, () -> ModItems.HELLALLOY_INGOT.get(),
+            }), 28, 4.0F, 0.7F, () -> ModItems.HELLALLOY_INGOT.get(),
             SoundEvents.ARMOR_EQUIP_NETHERITE,
             ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, "hellalloy"));
 
@@ -41,6 +41,18 @@ public class ModArmorMaterials {
             }), 15, 2.0F, 0.2F, () -> ModItems.STEEL_INGOT.get(),
             SoundEvents.ARMOR_EQUIP_IRON,
             ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, "steel"));
+
+    //冥河盔甲
+    public static final Holder<ArmorMaterial> STYX_ARMOR_MATERIAL = register("styx",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 6);
+                attribute.put(ArmorItem.Type.LEGGINGS, 9);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 11);
+                attribute.put(ArmorItem.Type.HELMET, 6);
+                attribute.put(ArmorItem.Type.BODY, 26);
+            }), 34, 5.0F, 1.0F, () -> ModItems.STYX_INGOT.get(),
+            SoundEvents.ARMOR_EQUIP_NETHERITE,
+            ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, "styx"));
 
     private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> typeProtection,
                                                   int enchantability, float toughness, float knockbackResistance,

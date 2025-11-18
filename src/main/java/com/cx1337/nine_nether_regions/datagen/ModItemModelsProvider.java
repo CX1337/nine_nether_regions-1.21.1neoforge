@@ -38,7 +38,11 @@ public class ModItemModelsProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         basicItem(ModItems.AMETHYST_BEETROOT.get());
+        basicItem(ModItems.MUSIC_DISC_STYX_FERRYMAN.get());
         basicItem(ModItems.DIAMOND_BOWSTRING.get());
+        basicItem(ModItems.EMPTY_FABRIC.get());
+        basicItem(ModItems.MAGIC_FABRIC.get());
+        basicItem(ModItems.STYX_FABRIC.get());
         basicItem(ModItems.GHOSTLIUM.get());
         basicItem(ModItems.HELLALLOY_INGOT.get());
         basicItem(ModItems.STYX_INGOT.get());
@@ -52,6 +56,9 @@ public class ModItemModelsProvider extends ItemModelProvider {
 
         //盔甲。
         for (var sup : List.of(ModItems.HELLALLOY_HELMET, ModItems.HELLALLOY_CHESTPLATE,ModItems.HELLALLOY_LEGGINGS, ModItems.HELLALLOY_BOOTS)){
+            basicItem(sup.get());
+        }
+        for (var sup : List.of(ModItems.STYX_HELMET, ModItems.STYX_CHESTPLATE,ModItems.STYX_LEGGINGS, ModItems.STYX_BOOTS)){
             basicItem(sup.get());
         }
         for (var sup : List.of(ModItems.STEEL_HELMET, ModItems.STEEL_CHESTPLATE,ModItems.STEEL_LEGGINGS, ModItems.STEEL_BOOTS)){

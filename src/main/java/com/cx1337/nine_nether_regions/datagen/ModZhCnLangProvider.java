@@ -16,7 +16,11 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add(ModItems.ALLOY_HILT.get(), "合金剑柄");
         add(ModItems.AMETHYST_BEETROOT.get(), "紫晶甜菜根");
         add(ModItems.AMETHYST_DAGGER.get(), "紫晶短剑");
+        add(ModItems.MUSIC_DISC_STYX_FERRYMAN.get(), "Rafael Krux -- Dawn of the Apocalypse");
         add(ModItems.DIAMOND_BOWSTRING.get(), "钻石弓弦");
+        add(ModItems.EMPTY_FABRIC.get(), "空白布料");
+        add(ModItems.MAGIC_FABRIC.get(), "魔力布料");
+        add(ModItems.STYX_FABRIC.get(), "冥河布料");
         add(ModItems.GHOSTLIUM.get(), "幽冥质");
         add(ModItems.HELLALLOY_INGOT.get(), "§a幽冥合金锭");
         add(ModItems.HELLALLOY_AXE.get(), "§a幽冥合金斧");
@@ -33,6 +37,10 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add(ModItems.HELLALLOY_ROD.get(), "§a幽冥合金棒");
         add(ModItems.NETHERITE_ROD.get(), "下界合金棒");
         add(ModItems.STYX_INGOT.get(), "§5§l冥河锭");
+        add(ModItems.STYX_HELMET.get(), "§4冥河战盔");
+        add(ModItems.STYX_CHESTPLATE.get(), "§4冥河胸甲");
+        add(ModItems.STYX_LEGGINGS.get(), "§4冥河护腿");
+        add(ModItems.STYX_BOOTS.get(), "§4冥河战靴");
         add(ModItems.STEEL_BASE.get(), "钢坯");
         add(ModItems.STEEL_INGOT.get(), "精钢锭");
         add(ModItems.STEEL_NUGGET.get(), "精钢粒");
@@ -48,12 +56,16 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add(ModItems.UNDERWORLD_BRICK.get(), "冥界砖");
         add(ModItems.UNDERWORLD_CRYSTAL.get(), "§b幽冥晶");
 
+        add(ModBlocks.BLOODY_SAND.get(), "血染沙");
+        add(ModBlocks.COMPACT_OBSIDIAN.get(), "压缩黑曜石");
+        add(ModBlocks.REINFORCED_OBSIDIAN.get(), "§9§l强化黑曜石");
         add(ModBlocks.GLOWING_UNDERWORLD_BRICKS.get(), "§b幽光冥界砖块");
         add(ModBlocks.GLOWING_UNDERWORLD_BRICK_SLAB.get(), "§b幽光冥界半砖");
         add(ModBlocks.GLOWING_UNDERWORLD_BRICK_STAIRS.get(), "§b幽光冥界砖楼梯");
         add(ModBlocks.HELLALLOY_BLOCK.get(), "§a幽冥合金块");
         add(ModBlocks.HELLIGHT.get(), "冥光体");
         add(ModBlocks.HELL_NUCLEUS.get(), "§c§l炼狱晶核");
+        add(ModBlocks.MANJUSAKA.get(), "§c彼岸花");
         add(ModBlocks.NULL_BLOCK.get(), "§c§k？？？？？");
         add(ModBlocks.NULL_GRASSBLOCK.get(), "§c§k！！！！！");
         add(ModBlocks.PINESAP.get(), "水晶兰");
@@ -72,28 +84,47 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add("itemGroup.nine_nether_regions_materials_tab", "§2§l九幽引：材料与杂项");
         add("itemGroup.nine_nether_regions_blocks_tab", "§2§l九幽引：方块");
 
+        add("tooltip.nine_nether_regions.amethyst_dagger", "§8§o虽然这把短剑确实很小，合成配方简单，攻击力也不高，但是得益于紫水晶的生命力，使用它攻击时每次命中敌人都有33%概率为你恢复1点生命值；也正因为它很小巧，你可以更快速的挥动它。\n当然，由于紫水晶质地很脆，它的耐久度在同类武器中并不优秀。");
         add("tooltip.nine_nether_regions.hellalloy_block", "§8§o浸润着来自冥界的力量……");
         add("tooltip.nine_nether_regions.hellalloy_ingot", "§8§o被冥界力量强化过的合金锭，坚硬无比。");
         add("tooltip.nine_nether_regions.hellalloy_pickaxe", "§8§o原来黑曜石也没有那么坚硬。");
         add("tooltip.nine_nether_regions.hellalloy_shovel", "§8§o你想让这个世界寸草不生？");
         add("tooltip.nine_nether_regions.hellalloy_axe", "§8§o光头强应该很需要它。");
-        add("tooltip.nine_nether_regions.hellalloy_hoe", "§8§o校长的锄头。");
+        add("tooltip.nine_nether_regions.hellalloy_hoe", "§8§o如此奢侈？");
         add("tooltip.nine_nether_regions.hellalloy_sword_alt", "§8§o这把剑已经不再是Minecraft传统意义上的剑了。\n得益于优良的材料，这把剑造成的一切伤害均为不会衰减的AOE伤害。\n但不幸的是，幽冥合金并非顶级材料。由于幽冥合金的缺陷，这把剑的专属AOE伤害不会随着附魔等属性的提升而增加。\n另外，得益于嵌入这把剑的晶核，当它耐久未满时，在你的背包中它会自动恢复耐久（每2.5s恢复1点）。");
         add("tooltip.nine_nether_regions.hellalloy_sword", "§8§o按下§r§3§oAlt§r§8§o以显示更多。");
         add("tooltip.nine_nether_regions.hell_nucleus", "§8§o正如炽热恒星的核心一般滚烫。");
+        add("tooltip.nine_nether_regions.styx_fabric", "§8§o被冥河渡客的灵魂所充盈。");
         add("tooltip.nine_nether_regions.styx_block", "§8§o这几乎是最硬的方块，除了§k基岩§r§8§o和§k???§r§8§o之外。甚至§k凋灵？？§r§8§o也不能破坏它。");
         add("tooltip.nine_nether_regions.styx_ingot", "§8§o正如冥河渡客的意志，坚不可摧。");
+        add("tooltip.nine_nether_regions.styx_helmet", "§6§l愿冥河之力与你同在。\n§r§8§o按下§r §3§oAlt§r§8§o以显示更多。");
+        add("tooltip.nine_nether_regions.styx_chestplate", "§6§l愿冥河之力与你同在。\n§r§8§o按下§r §3§oAlt§r§8§o以显示更多。");
+        add("tooltip.nine_nether_regions.styx_leggings", "§6§l愿冥河之力与你同在。\n§r§8§o按下§r §3§oAlt§r§8§o以显示更多。");
+        add("tooltip.nine_nether_regions.styx_boots", "§6§l愿冥河之力与你同在。\n§r§8§o按下§r §3§oAlt§r§8§o以显示更多。");
+        add("tooltip.nine_nether_regions.styx_helmet_alt",
+                "§6§o坚不可摧：§r§8§o正常情况下该装备耐久不会被消耗。如果通过某种手段使得该装备耐久受损，则装备耐久会极快速恢复（每4tick恢复42点）。\n§r§6§o全套效果——不动如山：§r§8§o当原始伤害≤3点或类型为§r§5§o魔法、§r§e§o爆炸、§r§3§o冰冻、§r§1§o监守者音波§r§8§o时，强制将伤害数值降低为0；持续提供§r§6§o抗性提升、伤害吸收§r§8§o效果（全效果3级）；每10tick强制恢复1点生命值并提供72%全伤害减免。\n§r§6§o单件效果：§r§8§o持续提供§r§6§o夜视、水下呼吸、饱和§r§8§o效果（全效果2级），且免疫§7§o失明、黑暗、饥饿§r§8§o效果。");
+        add("tooltip.nine_nether_regions.styx_chestplate_alt",
+                "§6§o坚不可摧：§r§8§o正常情况下该装备耐久不会被消耗。如果通过某种手段使得该装备耐久受损，则装备耐久会极快速恢复（每4tick恢复42点）。\n§r§6§o全套效果——不动如山：§r§8§o当原始伤害≤3点或类型为§r§5§o魔法、§r§e§o爆炸、§r§3§o冰冻、§r§1§o监守者音波§r§8§o时，强制将伤害数值降低为0；持续提供§r§6§o抗性提升、伤害吸收§r§8§o效果（全效果3级）；每10tick强制恢复1点生命值并提供72%全伤害减免。\n§r§6§o单件效果：§r§8§o持续提供§r§6§o抗火、急迫§r§8§o效果（全效果2级）和§r§6§o力量§r§8§o效果（3级），且免疫§7§o凋零、中毒、挖掘疲劳、虚弱§r§8§o效果。");
+        add("tooltip.nine_nether_regions.styx_leggings_alt",
+                "§6§o坚不可摧：§r§8§o正常情况下该装备耐久不会被消耗。如果通过某种手段使得该装备耐久受损，则装备耐久会极快速恢复（每4tick恢复42点）。\n§r§6§o全套效果——不动如山：§r§8§o当原始伤害≤3点或类型为§r§5§o魔法、§r§e§o爆炸、§r§3§o冰冻、§r§1§o监守者音波§r§8§o时，强制将伤害数值降低为0；持续提供§r§6§o抗性提升、伤害吸收§r§8§o效果（全效果3级）；每10tick强制恢复1点生命值并提供72%全伤害减免。\n§r§6§o单件效果：§r§8§o持续提供§r§6§o跳跃提升§r§8§o效果（2级）和§r§6§o幸运§r§8§o效果（3级），且免疫§7§o反胃§r§8§o效果。");
+        add("tooltip.nine_nether_regions.styx_boots_alt",
+                "§6§o坚不可摧：§r§8§o正常情况下该装备耐久不会被消耗。如果通过某种手段使得该装备耐久受损，则装备耐久会极快速恢复（每4tick恢复42点）。\n§r§6§o全套效果——不动如山：§r§8§o当原始伤害≤3点或类型为§r§5§o魔法、§r§e§o爆炸、§r§3§o冰冻、§r§1§o监守者音波§r§8§o时，强制将伤害数值降低为0；持续提供§r§6§o抗性提升、伤害吸收§r§8§o效果（全效果3级）；每10tick强制恢复1点生命值并提供72%全伤害减免。\n§r§6§o单件效果：§r§8§o持续提供§r§6§o迅捷§r§8§o效果（3级），且免疫§7§o缓慢、漂浮、寄生§r§8§o效果，同时对摔落伤害持有85%抗性。");
         add("tooltip.nine_nether_regions.steel_base", "§8§o千锤百炼之后，方得一块好钢。");
         add("tooltip.nine_nether_regions.steel_ingot", "§8§o比铁更好。");
         add("tooltip.nine_nether_regions.alloy_hilt", "§8§o它可以被当作武器来使用，但这永远不会是它的真正作用。");
-        add("tooltip.nine_nether_regions.hellalloy_helmet_alt", "§8§o自修复：如果该装备耐久未满，在护甲栏或玩家背包中时该装备会自动恢复耐久值§1（每2秒回复4点）§r§8§o。\n单件效果：装备在护甲栏时，持续为玩家提供§6夜视§r§8§o效果（1级），同时清除玩家身上的§7失明§r§8§o、§7黑暗§r§8§o效果。\n全套效果：对绝大多数伤害持有34%减伤，同时每10tick强制恢复玩家1点生命值，持续为玩家提供§6抗性提升§r§8§o（2级）效果。");
+        add("tooltip.nine_nether_regions.hellalloy_helmet_alt",
+                "§8§o自修复：如果该装备耐久未满，在护甲栏或玩家背包中时该装备会自动恢复耐久值§1§o（每2秒回复4点）§r§8§o。\n单件效果：装备在护甲栏时，持续为玩家提供§6§o夜视§r§8§o效果（1级），同时清除玩家身上的§7§o失明、黑暗§r§8§o效果。\n全套效果：对绝大多数伤害持有34%减伤，同时每10tick强制恢复玩家1点生命值，持续为玩家提供§6§o抗性提升§r§8§o（2级）效果。");
         add("tooltip.nine_nether_regions.hellalloy_helmet", "§8§o按下§r§3§oAlt§r§8§o以显示更多。");
-        add("tooltip.nine_nether_regions.hellalloy_chestplate_alt", "§8§o自修复：如果该装备耐久未满，在护甲栏或玩家背包中时该装备会自动恢复耐久值§1（每2秒回复4点）§r§8§o。\n单件效果：装备在护甲栏时，持续为玩家提供§6抗火§r§8§o效果（1级）同时使玩家不会着火，清除玩家身上的§7凋零§r§8§o、§7中毒§r§8§o和§7挖掘疲劳§r§8§o效果。\n全套效果：对绝大多数伤害持有34%减伤，同时每10tick强制恢复玩家1点生命值，持续为玩家提供§6抗性提升§r§8§o（2级）效果。");
+        add("tooltip.nine_nether_regions.hellalloy_chestplate_alt",
+                "§8§o自修复：如果该装备耐久未满，在护甲栏或玩家背包中时该装备会自动恢复耐久值§1§o（每2秒回复4点）§r§8§o。\n单件效果：装备在护甲栏时，持续为玩家提供§6§o抗火§r§8§o效果（1级）同时使玩家不会着火，清除玩家身上的§7§o凋零、中毒、挖掘疲劳§r§8§o效果。\n全套效果：对绝大多数伤害持有34%减伤，同时每10tick强制恢复玩家1点生命值，持续为玩家提供§6§o抗性提升§r§8§o（2级）效果。");
         add("tooltip.nine_nether_regions.hellalloy_chestplate", "§8§o按下§r§3§oAlt§r§8§o以显示更多。");
-        add("tooltip.nine_nether_regions.hellalloy_leggings_alt", "§8§o自修复：如果该装备耐久未满，在护甲栏或玩家背包中时该装备会自动恢复耐久值§1（每2秒回复4点）§r§8§o。\n单件效果：装备在护甲栏时，持续为玩家提供§6跳跃提升§r§8§o效果（1级）同时清除玩家身上的§7反胃§r§8§o效果。\n全套效果：对绝大多数伤害持有34%减伤，同时每10tick强制恢复玩家1点生命值，持续为玩家提供§6抗性提升§r§8§o（2级）效果。");
+        add("tooltip.nine_nether_regions.hellalloy_leggings_alt",
+                "§8§o自修复：如果该装备耐久未满，在护甲栏或玩家背包中时该装备会自动恢复耐久值§1§o（每2秒回复4点）§r§8§o。\n单件效果：装备在护甲栏时，持续为玩家提供§6§o跳跃提升§r§8§o效果（1级）同时清除玩家身上的§7§o反胃§r§8§o效果。\n全套效果：对绝大多数伤害持有34%减伤，同时每10tick强制恢复玩家1点生命值，持续为玩家提供§6§o抗性提升§r§8§o（2级）效果。");
         add("tooltip.nine_nether_regions.hellalloy_leggings", "§8§o按下§r§3§oAlt§r§8§o以显示更多。");
-        add("tooltip.nine_nether_regions.hellalloy_boots_alt", "§8§o自修复：如果该装备耐久未满，在护甲栏或玩家背包中时该装备会自动恢复耐久值§1（每2秒回复4点）§r§8§o。\n单件效果：装备在护甲栏时，持续为玩家提供§6迅捷§r§8§o效果（2级）同时清除玩家身上的§7缓慢§r§8§o效果。\n全套效果：对绝大多数伤害持有34%减伤，同时每10tick强制恢复玩家1点生命值，持续为玩家提供§6抗性提升§r§8§o（2级）效果。");
+        add("tooltip.nine_nether_regions.hellalloy_boots_alt",
+                "§8§o自修复：如果该装备耐久未满，在护甲栏或玩家背包中时该装备会自动恢复耐久值§1§o（每2秒回复4点）§r§8§o。\n单件效果：装备在护甲栏时，持续为玩家提供§6§o迅捷§r§8§o效果（2级）同时清除玩家身上的§7§o缓慢§r§8§o效果。\n全套效果：对绝大多数伤害持有34%减伤，同时每10tick强制恢复玩家1点生命值，持续为玩家提供§6§o抗性提升§r§8§o（2级）效果。");
         add("tooltip.nine_nether_regions.hellalloy_boots", "§8§o按下§r§3§oAlt§r§8§o以显示更多。");
         add("tooltip.nine_nether_regions.hellalloy_longbow", "§8§o更精准，更强大。");
+        add("tooltip.nine_nether_regions.reinforced_obsidian", "§8§o它真的很硬……一定有它的用武之地。");
     }
 }

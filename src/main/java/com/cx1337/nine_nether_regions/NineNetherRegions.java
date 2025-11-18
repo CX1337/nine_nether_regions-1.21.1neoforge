@@ -4,10 +4,11 @@ import com.cx1337.nine_nether_regions.block.ModBlocks;
 import com.cx1337.nine_nether_regions.item.ModCreativeModeTabs;
 import com.cx1337.nine_nether_regions.event.ModEvents;
 import com.cx1337.nine_nether_regions.item.ModItems;
-import com.cx1337.nine_nether_regions.item.special.HellalloyShieldItem;
+import com.cx1337.nine_nether_regions.sound.ModSounds;
 import com.cx1337.nine_nether_regions.util.ModItemProperties;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -24,38 +25,41 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
-// The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(NineNetherRegions.MODID)
 public class NineNetherRegions {
-    // Define mod id in a common place for everything to reference
     public static final String MODID = "nine_nether_regions";
-    // Directly reference a slf4j logger
+
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    // The constructor for the mod class is the first code that is run when your mod is loaded.
-    // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public NineNetherRegions(IEventBus modEventBus, ModContainer modContainer) {
-        // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
         ModItems.register(modEventBus);
-        ModEvents.register(modEventBus);
         ModCreativeModeTabs.register(modEventBus);
         ModBlocks.register(modEventBus);
-        // Register ourselves for server and other game events we are interested in.
-        // Note that this is necessary if and only if we want *this* class (NineNetherRegions) to respond directly to events.
-        // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
+
+        ModEvents.register();
+        ModSounds.register(modEventBus);
+
         NeoForge.EVENT_BUS.register(this);
 
-        // Register the item to a creative tab
-        modEventBus.addListener(this::addCreative);;
+        modEventBus.addListener(this::addCreative);
 
-        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
+    public void onCommonSetup(FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            // 获取花盆方块实例并注册植物
+            FlowerPotBlock flowerPot = (FlowerPotBlock) Blocks.FLOWER_POT;
+            flowerPot.addPlant(
+                    ResourceLocation.fromNamespaceAndPath(MODID, "pinesap"),
+                    () -> ModBlocks.PINESAP.get() // 使用 Supplier 提供花的 Block 实例
+            );
+        });
+    }
+
     private void commonSetup(FMLCommonSetupEvent event) {
-        // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
 
         if (Config.LOG_DIRT_BLOCK.getAsBoolean()) {
@@ -65,17 +69,16 @@ public class NineNetherRegions {
         LOGGER.info("{}{}", Config.MAGIC_NUMBER_INTRODUCTION.get(), Config.MAGIC_NUMBER.getAsInt());
 
         Config.ITEM_STRINGS.get().forEach((item) -> LOGGER.info("ITEM >> {}", item));
+
+        event.enqueueWork(ModEvents::initFireProofItems);
     }
 
-    // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
 
     }
 
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        // Do something when the server starts
         LOGGER.info("HELLO from server starting");
     }
 

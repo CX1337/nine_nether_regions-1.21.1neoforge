@@ -30,6 +30,9 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.UNDERWORLD_CRYSTAL);
                         output.accept(ModItems.GHOSTLIUM);
                         output.accept(ModItems.AMETHYST_BEETROOT);
+                        output.accept(ModItems.EMPTY_FABRIC);
+                        output.accept(ModItems.MAGIC_FABRIC);
+                        output.accept(ModItems.STYX_FABRIC);
 
                         output.accept(ModItems.STEEL_BASE);
                         output.accept(ModItems.STEEL_INGOT);
@@ -57,6 +60,10 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.HELLALLOY_LONGBOW);
 
                         output.accept(ModItems.STYX_INGOT);
+                        output.accept(ModItems.STYX_HELMET);
+                        output.accept(ModItems.STYX_CHESTPLATE);
+                        output.accept(ModItems.STYX_LEGGINGS);
+                        output.accept(ModItems.STYX_BOOTS);
                     }).build());
 
     public static final Supplier<CreativeModeTab> NineNetherRegions_Blocks_Tab =
@@ -66,8 +73,12 @@ public class ModCreativeModeTabs {
                     .displayItems((parameters, output) -> {
                         output.accept(ModBlocks.HELLIGHT);
                         output.accept(ModBlocks.HELL_NUCLEUS);
+                        output.accept(ModBlocks.MANJUSAKA);
                         output.accept(ModBlocks.PINESAP);
                         output.accept(ModBlocks.UNDERWORLD_CRYSTAL_ORE);
+                        output.accept(ModBlocks.BLOODY_SAND);
+                        output.accept(ModBlocks.COMPACT_OBSIDIAN);
+                        output.accept(ModBlocks.REINFORCED_OBSIDIAN);
 
                         output.accept(ModBlocks.HELLALLOY_BLOCK);
                         output.accept(ModBlocks.STEEL_BLOCK);

@@ -26,7 +26,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.List;
@@ -36,30 +35,63 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(NineNetherRegions.MODID);
 
+    public static final DeferredBlock<Block> BLOODY_SAND =
+            registerBlocks("bloody_sand", () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_RED)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .strength(2.5F,10F)
+                    .sound(SoundType.SAND)));
+
+    public static final DeferredBlock<Block> COMPACT_OBSIDIAN =
+            registerBlocks("compact_obsidian", () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_BLACK)
+                    .instrument(NoteBlockInstrument.HARP)
+                    .strength(52F,2400F)
+                    .sound(SoundType.STONE)
+                    .requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> REINFORCED_OBSIDIAN =
+            registerBlocks("reinforced_obsidian", () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_BLACK)
+                    .instrument(NoteBlockInstrument.HARP)
+                    .strength(117F,24000F)
+                    .sound(SoundType.DEEPSLATE)
+                    .requiresCorrectToolForDrops()
+                    .lightLevel(p_50872_ -> 13)){
+                @Override
+                public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.reinforced_obsidian"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
     public static final DeferredBlock<Block> UNDERWORLD_CRYSTAL_ORE =
             registerBlocks("underworld_crystal_ore", () -> new Block(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_LIGHT_GREEN)
                     .instrument(NoteBlockInstrument.BASS)
                     .strength(2.5F,24.0F)
-                    .sound(SoundType.AMETHYST_CLUSTER)
+                    .sound(SoundType.AMETHYST)
                     .requiresCorrectToolForDrops()
                     .lightLevel(p_50872_ -> 12)));
 
-    public static final DeferredBlock<FlowerBlock> PINESAP =
-            registerBlocks("pinesap", () -> new FlowerBlock(MobEffects.LUCK, 24, BlockBehaviour.Properties.of()
+    public static final DeferredBlock<Block> PINESAP =
+            registerFlowerWithPot("pinesap", () -> new FlowerBlock(MobEffects.LUCK, 24, BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_LIGHT_GREEN)
                     .noCollission()
                     .instabreak()
                     .sound(SoundType.GLASS)
                     .lightLevel(p_50872_ -> 12)
                     .pushReaction(PushReaction.DESTROY)));
-    public static final DeferredBlock<FlowerPotBlock> POTTED_PINESAP =
-           BLOCKS.register("potted_pinesap", () -> new FlowerPotBlock(() -> (FlowerPotBlock)  Blocks.FLOWER_POT, ModBlocks.PINESAP, BlockBehaviour.Properties.of()
-                    .mapColor(MapColor.COLOR_LIGHT_GREEN)
-                   .noOcclusion()
+
+    public static final DeferredBlock<Block> MANJUSAKA =
+            registerBlocks("manjusaka", () -> new TallFlowerBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_RED)
+                    .noCollission()
                     .instabreak()
-                    .lightLevel(p_50872_ -> 12)
+                    .sound(SoundType.GRASS)
+                    .offsetType(BlockBehaviour.OffsetType.XZ)
                     .pushReaction(PushReaction.DESTROY)));
+
 
     public static final DeferredBlock<Block> GLOWING_UNDERWORLD_BRICKS =
             registerBlocks("glowing_underworld_bricks", () -> new Block(BlockBehaviour.Properties.of()
@@ -230,6 +262,19 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.NETHER_BRICKS)));
 
+    private static <T extends Block> DeferredBlock<T> registerBlockOnly(String name, Supplier<T> block) {
+        return BLOCKS.register(name, block);
+    }
+
+    public static DeferredBlock<Block> registerFlowerWithPot(String name, Supplier<Block> flowerSupplier) {
+        DeferredBlock<Block> flower = registerBlocks(name, flowerSupplier);
+        registerBlockOnly("potted_" + name,
+                () -> new FlowerPotBlock(null, () -> flower.get(),
+                        BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY)
+                                .noOcclusion()  // 添加这个以解决透明问题
+                                .lightLevel(state -> flower.get().defaultBlockState().getLightEmission())));
+        return flower;
+    }
 
     public static <T extends Block> void registerBlockItems(String name, DeferredBlock<T> block) {
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));

@@ -2,9 +2,10 @@ package com.cx1337.nine_nether_regions.item;
 
 import com.cx1337.nine_nether_regions.NineNetherRegions;
 import com.cx1337.nine_nether_regions.item.special.HellalloyShieldItem;
+import com.cx1337.nine_nether_regions.sound.ModSounds;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -12,6 +13,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -19,12 +21,10 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.common.extensions.IItemExtension;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.Nullable;
@@ -71,19 +71,37 @@ public class ModItems {
     };
     public static final DeferredItem<SwordItem> AMETHYST_DAGGER =
            ITEMS.register("amethyst_dagger", () -> new SwordItem(AMETHYST, new Item.Properties()
-                   .attributes(SwordItem.createAttributes(AMETHYST, 4, -1.6F)).rarity(Rarity.COMMON)){
+                   .attributes(SwordItem.createAttributes(AMETHYST, 4, -0.6F)).rarity(Rarity.COMMON)){
 
-               //每次攻击40%概率回1血量。
+               //每次攻击24%概率回1血量。
                @Override
                public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
-                   if (player.level().random.nextFloat() < 0.40f && player.getHealth() < player.getMaxHealth()) {
+                   if (player.level().random.nextFloat() < 0.24f && player.getHealth() < player.getMaxHealth()) {
                        player.heal(1.0f);
                    }
                    return false;
                }
+               @Override
+               public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                   tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.amethyst_dagger"));
+                   super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+               }
            });
 
     //材料和杂项。
+    public static final DeferredItem<Item> EMPTY_FABRIC =
+            ITEMS.register("empty_fabric", () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+    public static final DeferredItem<Item> MAGIC_FABRIC =
+            ITEMS.register("magic_fabric", () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+    public static final DeferredItem<Item> STYX_FABRIC =
+            ITEMS.register("styx_fabric", () -> new Item(new Item.Properties().rarity(Rarity.EPIC).fireResistant()){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.styx_fabric"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
     public static final DeferredItem<Item> STEEL_BASE =
             ITEMS.register("steel_base", () -> new Item(new Item.Properties().rarity(Rarity.COMMON)){
                 @Override
@@ -434,6 +452,293 @@ public class ModItems {
                 }
             });
 
+    //冥河盔甲。
+    public static final DeferredItem<ArmorItem> STYX_HELMET =
+            ITEMS.register("styx_helmet", () ->new ArmorItem(ModArmorMaterials.STYX_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties() .durability(47774).rarity(Rarity.EPIC).fireResistant()){
+
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.STYX.getEnchantmentValue();
+                }
+
+                @Override
+                public boolean isDamageable(ItemStack stack) {
+                    return false;
+                }
+                @Override
+                public void setDamage(ItemStack stack, int damage) {
+                    super.setDamage(stack, 0);
+                }
+                @Override
+                public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+                    return true;
+                }
+
+                @Override
+                public void inventoryTick(ItemStack stack, Level level, Entity entity,
+                                          int slot, boolean selected) {
+                    //耐久修复(如果遇到意外情况)
+                    if (!level.isClientSide
+                            && entity instanceof LivingEntity living
+                            && living.tickCount % 4 == 0
+                            && stack.getDamageValue() > 0) {
+                        stack.setDamageValue(Math.max(0, stack.getDamageValue() - 42));
+                    }
+
+                    if (level.isClientSide) return;
+                    if (!(entity instanceof Player player)) return;
+
+                    if (player.getItemBySlot(EquipmentSlot.HEAD) != stack) return;
+
+                    //效果
+                    player.addEffect(new MobEffectInstance(
+                            MobEffects.NIGHT_VISION,310,1,true,false,false
+                    ));
+                    player.addEffect(new MobEffectInstance(
+                            MobEffects.WATER_BREATHING,310,1,true,false,false
+                    ));
+                    player.addEffect(new MobEffectInstance(
+                            MobEffects.SATURATION,310,1,true,false,false
+                    ));
+
+                    if (player.hasEffect(MobEffects.BLINDNESS)) {
+                        player.removeEffect(MobEffects.BLINDNESS);
+                    }
+                    if (player.hasEffect(MobEffects.DARKNESS)) {
+                        player.removeEffect(MobEffects.DARKNESS);
+                    }
+                    if (player.hasEffect(MobEffects.HUNGER)) {
+                        player.removeEffect(MobEffects.HUNGER);
+                    }
+                }
+
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    if (Screen.hasAltDown()){
+                        tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.styx_helmet_alt"));
+                    } else {
+                        tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.styx_helmet"));
+                    }
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+    public static final DeferredItem<ArmorItem> STYX_CHESTPLATE =
+            ITEMS.register("styx_chestplate", () ->new ArmorItem(ModArmorMaterials.STYX_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties() .durability(69996).rarity(Rarity.EPIC).fireResistant()){
+
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.HELLALLOY.getEnchantmentValue();
+                }
+
+                @Override
+                public boolean isDamageable(ItemStack stack) {
+                    return false;
+                }
+                @Override
+                public void setDamage(ItemStack stack, int damage) {
+                    super.setDamage(stack, 0);
+                }
+                @Override
+                public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+                    return true;
+                }
+
+                @Override
+                public void inventoryTick(ItemStack stack, Level level, Entity entity,
+                                          int slot, boolean selected) {
+                    if (!level.isClientSide
+                            && entity instanceof LivingEntity living
+                            && living.tickCount % 4 == 0
+                            && stack.getDamageValue() > 0) {
+                        stack.setDamageValue(Math.max(0, stack.getDamageValue() - 42));
+                    }
+
+                    if (level.isClientSide) return;
+                    if (!(entity instanceof Player player)) return;
+
+                    if (player.getItemBySlot(EquipmentSlot.CHEST) != stack) return;
+
+                    player.addEffect(new MobEffectInstance(
+                            MobEffects.FIRE_RESISTANCE,310,1,true,false,false
+                    ));
+                    player.addEffect(new MobEffectInstance(
+                            MobEffects.DIG_SPEED,310,1,true,false,false
+                    ));
+                    player.addEffect(new MobEffectInstance(
+                            MobEffects.DAMAGE_BOOST,310,2,true,false,false
+                    ));
+
+                    if (player.isOnFire()){
+                        player.clearFire();
+                    }
+                    if (player.getRemainingFireTicks() > 0){
+                        player.setRemainingFireTicks(0);
+                    }
+
+                    if (player.hasEffect(MobEffects.WITHER)) {
+                        player.removeEffect(MobEffects.WITHER);
+                    }
+                    if (player.hasEffect(MobEffects.POISON)) {
+                        player.removeEffect(MobEffects.POISON);
+                    }
+                    if (player.hasEffect(MobEffects.DIG_SLOWDOWN)) {
+                        player.removeEffect(MobEffects.DIG_SLOWDOWN);
+                    }
+                    if (player.hasEffect(MobEffects.WEAKNESS)) {
+                        player.removeEffect(MobEffects.WEAKNESS);
+                    }
+                }
+
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    if (Screen.hasAltDown()){
+                        tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.styx_chestplate_alt"));
+                    } else {
+                        tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.styx_chestplate"));
+                    }
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+    public static final DeferredItem<ArmorItem> STYX_LEGGINGS =
+            ITEMS.register("styx_leggings", () ->new ArmorItem(ModArmorMaterials.STYX_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties() .durability(58885).rarity(Rarity.EPIC).fireResistant()){
+
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.HELLALLOY.getEnchantmentValue();
+                }
+
+                @Override
+                public boolean isDamageable(ItemStack stack) {
+                    return false;
+                }
+                @Override
+                public void setDamage(ItemStack stack, int damage) {
+                    super.setDamage(stack, 0);
+                }
+                @Override
+                public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+                    return true;
+                }
+
+                @Override
+                public void inventoryTick(ItemStack stack, Level level, Entity entity,
+                                          int slot, boolean selected) {
+                    if (!level.isClientSide
+                            && entity instanceof LivingEntity living
+                            && living.tickCount % 4 == 0
+                            && stack.getDamageValue() > 0) {
+                        stack.setDamageValue(Math.max(0, stack.getDamageValue() - 42));
+                    }
+
+                    if (level.isClientSide) return;
+                    if (!(entity instanceof Player player)) return;
+
+                    if (player.getItemBySlot(EquipmentSlot.LEGS) != stack) return;
+
+                    player.addEffect(new MobEffectInstance(
+                            MobEffects.JUMP,310,1,true,false,false
+                    ));
+                    player.addEffect(new MobEffectInstance(
+                            MobEffects.LUCK,310,2,true,false,false
+                    ));
+
+                    if (player.hasEffect(MobEffects.CONFUSION)) {
+                        player.removeEffect(MobEffects.CONFUSION);
+                    }
+                }
+
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    if (Screen.hasAltDown()){
+                        tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.styx_leggings_alt"));
+                    } else {
+                        tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.styx_leggings"));
+                    }
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+    public static final DeferredItem<ArmorItem> STYX_BOOTS =
+            ITEMS.register("styx_boots", () ->new ArmorItem(ModArmorMaterials.STYX_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+                    new Item.Properties() .durability(47774).rarity(Rarity.EPIC).fireResistant()){
+
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.HELLALLOY.getEnchantmentValue();
+                }
+
+                @Override
+                public boolean isDamageable(ItemStack stack) {
+                    return false;
+                }
+                @Override
+                public void setDamage(ItemStack stack, int damage) {
+                    super.setDamage(stack, 0);
+                }
+                @Override
+                public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+                    return true;
+                }
+
+                @Override
+                public void inventoryTick(ItemStack stack, Level level, Entity entity,
+                                          int slot, boolean selected) {
+                    if (!level.isClientSide
+                            && entity instanceof LivingEntity living
+                            && living.tickCount % 4 == 0
+                            && stack.getDamageValue() > 0) {
+                        stack.setDamageValue(Math.max(0, stack.getDamageValue() - 42));
+                    }
+
+                    if (level.isClientSide) return;
+                    if (!(entity instanceof Player player)) return;
+
+                    if (player.getItemBySlot(EquipmentSlot.FEET) != stack) return;
+
+                    player.addEffect(new MobEffectInstance(
+                            MobEffects.MOVEMENT_SPEED,310,2,true,false,false
+                    ));
+
+                    if (player.hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) {
+                        player.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
+                    }
+                    if (player.hasEffect(MobEffects.LEVITATION)) {
+                        player.removeEffect(MobEffects.LEVITATION);
+                    }
+                    if (player.hasEffect(MobEffects.INFESTED)) {
+                        player.removeEffect(MobEffects.INFESTED);
+                    }
+                }
+
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    if (Screen.hasAltDown()){
+                        tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.styx_boots_alt"));
+                    } else {
+                        tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.styx_boots"));
+                    }
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
     //工具。
     //精钢工具。
     public static final DeferredItem<PickaxeItem> STEEL_PICKAXE =
@@ -593,7 +898,7 @@ public class ModItems {
                 @Override
                 public boolean onLeftClickEntity(ItemStack stack, Player player, Entity target) {
                     if (player.level() instanceof ServerLevel sl) {
-                        AABB box = target.getBoundingBox().inflate(1.0D);
+                        AABB box = target.getBoundingBox().inflate(2.0D);
                         for (LivingEntity le : sl.getEntitiesOfClass(LivingEntity.class, box,
                                 e -> e != target && e != player && !player.isAlliedTo(e))) {
                             le.hurt(player.damageSources().playerAttack(player), 16.0F);
@@ -635,4 +940,10 @@ public class ModItems {
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });
+
+    //唱片。
+    public static final DeferredItem<Item> MUSIC_DISC_STYX_FERRYMAN =
+            ITEMS.register("music_disc_styx_ferryman",
+                    () -> new Item(new Item.Properties().
+                            jukeboxPlayable(ModSounds.DAWN_OF_THE_APOCALYPSE_KEY).stacksTo(1)));
 }

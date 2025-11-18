@@ -3,8 +3,13 @@ package com.cx1337.nine_nether_regions.datagen;
 import com.cx1337.nine_nether_regions.NineNetherRegions;
 import com.cx1337.nine_nether_regions.block.ModBlocks;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.TallFlowerBlock;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -18,6 +23,9 @@ public class ModBlockStatesProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        blockWithItem(ModBlocks.BLOODY_SAND);
+        blockWithItem(ModBlocks.COMPACT_OBSIDIAN);
+        blockWithItem(ModBlocks.REINFORCED_OBSIDIAN);
         blockWithItem(ModBlocks.GLOWING_UNDERWORLD_BRICKS);
         blockWithItem(ModBlocks.HELLALLOY_BLOCK);
         blockWithItem(ModBlocks.HELLIGHT);
@@ -53,12 +61,42 @@ public class ModBlockStatesProvider extends BlockStateProvider {
         blockItem(ModBlocks.UNDERWORLD_BRICK_STAIRS);
         //blockItem(ModBlocks.???_TRAPDOOR, "_bottom");
 
-        ModelFile cross = models().cross("pinesap", modLoc("block/pinesap")).renderType("cutout");
-        simpleBlock(ModBlocks.PINESAP.get(), cross);
-        ModelFile pot = models().withExistingParent("potted_pinesap", mcLoc("flower_pot_cross"))
-                        .texture("plant", modLoc("block/pinesap"))
-                        .renderType("cutout");
-        simpleBlock(ModBlocks.POTTED_PINESAP.get(), pot);
+        flowerWithPot(ModBlocks.PINESAP);
+
+        tallFlower(ModBlocks.MANJUSAKA);
+    }
+
+    private void flowerWithPot(DeferredBlock<?> flowerBlock) {
+        String path = flowerBlock.getId().getPath();
+
+        ModelFile flowerModel = models().cross(path, modLoc("block/" + path)).renderType("cutout");
+        simpleBlock(flowerBlock.get(), flowerModel);
+        itemModels().withExistingParent(path, modLoc("block/" + path));
+
+        String pottedPath = "potted_" + path;
+        ResourceLocation pottedBlockId = ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, pottedPath);
+        Block pottedBlock = BuiltInRegistries.BLOCK.get(pottedBlockId);
+
+        if (pottedBlock != null && pottedBlock != Blocks.AIR) {
+            simpleBlock(pottedBlock, models().withExistingParent(pottedPath, "block/flower_pot_cross")
+                    .texture("plant", modLoc("block/" + path))
+                    .renderType("cutout"));
+        }
+    }
+
+    private void tallFlower(DeferredBlock<?> flowerBlock) {
+        String path = flowerBlock.getId().getPath();
+
+        ModelFile bottomModel = models().cross(path + "_bottom", modLoc("block/" + path + "_bottom")).renderType("cutout");
+        ModelFile topModel = models().cross(path + "_top", modLoc("block/" + path + "_top")).renderType("cutout");
+
+        getVariantBuilder(flowerBlock.get())
+                .partialState().with(TallFlowerBlock.HALF, DoubleBlockHalf.LOWER)
+                .modelForState().modelFile(bottomModel).addModel()
+                .partialState().with(TallFlowerBlock.HALF, DoubleBlockHalf.UPPER)
+                .modelForState().modelFile(topModel).addModel();
+
+        itemModels().withExistingParent(path, modLoc("block/" + path + "_top"));
     }
 
     private void blockWithItem(DeferredBlock<?> deferredBlock) {
