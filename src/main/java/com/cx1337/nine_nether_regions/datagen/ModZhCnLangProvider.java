@@ -16,7 +16,7 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add(ModItems.ALLOY_HILT.get(), "合金剑柄");
         add(ModItems.AMETHYST_BEETROOT.get(), "紫晶甜菜根");
         add(ModItems.AMETHYST_DAGGER.get(), "紫晶短剑");
-        add(ModItems.MUSIC_DISC_STYX_FERRYMAN.get(), "Rafael Krux -- Dawn of the Apocalypse");
+        add(ModItems.STYX_FERRYMAN_MUSIC_DISC.get(), "音乐唱片（冥河渡客）");
         add(ModItems.DIAMOND_BOWSTRING.get(), "钻石弓弦");
         add(ModItems.EMPTY_FABRIC.get(), "空白布料");
         add(ModItems.MAGIC_FABRIC.get(), "魔力布料");
@@ -37,6 +37,8 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add(ModItems.HELLALLOY_ROD.get(), "§a幽冥合金棒");
         add(ModItems.NETHERITE_ROD.get(), "下界合金棒");
         add(ModItems.STYX_INGOT.get(), "§5§l冥河锭");
+        add(ModItems.STYX_SWORD.get(), "§4§l冥河战刃");
+        add(ModItems.STYX_PICKAXE.get(), "§4冥河镐");
         add(ModItems.STYX_HELMET.get(), "§4冥河战盔");
         add(ModItems.STYX_CHESTPLATE.get(), "§4冥河胸甲");
         add(ModItems.STYX_LEGGINGS.get(), "§4冥河护腿");
@@ -81,8 +83,10 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add(ModBlocks.UNDERWORLD_BRICK_WALL.get(), "冥界砖墙");
         add(ModBlocks.UNDERWORLD_CRYSTAL_ORE.get(), "§b幽冥晶矿石");
 
-        add("itemGroup.nine_nether_regions_materials_tab", "§2§l九幽引：材料与杂项");
+        add("itemGroup.nine_nether_regions_materials_tab", "§2§l九幽引：物品");
         add("itemGroup.nine_nether_regions_blocks_tab", "§2§l九幽引：方块");
+
+        add("item.nine_nether_regions.styx_ferryman_music_disc.desc", "Rafael Krux--Dawn of the Apocalypse（天启黎明）");
 
         add("tooltip.nine_nether_regions.amethyst_dagger", "§8§o虽然这把短剑确实很小，合成配方简单，攻击力也不高，但是得益于紫水晶的生命力，使用它攻击时每次命中敌人都有33%概率为你恢复1点生命值；也正因为它很小巧，你可以更快速的挥动它。\n当然，由于紫水晶质地很脆，它的耐久度在同类武器中并不优秀。");
         add("tooltip.nine_nether_regions.hellalloy_block", "§8§o浸润着来自冥界的力量……");
@@ -97,6 +101,12 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add("tooltip.nine_nether_regions.styx_fabric", "§8§o被冥河渡客的灵魂所充盈。");
         add("tooltip.nine_nether_regions.styx_block", "§8§o这几乎是最硬的方块，除了§k基岩§r§8§o和§k???§r§8§o之外。甚至§k凋灵？？§r§8§o也不能破坏它。");
         add("tooltip.nine_nether_regions.styx_ingot", "§8§o正如冥河渡客的意志，坚不可摧。");
+        add("tooltip.nine_nether_regions.styx_sword", "§8§o按下§r §3§oAlt§r§8§o以显示更多。");
+        add("tooltip.nine_nether_regions.styx_sword_alt",
+                "§6§o坚不可摧：§r§8§o正常情况下该武器耐久不会被消耗。如果通过某种手段使得该武器耐久受损，则武器耐久会极快速恢复（每4tick恢复42点）。\n§r§6§o战刃之锋：§r§8§o当攻击生物时，冥河战刃会同时对以玩家为中心半径3格内所有非友方生物造成§r§e§o（战刃攻击力+目标最大生命值×5%）§r§8§o的范围伤害。\n§r§6§o灵魂汲取：§r§8§o战刃每次攻击时都会强制为玩家恢复§r§d§o（玩家最大生命值×8%）§r§8§o的血量。");
+        add("tooltip.nine_nether_regions.styx_pickaxe", "§8§o按下§r §3§oAlt§r§8§o以显示更多。");
+        add("tooltip.nine_nether_regions.styx_pickaxe_alt",
+                "§8§o这把镐子是所有镐子中的佼佼者。\n正常情况下它的耐久无法被消耗，如果遇到特殊情况使它的耐久降低，它会极快速的恢复满耐久值（每4tick恢复24点）。\n受到冥河之力的祝福，这把镐子破坏任何方块的速度都为原来的2.5倍，且破坏任何方块均有24%的概率掉落钻石，12%的概率掉落下界合金碎片。");
         add("tooltip.nine_nether_regions.styx_helmet", "§6§l愿冥河之力与你同在。\n§r§8§o按下§r §3§oAlt§r§8§o以显示更多。");
         add("tooltip.nine_nether_regions.styx_chestplate", "§6§l愿冥河之力与你同在。\n§r§8§o按下§r §3§oAlt§r§8§o以显示更多。");
         add("tooltip.nine_nether_regions.styx_leggings", "§6§l愿冥河之力与你同在。\n§r§8§o按下§r §3§oAlt§r§8§o以显示更多。");

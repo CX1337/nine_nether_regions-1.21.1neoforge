@@ -16,7 +16,7 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(ModItems.ALLOY_HILT.get(), "Alloy Hilt");
         add(ModItems.AMETHYST_BEETROOT.get(), "Amethyst Beetroot");
         add(ModItems.AMETHYST_DAGGER.get(), "Amethyst Dagger");
-        add(ModItems.MUSIC_DISC_STYX_FERRYMAN.get(), "Rafael Krux -- Dawn of the Apocalypse");
+        add(ModItems.STYX_FERRYMAN_MUSIC_DISC.get(), "Music Disc--Styx Ferryman");
         add(ModItems.DIAMOND_BOWSTRING.get(), "Diamond Bowstring");
         add(ModItems.EMPTY_FABRIC.get(), "Empty Fabric");
         add(ModItems.MAGIC_FABRIC.get(), "Magic Fabric");
@@ -37,6 +37,8 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(ModItems.HELLALLOY_ROD.get(), "§aHellalloy Rod");
         add(ModItems.NETHERITE_ROD.get(), "Netherite Rod");
         add(ModItems.STYX_INGOT.get(), "§5§lStyx Ingot");
+        add(ModItems.STYX_SWORD.get(), "§4§lStyx Battle-sword");
+        add(ModItems.STYX_PICKAXE.get(), "§4Styx Pickaxe");
         add(ModItems.STYX_HELMET.get(), "§4Styx Helmet");
         add(ModItems.STYX_CHESTPLATE.get(), "§4Styx Chestplate");
         add(ModItems.STYX_LEGGINGS.get(), "§4Styx Leggings");
@@ -84,6 +86,8 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add("itemGroup.nine_nether_regions_materials_tab", "§2§lNine Nether Regions:materials&others");
         add("itemGroup.nine_nether_regions_blocks_tab", "§2§lNine Nether Regions:blocks");
 
+        add("item.nine_nether_regions.styx_ferryman_music_disc.desc", "Rafael Krux--Dawn of the Apocalypse");
+
         add("tooltip.nine_nether_regions.amethyst_dagger", "§8§oAlthough this short sword is indeed small, the recipe is simple, and the attack power is not high, thanks to the vitality contained in amethyst, players have a 33% chance of recovering 1 point of health each time they use it to attack. Meanwhile, precisely because of its compact size, players can swing it faster.\nOf course, due to the fragility of amethyst itself, the durability of this short sword is not as high.");
         add("tooltip.nine_nether_regions.hellalloy_block", "§8§oFilled with the Power From the Underworld.");
         add("tooltip.nine_nether_regions.hellalloy_ingot", "§8§oStrengthened by the Power of the Underworld,the Alloy Ingot is Incredibly Hard.");
@@ -97,6 +101,11 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add("tooltip.nine_nether_regions.styx_fabric", "§8§oFilled with Styx Ferryman's soul.");
         add("tooltip.nine_nether_regions.styx_block", "§8§oAlmost Unbreakable.Only §kBedrock§r§8§o and §k???§r§8§o is Harder.Even §kWither??§r§8§o can't Destroy It.");
         add("tooltip.nine_nether_regions.styx_ingot", "§8§oJust Like Styx Ferryman's Will.Unbreakable.");
+        add("tooltip.nine_nether_regions.styx_sword", "§8§oPress§r §3§oAlt§r§8§o to display more.");
+        add("tooltip.nine_nether_regions.styx_sword_alt",
+                "§6§oIndestructible: §r§8§oUnder normal circumstances, this weapon's durability is not consumed. If the weapon's durability is damaged by some means, it will recover very quickly (42 points per 4 ticks).\n§r§6§oBattle-sword's Edge: §r§8§oWhen attacking a creature, the Styx Battle-sword simultaneously deals area damage to all non-friendly creatures within a 3-block radius centered on the player, dealing §r§e§o(Battle-sword's attack power + target's max health × 5%) §r§8§o damage.\n§r§6§oSoul Siphon: §r§8§oEach time the battle-sword attacks, it forcibly restores §r§d§o(player's max health × 8%) §r§8§o health to the player.");
+        add("tooltip.nine_nether_regions.styx_pickaxe", "§8§oPress§r §3§oAlt§r§8§o to display more.");
+        add("tooltip.nine_nether_regions.styx_pickaxe_alt", "§8§oThis pickaxe is the best among all pickaxes.\nUnder normal circumstances, its durability cannot be consumed. If under special circumstances its durability is reduced, it will rapidly restore to full durability (restores 24 points per 4 ticks).\nBlessed by the power of Styx, this pickaxe breaks any block 2.5 times faster than normal, and when breaking any block, there is a 24% chance to drop a diamond and a 12% chance to drop a netherite scrap.");
         add("tooltip.nine_nether_regions.steel_base", "§8§oAfter a thousand trials and tribulations, one can obtain a good piece of steel.");
         add("tooltip.nine_nether_regions.steel_ingot", "§8§oBetter than iron.");
         add("tooltip.nine_nether_regions.alloy_hilt", "§8§oIt can be used as a Weapon.BUT that's by no means its true purpose.");

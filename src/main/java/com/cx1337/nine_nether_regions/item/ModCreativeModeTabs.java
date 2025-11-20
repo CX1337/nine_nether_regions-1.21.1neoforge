@@ -4,6 +4,7 @@ import com.cx1337.nine_nether_regions.NineNetherRegions;
 import com.cx1337.nine_nether_regions.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
@@ -19,6 +20,7 @@ public class ModCreativeModeTabs {
             CREATIVE_MODE_TABS.register("nine_nether_regions_materials_tab", () -> CreativeModeTab.builder()
                     .icon(() -> new ItemStack(ModItems.STYX_INGOT.get()))
                     .title(Component.translatable("itemGroup.nine_nether_regions_materials_tab"))
+                    .backgroundTexture(ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, "textures/gui/tab_materials_tab.png"))
                     .displayItems((parameters, output) -> {
                         output.accept(ModItems.AMETHYST_DAGGER);
                         output.accept(ModItems.ALLOY_HILT);
@@ -60,6 +62,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.HELLALLOY_LONGBOW);
 
                         output.accept(ModItems.STYX_INGOT);
+                        output.accept(ModItems.STYX_SWORD);
+                        output.accept(ModItems.STYX_PICKAXE);
                         output.accept(ModItems.STYX_HELMET);
                         output.accept(ModItems.STYX_CHESTPLATE);
                         output.accept(ModItems.STYX_LEGGINGS);
@@ -70,6 +74,7 @@ public class ModCreativeModeTabs {
             CREATIVE_MODE_TABS.register("nine_nether_regions_blocks_tab", () -> CreativeModeTab.builder()
                     .icon(() -> new ItemStack(ModBlocks.GLOWING_UNDERWORLD_BRICKS.get()))
                     .title(Component.translatable("itemGroup.nine_nether_regions_blocks_tab"))
+                    .backgroundTexture(ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, "textures/gui/tab_blocks_tab.png"))
                     .displayItems((parameters, output) -> {
                         output.accept(ModBlocks.HELLIGHT);
                         output.accept(ModBlocks.HELL_NUCLEUS);

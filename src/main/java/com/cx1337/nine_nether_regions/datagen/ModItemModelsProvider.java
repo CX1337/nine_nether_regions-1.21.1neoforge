@@ -38,7 +38,7 @@ public class ModItemModelsProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         basicItem(ModItems.AMETHYST_BEETROOT.get());
-        basicItem(ModItems.MUSIC_DISC_STYX_FERRYMAN.get());
+        basicItem(ModItems.STYX_FERRYMAN_MUSIC_DISC.get());
         basicItem(ModItems.DIAMOND_BOWSTRING.get());
         basicItem(ModItems.EMPTY_FABRIC.get());
         basicItem(ModItems.MAGIC_FABRIC.get());
@@ -78,6 +78,7 @@ public class ModItemModelsProvider extends ItemModelProvider {
         handheldItem(ModItems.STEEL_PICKAXE.get());
         handheldItem(ModItems.STEEL_SHOVEL.get());
         handheldItem(ModItems.STEEL_SWORD.get());
+        handheldItem(ModItems.STYX_PICKAXE.get());
 
         //basicItem(ModBlocks.???_DOOR.asItem),门和活板门有专用贴图需要绘制。
 

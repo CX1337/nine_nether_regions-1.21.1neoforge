@@ -4,16 +4,17 @@ import com.cx1337.nine_nether_regions.NineNetherRegions;
 import com.cx1337.nine_nether_regions.item.special.HellalloyShieldItem;
 import com.cx1337.nine_nether_regions.sound.ModSounds;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -21,15 +22,19 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
+import java.util.*;
+
+import static net.minecraft.world.level.block.Block.popResource;
 
 public class ModItems {
     public static final DeferredRegister.Items ITEMS =
@@ -739,7 +744,138 @@ public class ModItems {
                 }
             });
 
+    //冥河战刃。
+    public static final DeferredItem<SwordItem> STYX_SWORD =
+            ITEMS.register("styx_sword", () -> new SwordItem(ModToolTiers.STYX, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModToolTiers.STYX, 4.0F, -2.0F)).rarity(Rarity.EPIC).fireResistant()) {
+                @Override
+                public boolean onLeftClickEntity(ItemStack stack, Player player, Entity target) {
+                    if (player.level() instanceof ServerLevel sl) {
+                        float newHealth = player.getHealth() + (player.getMaxHealth() * 0.08F);
+                        player.setHealth(Math.min(newHealth, player.getMaxHealth()));
+
+                        AABB box = player.getBoundingBox().inflate(3.0D);
+                        float baseDamage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
+
+                        for (LivingEntity le : sl.getEntitiesOfClass(LivingEntity.class, box,
+                                e -> e != player && !player.isAlliedTo(e))) {
+                            float bonusDamage = le.getMaxHealth() * 0.05F;
+                            float totalDamage = baseDamage + bonusDamage;
+
+                            le.hurt(player.damageSources().playerAttack(player), totalDamage);
+                            le.knockback(0.2F,
+                                    player.getX() - le.getX(),
+                                    player.getZ() - le.getZ());
+                        }
+                    }
+                    return super.onLeftClickEntity(stack, player, target);
+                }
+
+                @Override
+                public boolean isDamageable(ItemStack stack) {
+                    return false;
+                }
+                @Override
+                public void setDamage(ItemStack stack, int damage) {
+                    super.setDamage(stack, 0);
+                }
+
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.STYX.getEnchantmentValue();
+                }
+
+                @Override
+                public void inventoryTick(ItemStack stack, Level level, Entity holder,
+                                          int slot, boolean selected) {
+                    if (level.isClientSide) return;
+                    if (!(holder instanceof Player player)) return;
+
+                    if (stack.getDamageValue() > 0 && holder.tickCount % 4 == 0) {
+                        stack.setDamageValue(stack.getDamageValue() - 42);
+                    }
+                }
+
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    if (Screen.hasAltDown()){
+                        tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.styx_sword_alt"));
+                    } else {
+                        tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.styx_sword"));
+                    }
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
     //工具。
+    //冥河镐。
+    public static final DeferredItem<PickaxeItem> STYX_PICKAXE =
+            ITEMS.register("styx_pickaxe", () -> new PickaxeItem(ModToolTiers.STYX, new Item.Properties()
+                    .attributes(PickaxeItem.createAttributes(ModToolTiers.STYX, 1.0F, -2.6F)).rarity(Rarity.EPIC).fireResistant()){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.STYX.getEnchantmentValue();
+                }
+
+                @Override
+                public float getDestroySpeed(ItemStack stack, BlockState state) {
+                   float originalSpeed = super.getDestroySpeed(stack, state);
+                   return originalSpeed > 1.0F ? originalSpeed * 2.5F : originalSpeed;
+                }
+
+                @Override
+                public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity miner) {
+                    if (!level.isClientSide && miner instanceof Player player) {
+                        RandomSource random = level.random;
+                        if (random.nextFloat() < 0.24F) {
+                            popResource(level, pos, new ItemStack(Items.DIAMOND));
+                        }
+                        if (random.nextFloat() < 0.12F) {
+                            popResource(level, pos, new ItemStack(Items.NETHERITE_SCRAP));
+                        }
+                    }
+                    return super.mineBlock(stack, level, state, pos, miner);
+                }
+
+                @Override
+                public void inventoryTick(ItemStack stack, Level level, Entity holder,
+                                          int slot, boolean selected) {
+                    if (level.isClientSide) return;
+                    if (!(holder instanceof Player player)) return;
+
+                    if (stack.getDamageValue() > 0 && holder.tickCount % 4 == 0) {
+                        stack.setDamageValue(stack.getDamageValue() - 24);
+                    }
+                }
+
+                @Override
+                public boolean isDamageable(ItemStack stack) {
+                    return false;
+                }
+                @Override
+                public void setDamage(ItemStack stack, int damage) {
+                    super.setDamage(stack, 0);
+                }
+
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    if (Screen.hasAltDown()){
+                        tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.styx_pickaxe_alt"));
+                    } else {
+                        tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.styx_pickaxe"));
+                    }
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
     //精钢工具。
     public static final DeferredItem<PickaxeItem> STEEL_PICKAXE =
             ITEMS.register("steel_pickaxe", () -> new PickaxeItem(ModToolTiers.STEEL, new Item.Properties()
@@ -942,8 +1078,7 @@ public class ModItems {
             });
 
     //唱片。
-    public static final DeferredItem<Item> MUSIC_DISC_STYX_FERRYMAN =
-            ITEMS.register("music_disc_styx_ferryman",
-                    () -> new Item(new Item.Properties().
-                            jukeboxPlayable(ModSounds.DAWN_OF_THE_APOCALYPSE_KEY).stacksTo(1)));
+    public static final DeferredItem<Item> STYX_FERRYMAN_MUSIC_DISC =
+            ITEMS.register("styx_ferryman_music_disc", () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.DAWN_OF_THE_APOCALYPSE_KEY)
+                    .stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 }

@@ -25,9 +25,6 @@ public class ModEvents {
     // 方块物品防火防雷防仙人掌
     private static final Set<Item> FIREPROOF_ITEMS = new HashSet<>();
 
-
-    private int tickCounter = 0;
-
     public static void register() {
         NeoForge.EVENT_BUS.register(new ModEvents());
     }
@@ -51,10 +48,12 @@ public class ModEvents {
         FIREPROOF_ITEMS.add(ModItems.HELLALLOY_SWORD.get());
         FIREPROOF_ITEMS.add(ModItems.STYX_FABRIC.get());
         FIREPROOF_ITEMS.add(ModItems.STYX_INGOT.get());
+        FIREPROOF_ITEMS.add(ModItems.STYX_SWORD.get());
         FIREPROOF_ITEMS.add(ModItems.STYX_HELMET.get());
         FIREPROOF_ITEMS.add(ModItems.STYX_CHESTPLATE.get());
         FIREPROOF_ITEMS.add(ModItems.STYX_LEGGINGS.get());
         FIREPROOF_ITEMS.add(ModItems.STYX_BOOTS.get());
+        FIREPROOF_ITEMS.add(ModItems.STYX_PICKAXE.get());
     }
 
     @SubscribeEvent
@@ -67,6 +66,9 @@ public class ModEvents {
     }
 
     // 幽冥合金套全套效果
+
+    private int hellalloyTickCounter = 0;
+    private int styxTickCounter = 0;
     @SubscribeEvent
     public void onPlayerTick(PlayerTickEvent.Post event) {
         if (event.getEntity().level().isClientSide()) {
@@ -84,9 +86,10 @@ public class ModEvents {
             addIfMissing(player, MobEffects.DAMAGE_RESISTANCE, 310, 1, false);
 
             // 强制恢复生命值
-            tickCounter++;
-            if (tickCounter >= 10) {
-                tickCounter = 0;
+            hellalloyTickCounter++;
+
+            if (hellalloyTickCounter >= 10) {
+                hellalloyTickCounter = 0;
 
                 float currentHealth = player.getHealth();
                 float maxHealth = player.getMaxHealth();
@@ -97,7 +100,7 @@ public class ModEvents {
                 }
             }
         } else {
-            tickCounter = 0;
+            hellalloyTickCounter = 0;
         }
     }
 
@@ -145,9 +148,9 @@ public class ModEvents {
             addIfMissingStyx(player, MobEffects.ABSORPTION, 310, 1, false);
 
             //强制恢复生命值
-            tickCounter++;
-            if (tickCounter >= 10) {
-                tickCounter = 0;
+            styxTickCounter++;
+            if (styxTickCounter >= 10) {
+                styxTickCounter = 0;
 
                 float currentHealth = player.getHealth();
                 float maxHealth = player.getMaxHealth();
@@ -158,7 +161,7 @@ public class ModEvents {
                 }
             }
         } else {
-            tickCounter = 0;
+            styxTickCounter = 0;
         }
     }
 
