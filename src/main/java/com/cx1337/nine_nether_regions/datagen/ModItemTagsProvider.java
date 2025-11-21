@@ -23,6 +23,10 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.GOAT_FOOD)
                 .add(ModItems.AMETHYST_BEETROOT.get());
 
+        tag(ItemTags.HORSE_FOOD)
+                .add(ModItems.GHOSTLIUM_APPLE.get())
+                .add(ModItems.ENCHANTED_GHOSTLIUM_APPLE.get());
+
         tag(ItemTags.HOGLIN_FOOD)
                 .add(ModItems.GHOSTLIUM.get());
 

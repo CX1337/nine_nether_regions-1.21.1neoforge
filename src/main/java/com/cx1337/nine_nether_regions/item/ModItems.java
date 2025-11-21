@@ -78,7 +78,7 @@ public class ModItems {
            ITEMS.register("amethyst_dagger", () -> new SwordItem(AMETHYST, new Item.Properties()
                    .attributes(SwordItem.createAttributes(AMETHYST, 4, -0.6F)).rarity(Rarity.COMMON)){
 
-               //每次攻击24%概率回1血量。
+               //每次攻击24%概率回1血量，非强制回血。
                @Override
                public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
                    if (player.level().random.nextFloat() < 0.24f && player.getHealth() < player.getMaxHealth()) {
@@ -86,6 +86,7 @@ public class ModItems {
                    }
                    return false;
                }
+               //所有类似的tooltip均为对物品的描述。
                @Override
                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.amethyst_dagger"));
@@ -104,6 +105,20 @@ public class ModItems {
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.styx_fabric"));
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
+    public static final DeferredItem<Item> STYX_TEAR =
+            ITEMS.register("styx_tear", () -> new Item(new Item.Properties().rarity(Rarity.EPIC).fireResistant()){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.styx_tear"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+
+                @Override
+                public boolean isFoil(ItemStack stack) {
+                    return true;
                 }
             });
 
@@ -142,6 +157,16 @@ public class ModItems {
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });
+
+    public static final DeferredItem<Item> BLOODBLADE_ESSENCE =
+            ITEMS.register("bloodblade_essence", () -> new Item(new Item.Properties().rarity(Rarity.RARE).fireResistant()){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.bloodblade_essence"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
     public static final DeferredItem<Item> DIAMOND_BOWSTRING =
             ITEMS.register("diamond_bowstring", () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
     public static final DeferredItem<Item> UNDERWORLD_BRICK =
@@ -158,7 +183,29 @@ public class ModItems {
     public static final DeferredItem<Item> AMETHYST_BEETROOT =
             ITEMS.register("amethyst_beetroot", () -> new Item(new Item.Properties().food(ModFoodProperties.AMETHYST_BEETROOT)
                     .rarity(Rarity.COMMON)));
+    public static final DeferredItem<Item> GHOSTLIUM_APPLE =
+            ITEMS.register("ghostlium_apple", () -> new Item(new Item.Properties().food(ModFoodProperties.GHOSTLIUM_APPLE)
+                    .rarity(Rarity.UNCOMMON)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.ghostlium_apple"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+    public static final DeferredItem<Item> ENCHANTED_GHOSTLIUM_APPLE =
+            ITEMS.register("enchanted_ghostlium_apple", () -> new Item(new Item.Properties().food(ModFoodProperties.ENCHANTED_GHOSTLIUM_APPLE)
+                    .rarity(Rarity.EPIC)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.enchanted_ghostlium_apple"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
 
+                @Override
+                public boolean isFoil(ItemStack stack) {
+                    return true;
+                }
+            });
 
 
     //食物注册后需在ModFoodProperties中补全信息。
@@ -247,6 +294,9 @@ public class ModItems {
                     return ModToolTiers.STEEL.getEnchantmentValue();
                 }
             });
+    public static final DeferredItem<Item> STEEL_HORSE_ARMOR =
+            ITEMS.register("steel_horse_armor", () -> new AnimalArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, AnimalArmorItem.BodyType.EQUESTRIAN,
+            false, new Item.Properties().stacksTo(1)));
 
     //幽冥合金盔甲。
     public static final DeferredItem<ArmorItem> HELLALLOY_HELMET =
@@ -265,7 +315,7 @@ public class ModItems {
                 @Override
                 public void inventoryTick(ItemStack stack, Level level, Entity entity,
                                           int slot, boolean selected) {
-                   //耐久修复
+                   //耐久自恢复。
                     if (!level.isClientSide
                             && entity instanceof LivingEntity living
                             && living.tickCount % 40 == 0
@@ -278,7 +328,7 @@ public class ModItems {
 
                     if (player.getItemBySlot(EquipmentSlot.HEAD) != stack) return;
 
-                    //效果
+                    //单件效果。
                     player.addEffect(new MobEffectInstance(
                             MobEffects.NIGHT_VISION,310,0,true,false,false
                     ));
@@ -471,6 +521,7 @@ public class ModItems {
                     return ModToolTiers.STYX.getEnchantmentValue();
                 }
 
+                //无法破坏。
                 @Override
                 public boolean isDamageable(ItemStack stack) {
                     return false;
@@ -487,7 +538,7 @@ public class ModItems {
                 @Override
                 public void inventoryTick(ItemStack stack, Level level, Entity entity,
                                           int slot, boolean selected) {
-                    //耐久修复(如果遇到意外情况)
+                    //耐久自恢复(如果遇到意外情况)。
                     if (!level.isClientSide
                             && entity instanceof LivingEntity living
                             && living.tickCount % 4 == 0
@@ -500,7 +551,7 @@ public class ModItems {
 
                     if (player.getItemBySlot(EquipmentSlot.HEAD) != stack) return;
 
-                    //效果
+                    //效果。
                     player.addEffect(new MobEffectInstance(
                             MobEffects.NIGHT_VISION,310,1,true,false,false
                     ));
@@ -750,22 +801,26 @@ public class ModItems {
                     .attributes(SwordItem.createAttributes(ModToolTiers.STYX, 4.0F, -2.0F)).rarity(Rarity.EPIC).fireResistant()) {
                 @Override
                 public boolean onLeftClickEntity(ItemStack stack, Player player, Entity target) {
-                    if (player.level() instanceof ServerLevel sl) {
-                        float newHealth = player.getHealth() + (player.getMaxHealth() * 0.08F);
-                        player.setHealth(Math.min(newHealth, player.getMaxHealth()));
+                    if (player.getAttackStrengthScale(0.5F) >= 1.0F) {
+                        //蓄满力强制百分比恢复生命。
+                        if (player.level() instanceof ServerLevel sl) {
+                            float newHealth = player.getHealth() + (player.getMaxHealth() * 0.08F);
+                            player.setHealth(Math.min(newHealth, player.getMaxHealth()));
 
-                        AABB box = player.getBoundingBox().inflate(3.0D);
-                        float baseDamage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
+                            //蓄满力半径3m内所有非友方实体AOE伤害。
+                            AABB box = player.getBoundingBox().inflate(3.0D);
+                            float baseDamage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
 
-                        for (LivingEntity le : sl.getEntitiesOfClass(LivingEntity.class, box,
-                                e -> e != player && !player.isAlliedTo(e))) {
-                            float bonusDamage = le.getMaxHealth() * 0.05F;
-                            float totalDamage = baseDamage + bonusDamage;
+                            for (LivingEntity le : sl.getEntitiesOfClass(LivingEntity.class, box,
+                                    e -> e != player && !player.isAlliedTo(e))) {
+                                float bonusDamage = le.getMaxHealth() * 0.05F;
+                                float totalDamage = baseDamage + bonusDamage;
 
-                            le.hurt(player.damageSources().playerAttack(player), totalDamage);
-                            le.knockback(0.2F,
-                                    player.getX() - le.getX(),
-                                    player.getZ() - le.getZ());
+                                le.hurt(player.damageSources().playerAttack(player), totalDamage);
+                                le.knockback(0.2F,
+                                        player.getX() - le.getX(),
+                                        player.getZ() - le.getZ());
+                            }
                         }
                     }
                     return super.onLeftClickEntity(stack, player, target);
@@ -825,12 +880,14 @@ public class ModItems {
                     return ModToolTiers.STYX.getEnchantmentValue();
                 }
 
+                //加速破坏速度（貌似无效）。
                 @Override
                 public float getDestroySpeed(ItemStack stack, BlockState state) {
                    float originalSpeed = super.getDestroySpeed(stack, state);
                    return originalSpeed > 1.0F ? originalSpeed * 2.5F : originalSpeed;
                 }
 
+                //挖掘24%掉落钻石，12%掉落下界合金碎片。
                 @Override
                 public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity miner) {
                     if (!level.isClientSide && miner instanceof Player player) {
@@ -1027,20 +1084,23 @@ public class ModItems {
     public static final DeferredItem<HellalloyShieldItem> HELLALLOY_ROYALGUARD_SHIELD =
             ITEMS.registerItem("hellalloy_royalguard_shield", HellalloyShieldItem::new, new Item.Properties().fireResistant());
 
-    //幽冥合金剑
+    //幽冥合金剑。
     public static final DeferredItem<SwordItem> HELLALLOY_SWORD =
             ITEMS.register("hellalloy_sword", () -> new SwordItem(ModToolTiers.HELLALLOY, new Item.Properties()
                     .attributes(SwordItem.createAttributes(ModToolTiers.HELLALLOY, 4.0F, -2.0F)).rarity(Rarity.EPIC).fireResistant()) {
                 @Override
+                //蓄满力固定值范围伤害。
                 public boolean onLeftClickEntity(ItemStack stack, Player player, Entity target) {
-                    if (player.level() instanceof ServerLevel sl) {
-                        AABB box = target.getBoundingBox().inflate(2.0D);
-                        for (LivingEntity le : sl.getEntitiesOfClass(LivingEntity.class, box,
-                                e -> e != target && e != player && !player.isAlliedTo(e))) {
-                            le.hurt(player.damageSources().playerAttack(player), 16.0F);
-                            le.knockback(0.2F,
-                                    player.getX() - le.getX(),
-                                    player.getZ() - le.getZ());
+                    if (player.getAttackStrengthScale(0.5F) >= 1.0F) {
+                        if (player.level() instanceof ServerLevel sl) {
+                            AABB box = target.getBoundingBox().inflate(2.0D);
+                            for (LivingEntity le : sl.getEntitiesOfClass(LivingEntity.class, box,
+                                    e -> e != target && e != player && !player.isAlliedTo(e))) {
+                                le.hurt(player.damageSources().playerAttack(player), 16.0F);
+                                le.knockback(0.2F,
+                                        player.getX() - le.getX(),
+                                        player.getZ() - le.getZ());
+                            }
                         }
                     }
                     return super.onLeftClickEntity(stack, player, target);

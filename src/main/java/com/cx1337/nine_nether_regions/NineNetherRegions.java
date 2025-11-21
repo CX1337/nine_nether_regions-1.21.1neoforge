@@ -1,6 +1,7 @@
 package com.cx1337.nine_nether_regions;
 
 import com.cx1337.nine_nether_regions.block.ModBlocks;
+import com.cx1337.nine_nether_regions.effect.ModEffects;
 import com.cx1337.nine_nether_regions.item.ModCreativeModeTabs;
 import com.cx1337.nine_nether_regions.event.ModEvents;
 import com.cx1337.nine_nether_regions.item.ModItems;
@@ -40,6 +41,8 @@ public class NineNetherRegions {
 
         ModEvents.register();
         ModSounds.register(modEventBus);
+
+        ModEffects.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
 

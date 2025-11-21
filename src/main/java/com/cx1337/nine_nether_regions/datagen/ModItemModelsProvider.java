@@ -38,11 +38,15 @@ public class ModItemModelsProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         basicItem(ModItems.AMETHYST_BEETROOT.get());
-        basicItem(ModItems.STYX_FERRYMAN_MUSIC_DISC.get());
+        basicItem(ModItems.GHOSTLIUM_APPLE.get());
+        basicItem(ModItems.ENCHANTED_GHOSTLIUM_APPLE.get());
+        basicItem(ModItems.BLOODBLADE_ESSENCE.get());
         basicItem(ModItems.DIAMOND_BOWSTRING.get());
         basicItem(ModItems.EMPTY_FABRIC.get());
         basicItem(ModItems.MAGIC_FABRIC.get());
         basicItem(ModItems.STYX_FABRIC.get());
+        basicItem(ModItems.STYX_TEAR.get());
+        basicItem(ModItems.STYX_FERRYMAN_MUSIC_DISC.get());
         basicItem(ModItems.GHOSTLIUM.get());
         basicItem(ModItems.HELLALLOY_INGOT.get());
         basicItem(ModItems.STYX_INGOT.get());
@@ -61,7 +65,8 @@ public class ModItemModelsProvider extends ItemModelProvider {
         for (var sup : List.of(ModItems.STYX_HELMET, ModItems.STYX_CHESTPLATE,ModItems.STYX_LEGGINGS, ModItems.STYX_BOOTS)){
             basicItem(sup.get());
         }
-        for (var sup : List.of(ModItems.STEEL_HELMET, ModItems.STEEL_CHESTPLATE,ModItems.STEEL_LEGGINGS, ModItems.STEEL_BOOTS)){
+        for (var sup : List.of(ModItems.STEEL_HELMET, ModItems.STEEL_CHESTPLATE,ModItems.STEEL_LEGGINGS, ModItems.STEEL_BOOTS,
+                ModItems.STEEL_HORSE_ARMOR)){
             basicItem(sup.get());
         }
 

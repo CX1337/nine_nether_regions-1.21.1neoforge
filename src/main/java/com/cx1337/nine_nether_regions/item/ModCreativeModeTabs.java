@@ -30,8 +30,12 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.DIAMOND_BOWSTRING);
                         output.accept(ModItems.UNDERWORLD_BRICK);
                         output.accept(ModItems.UNDERWORLD_CRYSTAL);
+                        output.accept(ModItems.BLOODBLADE_ESSENCE);
                         output.accept(ModItems.GHOSTLIUM);
+                        output.accept(ModItems.STYX_TEAR);
                         output.accept(ModItems.AMETHYST_BEETROOT);
+                        output.accept(ModItems.GHOSTLIUM_APPLE);
+                        output.accept(ModItems.ENCHANTED_GHOSTLIUM_APPLE);
                         output.accept(ModItems.EMPTY_FABRIC);
                         output.accept(ModItems.MAGIC_FABRIC);
                         output.accept(ModItems.STYX_FABRIC);
@@ -48,6 +52,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.STEEL_CHESTPLATE);
                         output.accept(ModItems.STEEL_LEGGINGS);
                         output.accept(ModItems.STEEL_BOOTS);
+                        output.accept(ModItems.STEEL_HORSE_ARMOR);
 
                         output.accept(ModItems.HELLALLOY_INGOT);
                         output.accept(ModItems.HELLALLOY_AXE);
@@ -68,6 +73,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.STYX_CHESTPLATE);
                         output.accept(ModItems.STYX_LEGGINGS);
                         output.accept(ModItems.STYX_BOOTS);
+
+                        output.accept(ModItems.STYX_FERRYMAN_MUSIC_DISC);
                     }).build());
 
     public static final Supplier<CreativeModeTab> NineNetherRegions_Blocks_Tab =
@@ -80,6 +87,11 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.HELL_NUCLEUS);
                         output.accept(ModBlocks.MANJUSAKA);
                         output.accept(ModBlocks.PINESAP);
+                        output.accept(ModBlocks.BLOODBLADE_ORE);
+                        output.accept(ModBlocks.BLOODBLADE_ROCK);
+                        output.accept(ModBlocks.CRACKED_BLOODBLADE_ROCK);
+                        output.accept(ModBlocks.HARDENED_BLOODBLADE_ROCK);
+                        output.accept(ModBlocks.UNDERWORLD_SPIRIT_STONE);
                         output.accept(ModBlocks.UNDERWORLD_CRYSTAL_ORE);
                         output.accept(ModBlocks.BLOODY_SAND);
                         output.accept(ModBlocks.COMPACT_OBSIDIAN);

@@ -3,6 +3,7 @@ package com.cx1337.nine_nether_regions.event;
 import com.cx1337.nine_nether_regions.block.ModBlocks;
 import com.cx1337.nine_nether_regions.item.ModItems;
 import net.minecraft.core.Holder;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
@@ -30,10 +31,12 @@ public class ModEvents {
     }
     public static void initFireProofItems() {
         FIREPROOF_ITEMS.clear();
+        FIREPROOF_ITEMS.add(ModBlocks.BLOODBLADE_ORE.get().asItem());
         FIREPROOF_ITEMS.add(ModBlocks.HELLALLOY_BLOCK.get().asItem());
         FIREPROOF_ITEMS.add(ModBlocks.HELL_NUCLEUS.get().asItem());
         FIREPROOF_ITEMS.add(ModBlocks.STYX_BLOCK.get().asItem());
         FIREPROOF_ITEMS.add(ModItems.ALLOY_HILT.get());
+        FIREPROOF_ITEMS.add(ModItems.BLOODBLADE_ESSENCE.get());
         FIREPROOF_ITEMS.add(ModItems.HELLALLOY_INGOT.get());
         FIREPROOF_ITEMS.add(ModItems.HELLALLOY_ROD.get());
         FIREPROOF_ITEMS.add(ModItems.HELLALLOY_LONGBOW.get());
@@ -47,6 +50,7 @@ public class ModEvents {
         FIREPROOF_ITEMS.add(ModItems.HELLALLOY_SHOVEL.get());
         FIREPROOF_ITEMS.add(ModItems.HELLALLOY_SWORD.get());
         FIREPROOF_ITEMS.add(ModItems.STYX_FABRIC.get());
+        FIREPROOF_ITEMS.add(ModItems.STYX_TEAR.get());
         FIREPROOF_ITEMS.add(ModItems.STYX_INGOT.get());
         FIREPROOF_ITEMS.add(ModItems.STYX_SWORD.get());
         FIREPROOF_ITEMS.add(ModItems.STYX_HELMET.get());
@@ -95,7 +99,7 @@ public class ModEvents {
                 float maxHealth = player.getMaxHealth();
 
                 if (currentHealth < maxHealth) {
-                    float newHealth = Math.min(currentHealth + 1.0F, maxHealth);
+                    float newHealth = Math.min(currentHealth + 0.7F, maxHealth);
                     player.setHealth(newHealth);
                 }
             }
@@ -156,7 +160,7 @@ public class ModEvents {
                 float maxHealth = player.getMaxHealth();
 
                 if (currentHealth < maxHealth) {
-                    float newHealth = Math.min(currentHealth + 1.0F, maxHealth);
+                    float newHealth = Math.min(currentHealth + 1.5F, maxHealth);
                     player.setHealth(newHealth);
                 }
             }
@@ -184,16 +188,15 @@ public class ModEvents {
             if (fullSet) {
                 DamageSource source = event.getSource();
                 if (source.is(DamageTypes.MAGIC) || source.is(DamageTypes.DRAGON_BREATH)
-                || source.is(DamageTypes.WITHER)) {
+                || source.is(DamageTypes.WITHER) || source.is(DamageTypes.INDIRECT_MAGIC)) {
                     event.setNewDamage(0.0f);
                     return;
                 }
-                if (source.is(DamageTypes.EXPLOSION) || source.is(DamageTypes.PLAYER_EXPLOSION) ||
-                 source.is(DamageTypes.BAD_RESPAWN_POINT) || source.is(DamageTypes.WITHER_SKULL)) {
+                if (source.is(DamageTypeTags.IS_EXPLOSION)) {
                     event.setNewDamage(0.0f);
                     return;
                 }
-                if (source.is(DamageTypes.FREEZE)) {
+                if (source.is(DamageTypeTags.IS_FREEZING)) {
                     event.setNewDamage(0.0f);
                     return;
                 }

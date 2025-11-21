@@ -39,6 +39,10 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         //add(ModBlocks.???_DOOR.get(),
         //                     block -> createDoorTable(ModBlocks.???_DOOR.get()));
         dropSelf(ModBlocks.BLOODY_SAND.get());
+        dropSelf(ModBlocks.BLOODBLADE_ROCK.get());
+        dropSelf(ModBlocks.CRACKED_BLOODBLADE_ROCK.get());
+        dropSelf(ModBlocks.HARDENED_BLOODBLADE_ROCK.get());
+        dropSelf(ModBlocks.BLOODBLADE_ORE.get());
         dropSelf(ModBlocks.COMPACT_OBSIDIAN.get());
         dropSelf(ModBlocks.REINFORCED_OBSIDIAN.get());
         dropSelf(ModBlocks.GLOWING_UNDERWORLD_BRICKS.get());
@@ -53,6 +57,7 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.STYX_BLOCK.get());
         dropSelf(ModBlocks.STEEL_BLOCK.get());
         dropSelf(ModBlocks.UNDERWORLDRACK.get());
+        dropSelf(ModBlocks.UNDERWORLD_SPIRIT_STONE.get());
         dropSelf(ModBlocks.UNDERWORLD_BRICKS.get());
         dropSelf(ModBlocks.UNDERWORLD_BRICK_BUTTON.get());
         dropSelf(ModBlocks.UNDERWORLD_BRICK_FENCE.get());

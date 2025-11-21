@@ -25,7 +25,7 @@ public class ModArmorMaterials {
                 attribute.put(ArmorItem.Type.LEGGINGS, 7);
                 attribute.put(ArmorItem.Type.CHESTPLATE, 9);
                 attribute.put(ArmorItem.Type.HELMET, 4);
-                attribute.put(ArmorItem.Type.BODY, 20);
+                attribute.put(ArmorItem.Type.BODY, 22);
             }), 28, 4.0F, 0.7F, () -> ModItems.HELLALLOY_INGOT.get(),
             SoundEvents.ARMOR_EQUIP_NETHERITE,
             ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, "hellalloy"));
@@ -38,7 +38,7 @@ public class ModArmorMaterials {
                 attribute.put(ArmorItem.Type.CHESTPLATE, 7);
                 attribute.put(ArmorItem.Type.HELMET, 3);
                 attribute.put(ArmorItem.Type.BODY, 12);
-            }), 15, 2.0F, 0.2F, () -> ModItems.STEEL_INGOT.get(),
+            }), 15, 3.0F, 0.2F, () -> ModItems.STEEL_INGOT.get(),
             SoundEvents.ARMOR_EQUIP_IRON,
             ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, "steel"));
 

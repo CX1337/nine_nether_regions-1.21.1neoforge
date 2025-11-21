@@ -4,10 +4,8 @@ import com.cx1337.nine_nether_regions.NineNetherRegions;
 import com.cx1337.nine_nether_regions.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -42,6 +40,36 @@ public class ModBlocks {
                     .strength(2.5F,10F)
                     .sound(SoundType.SAND)));
 
+    public static final DeferredBlock<Block> BLOODBLADE_ROCK =
+            registerBlocks("bloodblade_rock", () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_RED)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .strength(32.0F,444F)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.DEEPSLATE)));
+    public static final DeferredBlock<Block> CRACKED_BLOODBLADE_ROCK =
+            registerBlocks("cracked_bloodblade_rock", () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_RED)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .strength(32.0F,444F)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.DEEPSLATE)));
+    public static final DeferredBlock<Block> HARDENED_BLOODBLADE_ROCK =
+            registerBlocks("hardened_bloodblade_rock", () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_RED)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .strength(32.0F,444F)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.DEEPSLATE)));
+    public static final DeferredBlock<Block> BLOODBLADE_ORE =
+            registerBlocks("bloodblade_ore", () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_RED)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .strength(44.4F,4444F)
+                    .requiresCorrectToolForDrops()
+                    .lightLevel(p_50872_ -> 6)
+                    .sound(SoundType.DEEPSLATE)));
+
     public static final DeferredBlock<Block> COMPACT_OBSIDIAN =
             registerBlocks("compact_obsidian", () -> new Block(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_BLACK)
@@ -64,6 +92,15 @@ public class ModBlocks {
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });
+
+    public static final DeferredBlock<Block> UNDERWORLD_SPIRIT_STONE =
+            registerBlocks("underworld_spirit_stone", () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_CYAN)
+                    .instrument(NoteBlockInstrument.HARP)
+                    .strength(3.5F,245.2F)
+                    .sound(SoundType.DEEPSLATE)
+                    .lightLevel(p_50872_ -> 8)
+                    .requiresCorrectToolForDrops()));
 
     public static final DeferredBlock<Block> UNDERWORLD_CRYSTAL_ORE =
             registerBlocks("underworld_crystal_ore", () -> new Block(BlockBehaviour.Properties.of()
@@ -271,7 +308,7 @@ public class ModBlocks {
         registerBlockOnly("potted_" + name,
                 () -> new FlowerPotBlock(null, () -> flower.get(),
                         BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY)
-                                .noOcclusion()  // 添加这个以解决透明问题
+                                .noOcclusion()
                                 .lightLevel(state -> flower.get().defaultBlockState().getLightEmission())));
         return flower;
     }

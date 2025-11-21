@@ -21,14 +21,6 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
         super(output, registries);
     }
 
-    //熔炼原料注册点。
-    public static final List<ItemLike> UNDERWORLD_BRICK = List.of(ModBlocks.UNDERWORLDRACK);
-    public static final List<ItemLike> STEEL_INGOT = List.of(ModItems.STEEL_BASE);
-    public static final List<ItemLike> STEEL_NUGGET = List.of(ModItems.STEEL_HELMET, ModItems.STEEL_CHESTPLATE,
-    ModItems.STEEL_LEGGINGS, ModItems.STEEL_BOOTS, ModItems.STEEL_AXE, ModItems.STEEL_HOE, ModItems.STEEL_PICKAXE,
-            ModItems.STEEL_SHOVEL, ModItems.STEEL_SWORD);
-    public static final List<ItemLike> RED_GLASS = List.of(ModBlocks.BLOODY_SAND);
-
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, Items.ENCHANTED_GOLDEN_APPLE, 1)
@@ -85,6 +77,24 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .define('#', Items.AMETHYST_SHARD)
                 .define('$', Items.BEETROOT)
                 .unlockedBy(getHasName(Items.BEETROOT), has(Items.BEETROOT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.GHOSTLIUM_APPLE, 1)
+                .pattern(" # ")
+                .pattern("#$#")
+                .pattern(" # ")
+                .define('#', ModItems.GHOSTLIUM)
+                .define('$', Items.GOLDEN_APPLE)
+                .unlockedBy(getHasName(Items.GOLDEN_APPLE), has(Items.GOLDEN_APPLE))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.ENCHANTED_GHOSTLIUM_APPLE, 1)
+                .pattern("###")
+                .pattern("#$#")
+                .pattern("###")
+                .define('#', ModItems.GHOSTLIUM)
+                .define('$', Items.ENCHANTED_GOLDEN_APPLE)
+                .unlockedBy(getHasName(Items.ENCHANTED_GOLDEN_APPLE), has(Items.ENCHANTED_GOLDEN_APPLE))
                 .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.AMETHYST_DAGGER, 1)
@@ -284,6 +294,13 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy(getHasName(ModItems.UNDERWORLD_BRICK), has(ModItems.UNDERWORLD_BRICK))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.HARDENED_BLOODBLADE_ROCK, 1)
+                .pattern("##")
+                .pattern("##")
+                .define('#', ModBlocks.BLOODBLADE_ROCK)
+                .unlockedBy(getHasName(ModBlocks.BLOODBLADE_ROCK), has(ModBlocks.BLOODBLADE_ROCK))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.HELLALLOY_ROD, 4)
                 .pattern("#")
                 .pattern("#")
@@ -422,13 +439,6 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy(getHasName(ModBlocks.STYX_BLOCK), has(ModBlocks.STYX_BLOCK))
                 .save(recipeOutput);
 
-        //需要熔炼的物品请先到顶部注册。
-        oreSmelting(recipeOutput, RED_GLASS, RecipeCategory.MISC, Blocks.RED_STAINED_GLASS, 0.10f, 150, "underworld_bricks");
-        oreSmelting(recipeOutput, UNDERWORLD_BRICK, RecipeCategory.MISC, ModItems.UNDERWORLD_BRICK, 0.10f, 150, "underworld_bricks");
-        oreBlasting(recipeOutput, UNDERWORLD_BRICK, RecipeCategory.MISC, ModItems.UNDERWORLD_BRICK, 0.44f, 300, "underworld_bricks");
-        oreBlasting(recipeOutput, STEEL_INGOT, RecipeCategory.MISC, ModItems.STEEL_INGOT, 0.10f, 200, "steel_ingot");
-        oreSmelting(recipeOutput, STEEL_NUGGET, RecipeCategory.MISC, ModItems.STEEL_NUGGET, 0.10f, 200, "steel_nugget");
-
         //标准栅栏/栅栏门预留。
         //fenceBuilder(ModBlocks.???_FENCE.get(), Ingredient.of(ModItems/Blocks:???)).group("???")
         //        .unlockedBy("has_???", has(???)).save(recipeOutput);
@@ -445,7 +455,28 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
         slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.UNDERWORLD_BRICK_SLAB.get(), ModBlocks.UNDERWORLD_BRICKS.get());
 
         //压力板的builder同半砖相似；门和活板门与其他一致。
+        //需要熔炼的物品请先到下方注册。Smelt熔炉，Blast高炉。
+        oreBlasting(recipeOutput, BLOODBLADE_ESSENCE, RecipeCategory.MISC, ModItems.BLOODBLADE_ESSENCE, 1.40f, 244, "bloodblade_essence");
+        oreSmelting(recipeOutput, CRACKED_BLOODBLADE_ROCK, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRACKED_BLOODBLADE_ROCK, 0.10f, 200, "cracked_bloodblade_rock");
+        oreSmelting(recipeOutput, RED_GLASS, RecipeCategory.BUILDING_BLOCKS, Blocks.RED_STAINED_GLASS, 0.10f, 150, "red_glass");
+        oreSmelting(recipeOutput, UNDERWORLD_BRICK, RecipeCategory.MISC, ModItems.UNDERWORLD_BRICK, 0.10f, 150, "underworld_bricks");
+        oreBlasting(recipeOutput, UNDERWORLD_BRICK, RecipeCategory.MISC, ModItems.UNDERWORLD_BRICK, 0.44f, 300, "underworld_bricks");
+        oreBlasting(recipeOutput, GHOSTLIUM, RecipeCategory.MISC, ModItems.GHOSTLIUM, 1.00f, 200, "ghostlium");
+        oreBlasting(recipeOutput, STEEL_INGOT, RecipeCategory.MISC, ModItems.STEEL_INGOT, 0.10f, 200, "steel_ingot");
+        oreSmelting(recipeOutput, STEEL_NUGGET, RecipeCategory.MISC, ModItems.STEEL_NUGGET, 0.10f, 200, "steel_nugget");
+        oreBlasting(recipeOutput, STEEL_NUGGET, RecipeCategory.MISC, ModItems.STEEL_NUGGET, 0.10f, 100, "steel_nugget");
     }
+    //熔炼原料注册点。
+    public static final List<ItemLike> BLOODBLADE_ESSENCE = List.of(ModBlocks.BLOODBLADE_ORE);
+    public static final List<ItemLike> CRACKED_BLOODBLADE_ROCK = List.of(ModBlocks.BLOODBLADE_ROCK);
+    public static final List<ItemLike> UNDERWORLD_BRICK = List.of(ModBlocks.UNDERWORLDRACK);
+    public static final List<ItemLike> GHOSTLIUM = List.of(ModBlocks.UNDERWORLD_SPIRIT_STONE);
+    public static final List<ItemLike> STEEL_INGOT = List.of(ModItems.STEEL_BASE);
+    public static final List<ItemLike> STEEL_NUGGET = List.of(ModItems.STEEL_HELMET, ModItems.STEEL_CHESTPLATE,
+            ModItems.STEEL_LEGGINGS, ModItems.STEEL_BOOTS, ModItems.STEEL_AXE, ModItems.STEEL_HOE, ModItems.STEEL_PICKAXE,
+            ModItems.STEEL_SHOVEL, ModItems.STEEL_SWORD);
+    public static final List<ItemLike> RED_GLASS = List.of(ModBlocks.BLOODY_SAND);
+
     protected static void oreSmelting(
             RecipeOutput recipeOutput, List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group
     ) {

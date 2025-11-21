@@ -24,6 +24,10 @@ public class ModBlockStatesProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.BLOODY_SAND);
+        blockWithItem(ModBlocks.BLOODBLADE_ROCK);
+        blockWithItem(ModBlocks.CRACKED_BLOODBLADE_ROCK);
+        blockWithItem(ModBlocks.HARDENED_BLOODBLADE_ROCK);
+        blockWithItem(ModBlocks.BLOODBLADE_ORE);
         blockWithItem(ModBlocks.COMPACT_OBSIDIAN);
         blockWithItem(ModBlocks.REINFORCED_OBSIDIAN);
         blockWithItem(ModBlocks.GLOWING_UNDERWORLD_BRICKS);
@@ -35,6 +39,7 @@ public class ModBlockStatesProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.STEEL_BLOCK);
         blockWithItem(ModBlocks.UNDERWORLDRACK);
         blockWithItem(ModBlocks.UNDERWORLD_BRICKS);
+        blockWithItem(ModBlocks.UNDERWORLD_SPIRIT_STONE);
         blockWithItem(ModBlocks.UNDERWORLD_CRYSTAL_ORE);
 
         buttonBlock(ModBlocks.UNDERWORLD_BRICK_BUTTON.get(), blockTexture(ModBlocks.UNDERWORLD_BRICKS.get()));

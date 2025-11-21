@@ -54,7 +54,10 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                         ModBlocks.STYX_BLOCK.get());
 
         tag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL)
-                .add(ModBlocks.HELLALLOY_BLOCK.get(),
+                .add(ModBlocks.BLOODBLADE_ORE.get(),
+                        ModBlocks.BLOODBLADE_ROCK.get(),
+                        ModBlocks.CRACKED_BLOODBLADE_ROCK.get(),
+                        ModBlocks.HELLALLOY_BLOCK.get(),
                         ModBlocks.STYX_BLOCK.get());
 
         tag(BlockTags.INCORRECT_FOR_NETHERITE_TOOL)
@@ -75,7 +78,10 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(ModBlocks.BLOODY_SAND.get());
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(ModBlocks.COMPACT_OBSIDIAN.get(),
+                .add(ModBlocks.BLOODBLADE_ORE.get(),
+                        ModBlocks.CRACKED_BLOODBLADE_ROCK.get(),
+                        ModBlocks.BLOODBLADE_ROCK.get(),
+                        ModBlocks.COMPACT_OBSIDIAN.get(),
                         ModBlocks.GLOWING_UNDERWORLD_BRICKS.get(),
                         ModBlocks.GLOWING_UNDERWORLD_BRICK_SLAB.get(),
                         ModBlocks.GLOWING_UNDERWORLD_BRICK_STAIRS.get(),
@@ -93,6 +99,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                         ModBlocks.UNDERWORLD_BRICK_SLAB.get(),
                         ModBlocks.UNDERWORLD_BRICK_STAIRS.get(),
                         ModBlocks.UNDERWORLD_BRICK_WALL.get(),
+                        ModBlocks.UNDERWORLD_SPIRIT_STONE.get(),
                         ModBlocks.UNDERWORLD_CRYSTAL_ORE.get());
 
         //原版挖掘等级标签
@@ -113,7 +120,8 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.UNDERWORLD_CRYSTAL_ORE.get(),
                         ModBlocks.COMPACT_OBSIDIAN.get(),
-                       ModBlocks.REINFORCED_OBSIDIAN.get());
+                        ModBlocks.REINFORCED_OBSIDIAN.get(),
+                        ModBlocks.UNDERWORLD_SPIRIT_STONE.get());
 
         //免疫凋灵。
         tag(BlockTags.WITHER_IMMUNE)
