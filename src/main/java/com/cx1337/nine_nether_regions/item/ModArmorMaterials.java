@@ -18,18 +18,6 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class ModArmorMaterials {
-    //幽冥合金盔甲
-    public static final Holder<ArmorMaterial> HELLALLOY_ARMOR_MATERIAL = register("hellalloy",
-            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
-                attribute.put(ArmorItem.Type.BOOTS, 4);
-                attribute.put(ArmorItem.Type.LEGGINGS, 7);
-                attribute.put(ArmorItem.Type.CHESTPLATE, 9);
-                attribute.put(ArmorItem.Type.HELMET, 4);
-                attribute.put(ArmorItem.Type.BODY, 22);
-            }), 28, 4.0F, 0.7F, () -> ModItems.HELLALLOY_INGOT.get(),
-            SoundEvents.ARMOR_EQUIP_NETHERITE,
-            ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, "hellalloy"));
-
     //精钢盔甲
     public static final Holder<ArmorMaterial> STEEL_ARMOR_MATERIAL = register("steel",
             Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
@@ -41,6 +29,30 @@ public class ModArmorMaterials {
             }), 15, 3.0F, 0.2F, () -> ModItems.STEEL_INGOT.get(),
             SoundEvents.ARMOR_EQUIP_IRON,
             ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, "steel"));
+
+    //虹宝石盔甲
+    public static final Holder<ArmorMaterial> RAINBOWGEM_ARMOR_MATERIAL = register("rainbowgem",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 3);
+                attribute.put(ArmorItem.Type.LEGGINGS, 6);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 8);
+                attribute.put(ArmorItem.Type.HELMET, 3);
+                attribute.put(ArmorItem.Type.BODY, 15);
+            }), 17, 2.5F, 0.3F, () -> ModItems.RAINBOWGEM.get(),
+            SoundEvents.ARMOR_EQUIP_DIAMOND,
+            ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, "rainbowgem"));
+
+    //幽冥合金盔甲
+    public static final Holder<ArmorMaterial> HELLALLOY_ARMOR_MATERIAL = register("hellalloy",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 4);
+                attribute.put(ArmorItem.Type.LEGGINGS, 7);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 9);
+                attribute.put(ArmorItem.Type.HELMET, 4);
+                attribute.put(ArmorItem.Type.BODY, 22);
+            }), 28, 4.0F, 0.7F, () -> ModItems.HELLALLOY_INGOT.get(),
+            SoundEvents.ARMOR_EQUIP_NETHERITE,
+            ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, "hellalloy"));
 
     //冥河盔甲
     public static final Holder<ArmorMaterial> STYX_ARMOR_MATERIAL = register("styx",

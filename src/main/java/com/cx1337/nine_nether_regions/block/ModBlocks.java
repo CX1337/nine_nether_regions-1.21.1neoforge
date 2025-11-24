@@ -160,6 +160,16 @@ public class ModBlocks {
                     .strength(8.0F,12.0F)
                     .sound(SoundType.METAL)){
             });
+
+    public static final DeferredBlock<Block> RAINBOWGEM_BLOCK =
+            registerBlocks("rainbowgem_block", () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_GREEN)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .requiresCorrectToolForDrops()
+                    .strength(22.0F,85.0F)
+                    .sound(SoundType.STONE)){
+            });
+
     public static final DeferredBlock<Block> HELLIGHT =
             registerBlocks("hellight", () -> new Block(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_LIGHT_BLUE)

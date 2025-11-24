@@ -61,6 +61,18 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add(ModItems.STEEL_LEGGINGS.get(), "精钢护腿");
         add(ModItems.STEEL_BOOTS.get(), "精钢靴子");
         add(ModItems.STEEL_HORSE_ARMOR.get(), "精钢马铠");
+        add(ModItems.RUBY.get(), "红宝石");
+        add(ModItems.RAINBOWGEM.get(), "虹玉");
+        add(ModItems.RAINBOWGEM_AXE.get(), "虹玉斧");
+        add(ModItems.RAINBOWGEM_HOE.get(), "虹玉锄");
+        add(ModItems.RAINBOWGEM_PICKAXE.get(), "虹玉镐");
+        add(ModItems.RAINBOWGEM_SHOVEL.get(), "虹玉铲");
+        add(ModItems.RAINBOWGEM_SWORD.get(), "虹玉剑");
+        add(ModItems.RUBY_SWORD.get(), "红宝石剑");
+        add(ModItems.RAINBOWGEM_HELMET.get(), "虹玉头盔");
+        add(ModItems.RAINBOWGEM_CHESTPLATE.get(), "虹玉胸甲");
+        add(ModItems.RAINBOWGEM_LEGGINGS.get(), "虹玉护腿");
+        add(ModItems.RAINBOWGEM_BOOTS.get(), "虹玉靴子");
         add(ModItems.UNDERWORLD_BRICK.get(), "冥界砖");
         add(ModItems.UNDERWORLD_CRYSTAL.get(), "§b幽冥晶");
 
@@ -83,6 +95,7 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add(ModBlocks.PINESAP.get(), "水晶兰");
         add(ModBlocks.STYX_BLOCK.get(), "§5§l冥河块");
         add(ModBlocks.STEEL_BLOCK.get(), "精钢块");
+        add(ModBlocks.RAINBOWGEM_BLOCK.get(), "虹玉块");
         add(ModBlocks.UNDERWORLDRACK.get(), "冥界岩");
         add(ModBlocks.UNDERWORLD_BRICKS.get(), "冥界砖块");
         add(ModBlocks.UNDERWORLD_BRICK_BUTTON.get(), "冥界砖按钮");
@@ -94,9 +107,21 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add(ModBlocks.UNDERWORLD_SPIRIT_STONE.get(), "幽冥灵石");
         add(ModBlocks.UNDERWORLD_CRYSTAL_ORE.get(), "§b幽冥晶矿石");
 
-        add("effect.nine_nether_regions.decline", "衰败");
+        add("effect.nine_nether_regions.decline", "归寂");
+        add("item.minecraft.potion.effect.decline_potion", "归寂药水");
+        add("item.minecraft.splash_potion.effect.decline_potion", "喷溅型归寂药水");
+        add("item.minecraft.lingering_potion.effect.decline_potion", "滞留型归寂药水");
         add("death.attack.decline", "%1$s随风飘散了");
-        add("death.attack.decline.player", "%1$s在与%2$s战斗时随风而去");
+        add("death.attack.decline.player", "%1$s在与%2$s战斗时归于虚无");
+        add("effect.nine_nether_regions.bloodblade_curse", "血刃诅咒");
+        add("item.minecraft.potion.effect.bb_curse_potion", "血咒药水");
+        add("item.minecraft.splash_potion.effect.bb_curse_potion", "喷溅型血咒药水");
+        add("item.minecraft.lingering_potion.effect.bb_curse_potion", "滞留型血咒药水");
+
+        add("painting.nine_nether_regions.wayfarer.title", "Wayfarer");
+        add("painting.nine_nether_regions.wayfarer.author", "CX1337");
+        add("painting.nine_nether_regions.the_sword.title", "The Sword");
+        add("painting.nine_nether_regions.the_sword.author", "05Z08");
 
         add("itemGroup.nine_nether_regions_materials_tab", "§2§l九幽引：物品");
         add("itemGroup.nine_nether_regions_blocks_tab", "§2§l九幽引：方块");
@@ -132,15 +157,16 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add("tooltip.nine_nether_regions.styx_leggings", "§6§l愿冥河之力与你同在。\n§r§8§o按下§r §3§oAlt§r§8§o以显示更多。");
         add("tooltip.nine_nether_regions.styx_boots", "§6§l愿冥河之力与你同在。\n§r§8§o按下§r §3§oAlt§r§8§o以显示更多。");
         add("tooltip.nine_nether_regions.styx_helmet_alt",
-                "§6§o坚不可摧：§r§8§o正常情况下该装备耐久不会被消耗。如果通过某种手段使得该装备耐久受损，则装备耐久会极快速恢复（每4tick恢复42点）。\n§r§6§o全套效果——不动如山：§r§8§o当原始伤害≤3点或类型为§r§5§o魔法、§r§e§o爆炸、§r§3§o冰冻、§r§1§o监守者音波§r§8§o时，强制将伤害数值降低为0；持续提供§r§6§o抗性提升、伤害吸收§r§8§o效果（全效果3级）；每10tick强制恢复1.5点生命值并提供72%全伤害减免。\n§r§6§o单件效果：§r§8§o持续提供§r§6§o夜视、水下呼吸、饱和§r§8§o效果（全效果2级），且免疫§7§o失明、黑暗、饥饿§r§8§o效果。");
+                "§6§o坚不可摧：§r§8§o正常情况下该装备耐久不会被消耗。如果通过某种手段使得该装备耐久受损，则装备耐久会极快速恢复（每4tick恢复42点）。\n§r§6§o全套效果——不动如山：§r§8§o当原始伤害≤3点或类型为§r§5§o魔法、§r§e§o爆炸、§r§3§o冰冻、§r§1§o监守者音波§r§8§o时，强制将伤害数值降低为0；持续提供§r§6§o抗性提升、伤害吸收§r§8§o效果（全效果3级）；每10tick强制恢复1.5点生命值并提供72%对于几乎所有伤害的减免。\n§r§6§o单件效果：§r§8§o持续提供§r§6§o夜视、水下呼吸、饱和§r§8§o效果（全效果2级），且免疫§7§o失明、黑暗、饥饿§r§8§o效果。");
         add("tooltip.nine_nether_regions.styx_chestplate_alt",
-                "§6§o坚不可摧：§r§8§o正常情况下该装备耐久不会被消耗。如果通过某种手段使得该装备耐久受损，则装备耐久会极快速恢复（每4tick恢复42点）。\n§r§6§o全套效果——不动如山：§r§8§o当原始伤害≤3点或类型为§r§5§o魔法、§r§e§o爆炸、§r§3§o冰冻、§r§1§o监守者音波§r§8§o时，强制将伤害数值降低为0；持续提供§r§6§o抗性提升、伤害吸收§r§8§o效果（全效果3级）；每10tick强制恢复1.5点生命值并提供72%全伤害减免。\n§r§6§o单件效果：§r§8§o持续提供§r§6§o抗火、急迫§r§8§o效果（全效果2级）和§r§6§o力量§r§8§o效果（3级），且免疫§7§o凋零、中毒、挖掘疲劳、虚弱§r§8§o效果。");
+                "§6§o坚不可摧：§r§8§o正常情况下该装备耐久不会被消耗。如果通过某种手段使得该装备耐久受损，则装备耐久会极快速恢复（每4tick恢复42点）。\n§r§6§o全套效果——不动如山：§r§8§o当原始伤害≤3点或类型为§r§5§o魔法、§r§e§o爆炸、§r§3§o冰冻、§r§1§o监守者音波§r§8§o时，强制将伤害数值降低为0；持续提供§r§6§o抗性提升、伤害吸收§r§8§o效果（全效果3级）；每10tick强制恢复1.5点生命值并提供72%对于几乎所有伤害的减免。\n§r§6§o单件效果：§r§8§o持续提供§r§6§o抗火、急迫§r§8§o效果（全效果2级）和§r§6§o力量§r§8§o效果（3级），且免疫§7§o凋零、中毒、挖掘疲劳、虚弱§r§8§o效果。");
         add("tooltip.nine_nether_regions.styx_leggings_alt",
-                "§6§o坚不可摧：§r§8§o正常情况下该装备耐久不会被消耗。如果通过某种手段使得该装备耐久受损，则装备耐久会极快速恢复（每4tick恢复42点）。\n§r§6§o全套效果——不动如山：§r§8§o当原始伤害≤3点或类型为§r§5§o魔法、§r§e§o爆炸、§r§3§o冰冻、§r§1§o监守者音波§r§8§o时，强制将伤害数值降低为0；持续提供§r§6§o抗性提升、伤害吸收§r§8§o效果（全效果3级）；每10tick强制恢复1.5点生命值并提供72%全伤害减免。\n§r§6§o单件效果：§r§8§o持续提供§r§6§o跳跃提升§r§8§o效果（2级）和§r§6§o幸运§r§8§o效果（3级），且免疫§7§o反胃§r§8§o效果。");
+                "§6§o坚不可摧：§r§8§o正常情况下该装备耐久不会被消耗。如果通过某种手段使得该装备耐久受损，则装备耐久会极快速恢复（每4tick恢复42点）。\n§r§6§o全套效果——不动如山：§r§8§o当原始伤害≤3点或类型为§r§5§o魔法、§r§e§o爆炸、§r§3§o冰冻、§r§1§o监守者音波§r§8§o时，强制将伤害数值降低为0；持续提供§r§6§o抗性提升、伤害吸收§r§8§o效果（全效果3级）；每10tick强制恢复1.5点生命值并提供72%对于几乎所有伤害的减免。\n§r§6§o单件效果：§r§8§o持续提供§r§6§o跳跃提升§r§8§o效果（2级）和§r§6§o幸运§r§8§o效果（3级），且免疫§7§o反胃§r§8§o效果。");
         add("tooltip.nine_nether_regions.styx_boots_alt",
-                "§6§o坚不可摧：§r§8§o正常情况下该装备耐久不会被消耗。如果通过某种手段使得该装备耐久受损，则装备耐久会极快速恢复（每4tick恢复42点）。\n§r§6§o全套效果——不动如山：§r§8§o当原始伤害≤3点或类型为§r§5§o魔法、§r§e§o爆炸、§r§3§o冰冻、§r§1§o监守者音波§r§8§o时，强制将伤害数值降低为0；持续提供§r§6§o抗性提升、伤害吸收§r§8§o效果（全效果3级）；每10tick强制恢复1.5点生命值并提供72%全伤害减免。\n§r§6§o单件效果：§r§8§o持续提供§r§6§o迅捷§r§8§o效果（3级），且免疫§7§o缓慢、漂浮、寄生§r§8§o效果，同时对摔落伤害持有85%抗性。");
+                "§6§o坚不可摧：§r§8§o正常情况下该装备耐久不会被消耗。如果通过某种手段使得该装备耐久受损，则装备耐久会极快速恢复（每4tick恢复42点）。\n§r§6§o全套效果——不动如山：§r§8§o当原始伤害≤3点或类型为§r§5§o魔法、§r§e§o爆炸、§r§3§o冰冻、§r§1§o监守者音波§r§8§o时，强制将伤害数值降低为0；持续提供§r§6§o抗性提升、伤害吸收§r§8§o效果（全效果3级）；每10tick强制恢复1.5点生命值并提供72%对于几乎所有伤害的减免。\n§r§6§o单件效果：§r§8§o持续提供§r§6§o迅捷§r§8§o效果（3级），且免疫§7§o缓慢、漂浮、寄生§r§8§o效果，同时对摔落伤害持有85%抗性。");
         add("tooltip.nine_nether_regions.steel_base", "§8§o千锤百炼之后，方得一块好钢。");
         add("tooltip.nine_nether_regions.steel_ingot", "§8§o比铁更好。");
+        add("tooltip.nine_nether_regions.rainbowgem_armors", "§8§o全套效果：对几乎所有伤害持有10%减免。");
         add("tooltip.nine_nether_regions.alloy_hilt", "§8§o它可以被当作武器来使用，但这永远不会是它的真正作用。");
         add("tooltip.nine_nether_regions.hellalloy_helmet_alt",
                 "§8§o自修复：如果该装备耐久未满，在护甲栏或玩家背包中时该装备会自动恢复耐久值§1§o（每2秒回复4点）§r§8§o。\n单件效果：装备在护甲栏时，持续为玩家提供§6§o夜视§r§8§o效果（1级），同时清除玩家身上的§7§o失明、黑暗§r§8§o效果。\n全套效果：对绝大多数伤害持有34%减伤，同时每10tick强制恢复玩家0.7点生命值，持续为玩家提供§6§o抗性提升§r§8§o（2级）效果。");
@@ -156,5 +182,7 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add("tooltip.nine_nether_regions.hellalloy_boots", "§8§o按下§r§3§oAlt§r§8§o以显示更多。");
         add("tooltip.nine_nether_regions.hellalloy_longbow", "§8§o更精准，更强大。");
         add("tooltip.nine_nether_regions.reinforced_obsidian", "§8§o它真的很硬……一定有它的用武之地。");
+        add("tooltip.nine_nether_regions.rainbowgem", "§8§o一块由各种宝石融合起来得到的奇异宝石，质地非常坚硬，几乎可以媲美下界合金。");
+        add("tooltip.nine_nether_regions.ruby_sword", "§8§o一把非常嗜血的剑，拥有相当不错的伤害，代价是它本身极为脆弱。");
     }
 }

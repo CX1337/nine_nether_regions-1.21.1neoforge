@@ -1,12 +1,14 @@
 package com.cx1337.nine_nether_regions.item;
 
 import com.cx1337.nine_nether_regions.NineNetherRegions;
+import com.cx1337.nine_nether_regions.effect.ModEffects;
 import com.cx1337.nine_nether_regions.item.special.HellalloyShieldItem;
 import com.cx1337.nine_nether_regions.sound.ModSounds;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -63,7 +65,7 @@ public class ModItems {
         }
         @Override
         public TagKey<Block> getIncorrectBlocksForDrops() {
-            return null;
+            return BlockTags.INCORRECT_FOR_STONE_TOOL;
         }
         @Override
         public int getEnchantmentValue() {
@@ -71,7 +73,7 @@ public class ModItems {
         }
         @Override
         public Ingredient getRepairIngredient() {
-            return null;
+            return Ingredient.of(Items.AMETHYST_SHARD);
         }
     };
     public static final DeferredItem<SwordItem> AMETHYST_DAGGER =
@@ -140,6 +142,35 @@ public class ModItems {
             });
     public static final DeferredItem<Item> STEEL_NUGGET =
             ITEMS.register("steel_nugget", () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+
+    public static final DeferredItem<Item> RUBY =
+            ITEMS.register("ruby", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<Item> RAINBOWGEM =
+            ITEMS.register("rainbowgem", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.rainbowgem"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+    //红宝石剑
+    public static final DeferredItem<SwordItem> RUBY_SWORD =
+            ITEMS.register("ruby_sword", () -> new SwordItem(ModToolTiers.RUBY, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModToolTiers.RUBY, 4.0F, -2.4F)).rarity(Rarity.UNCOMMON)) {
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.RUBY.getEnchantmentValue();
+                }
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.ruby_sword"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
 
     public static final DeferredItem<Item> HELLALLOY_INGOT =
             ITEMS.register("hellalloy_ingot", () -> new Item(new Item.Properties().rarity(Rarity.RARE).fireResistant()){
@@ -236,7 +267,16 @@ public class ModItems {
 
                 @Override
                 public int getDefaultProjectileRange() {
-                    return 32;
+                    return 64;
+                }
+
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return 24;
                 }
             });
 
@@ -297,6 +337,80 @@ public class ModItems {
     public static final DeferredItem<Item> STEEL_HORSE_ARMOR =
             ITEMS.register("steel_horse_armor", () -> new AnimalArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, AnimalArmorItem.BodyType.EQUESTRIAN,
             false, new Item.Properties().stacksTo(1)));
+
+    //虹玉盔甲。
+    public static final DeferredItem<ArmorItem> RAINBOWGEM_HELMET =
+            ITEMS.register("rainbowgem_helmet", () ->new ArmorItem(ModArmorMaterials.RAINBOWGEM_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties() .durability(ArmorItem.Type.HELMET.getDurability(38)).rarity(Rarity.UNCOMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.RAINBOWGEM.getEnchantmentValue();
+                }
+
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.rainbowgem_armors"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+    public static final DeferredItem<ArmorItem> RAINBOWGEM_CHESTPLATE =
+            ITEMS.register("rainbowgem_chestplate", () ->new ArmorItem(ModArmorMaterials.RAINBOWGEM_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties() .durability(ArmorItem.Type.CHESTPLATE.getDurability(38)).rarity(Rarity.UNCOMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.RAINBOWGEM.getEnchantmentValue();
+                }
+
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.rainbowgem_armors"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+    public static final DeferredItem<ArmorItem> RAINBOWGEM_LEGGINGS =
+            ITEMS.register("rainbowgem_leggings", () ->new ArmorItem(ModArmorMaterials.RAINBOWGEM_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties() .durability(ArmorItem.Type.LEGGINGS.getDurability(38)).rarity(Rarity.UNCOMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.RAINBOWGEM.getEnchantmentValue();
+                }
+
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.rainbowgem_armors"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+    public static final DeferredItem<ArmorItem> RAINBOWGEM_BOOTS =
+            ITEMS.register("rainbowgem_boots", () ->new ArmorItem(ModArmorMaterials.RAINBOWGEM_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+                    new Item.Properties() .durability(ArmorItem.Type.BOOTS.getDurability(38)).rarity(Rarity.UNCOMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.RAINBOWGEM.getEnchantmentValue();
+                }
+
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.rainbowgem_armors"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
 
     //幽冥合金盔甲。
     public static final DeferredItem<ArmorItem> HELLALLOY_HELMET =
@@ -571,6 +685,9 @@ public class ModItems {
                     if (player.hasEffect(MobEffects.HUNGER)) {
                         player.removeEffect(MobEffects.HUNGER);
                     }
+                    if (player.hasEffect(ModEffects.BLOODBLADE_CURSE)) {
+                        player.removeEffect(ModEffects.BLOODBLADE_CURSE);
+                    }
                 }
 
                 @Override
@@ -799,6 +916,7 @@ public class ModItems {
     public static final DeferredItem<SwordItem> STYX_SWORD =
             ITEMS.register("styx_sword", () -> new SwordItem(ModToolTiers.STYX, new Item.Properties()
                     .attributes(SwordItem.createAttributes(ModToolTiers.STYX, 4.0F, -2.0F)).rarity(Rarity.EPIC).fireResistant()) {
+
                 @Override
                 public boolean onLeftClickEntity(ItemStack stack, Player player, Entity target) {
                     if (player.getAttackStrengthScale(0.5F) >= 1.0F) {
@@ -808,7 +926,7 @@ public class ModItems {
                             player.setHealth(Math.min(newHealth, player.getMaxHealth()));
 
                             //蓄满力半径3m内所有非友方实体AOE伤害。
-                            AABB box = player.getBoundingBox().inflate(3.0D);
+                            AABB box = player.getBoundingBox().inflate(3.5D);
                             float baseDamage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
 
                             for (LivingEntity le : sl.getEntitiesOfClass(LivingEntity.class, box,
@@ -842,6 +960,11 @@ public class ModItems {
                 @Override
                 public int getEnchantmentValue() {
                     return ModToolTiers.STYX.getEnchantmentValue();
+                }
+
+                @Override
+                public boolean canDisableShield(ItemStack stack, ItemStack shield, LivingEntity entity, LivingEntity attacker) {
+                    return true;
                 }
 
                 @Override
@@ -995,6 +1118,68 @@ public class ModItems {
                 }
             });
 
+    //虹玉工具。
+    public static final DeferredItem<PickaxeItem> RAINBOWGEM_PICKAXE =
+            ITEMS.register("rainbowgem_pickaxe", () -> new PickaxeItem(ModToolTiers.RAINBOWGEM, new Item.Properties()
+                    .attributes(PickaxeItem.createAttributes(ModToolTiers.RAINBOWGEM, 1.0F, -2.6F)).rarity(Rarity.UNCOMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.RAINBOWGEM.getEnchantmentValue();
+                }
+            });
+    public static final DeferredItem<ShovelItem> RAINBOWGEM_SHOVEL =
+            ITEMS.register("rainbowgem_shovel", () -> new ShovelItem(ModToolTiers.RAINBOWGEM, new Item.Properties()
+                    .attributes(ShovelItem.createAttributes(ModToolTiers.RAINBOWGEM, 1.5F, -2.8F)).rarity(Rarity.UNCOMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.RAINBOWGEM.getEnchantmentValue();
+                }
+            });
+    public static final DeferredItem<AxeItem> RAINBOWGEM_AXE =
+            ITEMS.register("rainbowgem_axe", () -> new AxeItem(ModToolTiers.RAINBOWGEM, new Item.Properties()
+                    .attributes(AxeItem.createAttributes(ModToolTiers.RAINBOWGEM, 4.0F, -3.0F)).rarity(Rarity.UNCOMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.RAINBOWGEM.getEnchantmentValue();
+                }
+            });
+    public static final DeferredItem<HoeItem> RAINBOWGEM_HOE =
+            ITEMS.register("rainbowgem_hoe", () -> new HoeItem(ModToolTiers.RAINBOWGEM, new Item.Properties()
+                    .attributes(HoeItem.createAttributes(ModToolTiers.RAINBOWGEM, 0.5F, -1.0F)).rarity(Rarity.UNCOMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.RAINBOWGEM.getEnchantmentValue();
+                }
+            });
+    public static final DeferredItem<SwordItem> RAINBOWGEM_SWORD =
+            ITEMS.register("rainbowgem_sword", () -> new SwordItem(ModToolTiers.RAINBOWGEM, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModToolTiers.RAINBOWGEM, 4.0F, -2.4F)).rarity(Rarity.UNCOMMON)) {
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.RAINBOWGEM.getEnchantmentValue();
+                }
+            });
+
     //幽冥合金工具。
     public static final DeferredItem<PickaxeItem> HELLALLOY_PICKAXE =
                         ITEMS.register("hellalloy_pickaxe", () -> new PickaxeItem(ModToolTiers.HELLALLOY, new Item.Properties()
@@ -1077,6 +1262,14 @@ public class ModItems {
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.alloy_hilt"));
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public int getEnchantmentValue() {
+                    return ModToolTiers.HELLALLOY.getEnchantmentValue();
                 }
             });
 

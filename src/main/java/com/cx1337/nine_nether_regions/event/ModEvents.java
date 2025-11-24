@@ -1,7 +1,9 @@
 package com.cx1337.nine_nether_regions.event;
 
 import com.cx1337.nine_nether_regions.block.ModBlocks;
+import com.cx1337.nine_nether_regions.effect.ModEffects;
 import com.cx1337.nine_nether_regions.item.ModItems;
+import com.cx1337.nine_nether_regions.potion.ModPotions;
 import net.minecraft.core.Holder;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
@@ -10,11 +12,15 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.alchemy.PotionBrewing;
+import net.minecraft.world.item.alchemy.Potions;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
@@ -59,9 +65,8 @@ public class ModEvents {
         FIREPROOF_ITEMS.add(ModItems.STYX_BOOTS.get());
         FIREPROOF_ITEMS.add(ModItems.STYX_PICKAXE.get());
     }
-
     @SubscribeEvent
-    public void makeBlockItemFireproof(EntityJoinLevelEvent event) {
+    public void makeItemFireproof(EntityJoinLevelEvent event) {
         if (event.getEntity() instanceof ItemEntity itemEntity &&
                 FIREPROOF_ITEMS.contains(itemEntity.getItem().getItem())) {
             itemEntity.setUnlimitedLifetime();
@@ -69,10 +74,27 @@ public class ModEvents {
         }
     }
 
-    // 幽冥合金套全套效果
+    //血刃诅咒效果。
+    @SubscribeEvent
+    public void onBloodyDamage(LivingDamageEvent.Pre event) {
+        LivingEntity entity = event.getEntity();
 
+        if (entity.hasEffect(ModEffects.BLOODBLADE_CURSE)) {
+            MobEffectInstance effectInstance = entity.getEffect(ModEffects.BLOODBLADE_CURSE);
+            if (effectInstance != null) {
+                int amplifier = effectInstance.getAmplifier();
+                float damageAmount = event.getNewDamage();
+
+                float damageMultiplier = 1.0f + (0.5f * (amplifier + 1));
+                float finalDamage = damageAmount * damageMultiplier;
+
+                event.setNewDamage(finalDamage);
+            }
+        }
+    }
+
+    //幽冥合金套全套效果
     private int hellalloyTickCounter = 0;
-    private int styxTickCounter = 0;
     @SubscribeEvent
     public void onPlayerTick(PlayerTickEvent.Post event) {
         if (event.getEntity().level().isClientSide()) {
@@ -114,10 +136,9 @@ public class ModEvents {
             player.addEffect(new MobEffectInstance(effect, duration, amplifier, true, particles, true));
         }
     }
-
     //减伤
     @SubscribeEvent
-    public void onLivingHurt(LivingDamageEvent.Pre event) {
+    public void onLivingDamageHellalloy(LivingDamageEvent.Pre event) {
         if (event.getEntity() instanceof Player player) {
             boolean fullSet =
                     player.getItemBySlot(EquipmentSlot.HEAD).is(ModItems.HELLALLOY_HELMET.get()) &&
@@ -133,7 +154,26 @@ public class ModEvents {
         }
     }
 
+    //虹玉套减伤
+    @SubscribeEvent
+    public void onLivingDamageRainbowgem(LivingDamageEvent.Pre event) {
+        if (event.getEntity() instanceof Player player) {
+            boolean fullSet =
+                    player.getItemBySlot(EquipmentSlot.HEAD).is(ModItems.RAINBOWGEM_HELMET.get()) &&
+                            player.getItemBySlot(EquipmentSlot.CHEST).is(ModItems.RAINBOWGEM_CHESTPLATE.get()) &&
+                            player.getItemBySlot(EquipmentSlot.LEGS).is(ModItems.RAINBOWGEM_LEGGINGS.get()) &&
+                            player.getItemBySlot(EquipmentSlot.FEET).is(ModItems.RAINBOWGEM_BOOTS.get());
+
+            if (fullSet) {
+                float originalDamage = event.getNewDamage();
+                float reducedDamage = originalDamage * 0.90f;
+                event.setNewDamage(reducedDamage);
+            }
+        }
+    }
+
     //冥河套全套效果。
+    private int styxTickCounter = 0;
     @SubscribeEvent
     public void onPlayerTickStyx(PlayerTickEvent.Post event) {
         if (event.getEntity().level().isClientSide()) {
@@ -168,17 +208,15 @@ public class ModEvents {
             styxTickCounter = 0;
         }
     }
-
     private void addIfMissingStyx(Player player, Holder<MobEffect> effect, int duration, int amplifier, boolean particles) {
         MobEffectInstance inst = player.getEffect(effect);
         if (inst == null || inst.getAmplifier() < amplifier || inst.getDuration() < 300) {
             player.addEffect(new MobEffectInstance(effect, duration, amplifier, true, particles, true));
         }
     }
-
     //减伤
     @SubscribeEvent
-    public void onLivingHurtStyx(LivingDamageEvent.Pre event) {
+    public void onLivingDamageStyx(LivingDamageEvent.Pre event) {
         if (event.getEntity() instanceof Player player) {
             boolean fullSet =
                     player.getItemBySlot(EquipmentSlot.HEAD).is(ModItems.STYX_HELMET.get()) &&
@@ -222,5 +260,14 @@ public class ModEvents {
                     event.setNewDamage(reducedFallDamage);
                 }
         }
+    }
+
+    //药剂
+    @SubscribeEvent
+    public void onBrewingRecipeRegister(RegisterBrewingRecipesEvent event) {
+        PotionBrewing.Builder builder = event.getBuilder();
+
+        builder.addMix(Potions.AWKWARD, ModItems.GHOSTLIUM.get(), ModPotions.DECLINE_POTION);
+        builder.addMix(Potions.AWKWARD, ModBlocks.BLOODBLADE_ROCK.get().asItem(), ModPotions.BB_CURSE_POTION);
     }
 }

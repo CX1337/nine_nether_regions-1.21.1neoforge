@@ -61,6 +61,18 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(ModItems.STEEL_LEGGINGS.get(), "Steel Leggings");
         add(ModItems.STEEL_BOOTS.get(), "Steel Boots");
         add(ModItems.STEEL_HORSE_ARMOR.get(), "Steel Horse Armor");
+        add(ModItems.RUBY.get(), "Ruby");
+        add(ModItems.RAINBOWGEM.get(), "Rainbow Jade");
+        add(ModItems.RAINBOWGEM_AXE.get(), "Rainbow Jade Axe");
+        add(ModItems.RAINBOWGEM_HOE.get(), "Rainbow Jade Hoe");
+        add(ModItems.RAINBOWGEM_PICKAXE.get(), "Rainbow Jade Pickaxe");
+        add(ModItems.RAINBOWGEM_SHOVEL.get(), "Rainbow Jade Shovel");
+        add(ModItems.RAINBOWGEM_SWORD.get(), "Rainbow Jade Sword");
+        add(ModItems.RUBY_SWORD.get(), "Ruby Sword");
+        add(ModItems.RAINBOWGEM_HELMET.get(), "Rainbow Jade Helmet");
+        add(ModItems.RAINBOWGEM_CHESTPLATE.get(), "Rainbow Jade Chestplate");
+        add(ModItems.RAINBOWGEM_LEGGINGS.get(), "Rainbow Jade Leggings");
+        add(ModItems.RAINBOWGEM_BOOTS.get(), "Rainbow Jade Boots");
         add(ModItems.UNDERWORLD_BRICK.get(), "Underworld Brick");
         add(ModItems.UNDERWORLD_CRYSTAL.get(), "§bUnderworld Crystal");
 
@@ -83,6 +95,7 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(ModBlocks.PINESAP.get(), "Pinesap");
         add(ModBlocks.STYX_BLOCK.get(), "§5§lStyx Block");
         add(ModBlocks.STEEL_BLOCK.get(), "Steel Block");
+        add(ModBlocks.RAINBOWGEM_BLOCK.get(), "Rainbowgem Block");
         add(ModBlocks.UNDERWORLDRACK.get(), "Underworldrack");
         add(ModBlocks.UNDERWORLD_BRICKS.get(), "Underworld Bricks");
         add(ModBlocks.UNDERWORLD_BRICK_BUTTON.get(), "Underworld Brick Button");
@@ -95,10 +108,22 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(ModBlocks.UNDERWORLD_CRYSTAL_ORE.get(), "Underworld Crystal ore");
 
         add("effect.nine_nether_regions.decline", "Decline");
-        add("death.attack.decline", "%1$sDeclined to death.");
-        add("death.attack.decline.player", "%1$sis declined while fighting with%2$s");
+        add("item.minecraft.potion.effect.decline_potion", "Decline Potion");
+        add("item.minecraft.splash_potion.effect.decline_potion", "Decline Splash Potion");
+        add("item.minecraft.lingering_potion.effect.decline_potion", "Decline Lingering Potion");
+        add("death.attack.decline", "%1$s was dissipated into the wind");
+        add("death.attack.decline.player", "%1$s faded away while fighting with %2$s");
+        add("effect.nine_nether_regions.bloodblade_curse", "Bloodblade Curse");
+        add("item.minecraft.potion.effect.bb_curse_potion", "Bloodblade Curse Potion");
+        add("item.minecraft.splash_potion.effect.bb_curse_potion", "Bloodblade Curse Splash Potion");
+        add("item.minecraft.lingering_potion.effect.bb_curse_potion", "Bloodblade Curse Lingering Potion");
 
-        add("itemGroup.nine_nether_regions_materials_tab", "§2§lNine Nether Regions:materials&others");
+        add("painting.nine_nether_regions.wayfarer.title", "Wayfarer");
+        add("painting.nine_nether_regions.wayfarer.author", "CX1337");
+        add("painting.nine_nether_regions.the_sword.title", "The Sword");
+        add("painting.nine_nether_regions.the_sword.author", "05Z08");
+
+        add("itemGroup.nine_nether_regions_materials_tab", "§2§lNine Nether Regions:items");
         add("itemGroup.nine_nether_regions_blocks_tab", "§2§lNine Nether Regions:blocks");
 
         add("item.nine_nether_regions.styx_ferryman_music_disc.desc", "Rafael Krux--Dawn of the Apocalypse");
@@ -127,6 +152,7 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add("tooltip.nine_nether_regions.styx_pickaxe_alt", "§8§oThis pickaxe is the best among all pickaxes.\nUnder normal circumstances, its durability cannot be consumed. If under special circumstances its durability is reduced, it will rapidly restore to full durability (restores 24 points per 4 ticks).\nBlessed by the power of Styx, this pickaxe breaks any block 2.5 times faster than normal, and when breaking any block, there is a 24% chance to drop a diamond and a 12% chance to drop a netherite scrap.");
         add("tooltip.nine_nether_regions.steel_base", "§8§oAfter a thousand trials and tribulations, one can obtain a good piece of steel.");
         add("tooltip.nine_nether_regions.steel_ingot", "§8§oBetter than iron.");
+        add("tooltip.nine_nether_regions.rainbowgem_armors", "§8§o§8§oAll set Bonus: 10% damage reduction against nearly all damage types.");
         add("tooltip.nine_nether_regions.alloy_hilt", "§8§oIt can be used as a Weapon.BUT that's by no means its true purpose.");
         add("tooltip.nine_nether_regions.hellalloy_helmet_alt",
                 "§8§oSelf healing: If the durability is not sufficient, the equipment will automatically restore durability in the armor bar or player backpack §1(4 points restored every 2 seconds)§r§8§o.\nSingle effect: When equipped on the armor bar, it continuously provides players with §6night_vision§r§8§o(effect level:1), while clearing §7blindness§r§8§o and §7darkness§r§8§o effects on the player's body.\nComplete set of effects: Provide a 34% reduction for most damages,force to restore 0.7 point of health for every 10 ticks and provide §6resistance§r§8§o(level 2) effect.");
@@ -154,5 +180,7 @@ public class ModEnUsLangProvider extends LanguageProvider {
                 "§6§oIndestructible:§r§8§oUnder normal circumstances, the durability of this equipment will not be depleted. If the durability of the equipment is damaged by some means, its durability will quickly recover (42 points restored every 4 ticks)\n§r§6§oFull Set Effect - Immovable as Mountains:§r§8§oWhen original damage ≤3 points or of type §r§5§oMagic, §r§e§oExplosion, §r§3§oFreeze, §r§1§oWarden's Sonic Boom§r§8§o, forcibly reduces damage to 0; continuously provides §r§6§oResistance Boost and Damage Absorption§r§8§o effects (all effects level 3); forcibly restores 1.5 health point every 10 ticks and provides 72% all damage reduction.\n §r§6§oSingle Piece Effect:§r§8§oContinuously provides §r§6§oSpeed§r§8§o effect (level 3), and grants immunity to §7§oSlowness, Levitation, Infested§r§8§o effects, while also providing 85% resistance to fall damage.");
         add("tooltip.nine_nether_regions.hellalloy_longbow", "§8§oMore precise,more powerful.");
         add("tooltip.nine_nether_regions.reinforced_obsidian", "§8§oIt's REALLY hard...It must have some purpose.");
+        add("tooltip.nine_nether_regions.rainbowgem", "§8§oA strange gem formed by the fusion of various gems, extremely hard and nearly rivaling Netherite.");
+        add("tooltip.nine_nether_regions.ruby_sword", "§8§oA bloodthirsty sword that deals decent damage, at the cost of being extremely fragile.");
     }
 }

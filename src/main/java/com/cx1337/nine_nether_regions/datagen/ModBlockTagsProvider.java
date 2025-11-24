@@ -21,7 +21,10 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
         //信标基座方块
         tag(BlockTags.BEACON_BASE_BLOCKS)
-                .add(ModBlocks.STEEL_BLOCK.get(), ModBlocks.HELLALLOY_BLOCK.get(), ModBlocks.STYX_BLOCK.get());
+                .add(ModBlocks.STEEL_BLOCK.get(),
+                        ModBlocks.RAINBOWGEM_BLOCK.get(),
+                        ModBlocks.HELLALLOY_BLOCK.get(),
+                        ModBlocks.STYX_BLOCK.get());
 
         //栅栏相关
         tag(BlockTags.FENCES).add(ModBlocks.UNDERWORLD_BRICK_FENCE.get());
@@ -34,45 +37,76 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.FLOWER_POTS)
                 .add(ModBlocks.PINESAP.get());
 
-        //工具不匹配标签
+        // 工具不匹配标签 - 按照挖掘等级顺序排列
+        //顺序：木质<石质<铁质<精钢质<钻石质<虹宝石质≈下界合金质<幽冥合金质<冥河质。
+// 木工具不正确
         tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
                 .add(ModBlocks.HELLALLOY_BLOCK.get(),
-                        ModBlocks.STYX_BLOCK.get(),
-                        ModBlocks.STEEL_BLOCK.get());
+                        ModBlocks.STYX_BLOCK.get());
 
+// 石工具不正确
         tag(BlockTags.INCORRECT_FOR_STONE_TOOL)
                 .add(ModBlocks.HELLALLOY_BLOCK.get(),
                         ModBlocks.STYX_BLOCK.get());
 
-        tag(BlockTags.INCORRECT_FOR_GOLD_TOOL)
-                .add(ModBlocks.HELLALLOY_BLOCK.get(),
-                        ModBlocks.STYX_BLOCK.get(),
-                        ModBlocks.STEEL_BLOCK.get());
-
+// 铁工具不正确
         tag(BlockTags.INCORRECT_FOR_IRON_TOOL)
                 .add(ModBlocks.HELLALLOY_BLOCK.get(),
                         ModBlocks.STYX_BLOCK.get());
 
+// 钻石工具不正确
         tag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL)
-                .add(ModBlocks.BLOODBLADE_ORE.get(),
-                        ModBlocks.BLOODBLADE_ROCK.get(),
-                        ModBlocks.CRACKED_BLOODBLADE_ROCK.get(),
-                        ModBlocks.HELLALLOY_BLOCK.get(),
+                .addTags(ModTags.Blocks.NEEDS_RAINBOWGEM_TOOL)
+                .add(ModBlocks.HELLALLOY_BLOCK.get(),
                         ModBlocks.STYX_BLOCK.get());
 
+// 下界合金工具不正确
         tag(BlockTags.INCORRECT_FOR_NETHERITE_TOOL)
                 .add(ModBlocks.STYX_BLOCK.get());
 
-        //自定义挖掘等级标签 - 覆盖原版所有相应等级的方块
-        tag(ModTags.Blocks.NEEDS_STEEL_TOOL)
-                .addTags(BlockTags.NEEDS_DIAMOND_TOOL)
-                .add(ModBlocks.UNDERWORLD_CRYSTAL_ORE.get(),
-                        ModBlocks.COMPACT_OBSIDIAN.get(),
-                        ModBlocks.REINFORCED_OBSIDIAN.get());
+// 金工具不正确（保持原样）
+        tag(BlockTags.INCORRECT_FOR_GOLD_TOOL)
+                .add(ModBlocks.HELLALLOY_BLOCK.get(),
+                        ModBlocks.STYX_BLOCK.get());
 
-        tag(ModTags.Blocks.NEEDS_HELLALLOY_TOOL)
+// 自定义挖掘等级标签
+// 精钢工具需求
+        tag(ModTags.Blocks.NEEDS_STEEL_TOOL);
+// 精钢工具不正确
+        tag(ModTags.Blocks.INCORRECT_FOR_STEEL_TOOL)
+                .addTags(BlockTags.NEEDS_DIAMOND_TOOL)
+                .add(ModBlocks.HELLALLOY_BLOCK.get(),
+                        ModBlocks.STYX_BLOCK.get());
+
+// 虹宝石工具需求
+        tag(ModTags.Blocks.NEEDS_RAINBOWGEM_TOOL)
+                .add(ModBlocks.HELLALLOY_BLOCK.get());
+// 虹宝石工具不正确
+        tag(ModTags.Blocks.INCORRECT_FOR_RAINBOWGEM_TOOL)
                 .addTags(BlockTags.INCORRECT_FOR_NETHERITE_TOOL)
                 .add(ModBlocks.STYX_BLOCK.get());
+
+// 幽冥合金工具需求
+        tag(ModTags.Blocks.NEEDS_HELLALLOY_TOOL)
+                .add(ModBlocks.STYX_BLOCK.get());
+// 幽冥合金工具不正确
+        tag(ModTags.Blocks.INCORRECT_FOR_HELLALLOY_TOOL);
+
+// 冥河工具需求
+        tag(ModTags.Blocks.NEEDS_STYX_TOOL);
+// 冥河工具不正确
+        tag(ModTags.Blocks.INCORRECT_FOR_STYX_TOOL);
+
+// 原版挖掘等级标签补充
+// 铁工具需求
+        tag(BlockTags.NEEDS_IRON_TOOL)
+                .add(ModBlocks.UNDERWORLD_CRYSTAL_ORE.get(),
+                        ModBlocks.STEEL_BLOCK.get());
+// 钻石工具需求
+        tag(BlockTags.NEEDS_DIAMOND_TOOL)
+                .add(ModBlocks.COMPACT_OBSIDIAN.get(),
+                        ModBlocks.REINFORCED_OBSIDIAN.get());
+
 
         //可挖掘标签
         tag(BlockTags.MINEABLE_WITH_SHOVEL)

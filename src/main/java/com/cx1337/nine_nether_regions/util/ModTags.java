@@ -16,6 +16,14 @@ public class ModTags {
                 createTag("needs_steel_tool");
         public static final TagKey<Block> INCORRECT_FOR_STEEL_TOOL =
                 createTag("incorrect_for_steel_tool");
+        public static final TagKey<Block> NEEDS_RAINBOWGEM_TOOL =
+                createTag("needs_rainbowgem_tool");
+        public static final TagKey<Block> INCORRECT_FOR_RAINBOWGEM_TOOL =
+                createTag("incorrect_for_rainbowgem_tool");
+        public static final TagKey<Block> NEEDS_RUBY_TOOL =
+                createTag("needs_rainbowgem_tool");
+        public static final TagKey<Block> INCORRECT_FOR_RUBY_TOOL =
+                createTag("incorrect_for_rainbowgem_tool");
         public static final TagKey<Block> NEEDS_HELLALLOY_TOOL =
                 createTag("needs_hellalloy_tool");
         public static final TagKey<Block> INCORRECT_FOR_HELLALLOY_TOOL =

@@ -261,6 +261,125 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy(getHasName(ModItems.STEEL_INGOT), has(ModItems.STEEL_INGOT))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.RUBY, 1)
+                .pattern(" # ")
+                .pattern("#$#")
+                .pattern(" # ")
+                .define('#', Items.REDSTONE)
+                .define('$', ModItems.UNDERWORLD_CRYSTAL)
+                .unlockedBy(getHasName(ModItems.UNDERWORLD_CRYSTAL), has(ModItems.UNDERWORLD_CRYSTAL))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.RAINBOWGEM, 1)
+                .pattern(" # ")
+                .pattern("$%&")
+                .pattern(" R ")
+                .define('#', Items.EMERALD)
+                .define('$', ModItems.RUBY)
+                .define('%', Items.DIAMOND)
+                .define('&', Blocks.AMETHYST_CLUSTER)
+                .define('R', Items.LAPIS_LAZULI)
+                .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAINBOWGEM_BLOCK, 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', ModItems.RAINBOWGEM)
+                .unlockedBy(getHasName(ModItems.RAINBOWGEM), has(ModItems.RAINBOWGEM))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.RAINBOWGEM_HELMET, 1)
+                .pattern("###")
+                .pattern("$ $")
+                .define('#', ModItems.RAINBOWGEM)
+                .define('$', Items.EMERALD)
+                .unlockedBy(getHasName(ModItems.RAINBOWGEM), has(ModItems.RAINBOWGEM))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.RAINBOWGEM_CHESTPLATE, 1)
+                .pattern("$ $")
+                .pattern("$$$")
+                .pattern("#R#")
+                .define('#', ModItems.RUBY)
+                .define('$', ModItems.RAINBOWGEM)
+                .define('R', Items.EMERALD)
+                .unlockedBy(getHasName(ModItems.RAINBOWGEM), has(ModItems.RAINBOWGEM))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.RAINBOWGEM_LEGGINGS, 1)
+                .pattern("$$$")
+                .pattern("$ $")
+                .pattern("R R")
+                .define('$', ModItems.RAINBOWGEM)
+                .define('R', Items.EMERALD)
+                .unlockedBy(getHasName(ModItems.RAINBOWGEM), has(ModItems.RAINBOWGEM))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.RAINBOWGEM_BOOTS, 1)
+                .pattern("R R")
+                .pattern("$ $")
+                .define('$', Items.EMERALD)
+                .define('R', ModItems.RAINBOWGEM)
+                .unlockedBy(getHasName(ModItems.RAINBOWGEM), has(ModItems.RAINBOWGEM))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.RAINBOWGEM_AXE, 1)
+                .pattern("R# ")
+                .pattern("#$ ")
+                .pattern(" $ ")
+                .define('#', Items.EMERALD)
+                .define('R', ModItems.RAINBOWGEM)
+                .define('$', Items.STICK)
+                .unlockedBy(getHasName(ModItems.RAINBOWGEM), has(ModItems.RAINBOWGEM))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.RAINBOWGEM_HOE, 1)
+                .pattern("#R ")
+                .pattern(" $ ")
+                .pattern(" $ ")
+                .define('#', Items.EMERALD)
+                .define('R', ModItems.RAINBOWGEM)
+                .define('$', Items.STICK)
+                .unlockedBy(getHasName(ModItems.RAINBOWGEM), has(ModItems.RAINBOWGEM))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.RAINBOWGEM_PICKAXE, 1)
+                .pattern("#R#")
+                .pattern(" $ ")
+                .pattern(" $ ")
+                .define('#', Items.EMERALD)
+                .define('R', ModItems.RAINBOWGEM)
+                .define('$', Items.STICK)
+                .unlockedBy(getHasName(ModItems.RAINBOWGEM), has(ModItems.RAINBOWGEM))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.RAINBOWGEM_SHOVEL, 1)
+                .pattern(" # ")
+                .pattern(" $ ")
+                .pattern(" $ ")
+                .define('#', ModItems.RAINBOWGEM)
+                .define('$', Items.STICK)
+                .unlockedBy(getHasName(ModItems.RAINBOWGEM), has(ModItems.RAINBOWGEM))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.RAINBOWGEM_SWORD, 1)
+                .pattern(" # ")
+                .pattern(" # ")
+                .pattern(" $ ")
+                .define('#', ModItems.RAINBOWGEM)
+                .define('$', Items.STICK)
+                .unlockedBy(getHasName(ModItems.RAINBOWGEM), has(ModItems.RAINBOWGEM))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.RUBY_SWORD, 1)
+                .pattern(" # ")
+                .pattern(" # ")
+                .pattern(" $ ")
+                .define('#', ModItems.RUBY)
+                .define('$', Items.STICK)
+                .unlockedBy(getHasName(ModItems.RUBY), has(ModItems.RUBY))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STYX_BLOCK, 1)
                 .pattern("###")
                 .pattern("###")

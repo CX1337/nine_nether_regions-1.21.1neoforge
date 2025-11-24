@@ -42,6 +42,54 @@ public class ModItemTagsProvider extends ItemTagsProvider {
                 .add(ModItems.STEEL_HELMET.get())
                 .add(ModItems.STEEL_CHESTPLATE.get())
                 .add(ModItems.STEEL_LEGGINGS.get())
-                .add(ModItems.STEEL_BOOTS.get());
+                .add(ModItems.STEEL_BOOTS.get())
+                .add(ModItems.RAINBOWGEM_HELMET.get())
+                .add(ModItems.RAINBOWGEM_CHESTPLATE.get())
+                .add(ModItems.RAINBOWGEM_LEGGINGS.get())
+                .add(ModItems.RAINBOWGEM_BOOTS.get());
+
+        tag(ItemTags.ARMOR_ENCHANTABLE)
+                .add(ModItems.STEEL_HELMET.get())
+                .add(ModItems.STEEL_CHESTPLATE.get())
+                .add(ModItems.STEEL_LEGGINGS.get())
+                .add(ModItems.STEEL_BOOTS.get())
+                .add(ModItems.RAINBOWGEM_HELMET.get())
+                .add(ModItems.RAINBOWGEM_CHESTPLATE.get())
+                .add(ModItems.RAINBOWGEM_LEGGINGS.get())
+                .add(ModItems.RAINBOWGEM_BOOTS.get())
+                .add(ModItems.HELLALLOY_HELMET.get())
+                .add(ModItems.HELLALLOY_CHESTPLATE.get())
+                .add(ModItems.HELLALLOY_LEGGINGS.get())
+                .add(ModItems.HELLALLOY_BOOTS.get())
+                .add(ModItems.STYX_HELMET.get())
+                .add(ModItems.STYX_CHESTPLATE.get())
+                .add(ModItems.STYX_LEGGINGS.get())
+                .add(ModItems.STYX_BOOTS.get());
+
+
+        tag(ItemTags.BOW_ENCHANTABLE)
+                .add(ModItems.HELLALLOY_LONGBOW.get());
+
+        tag(ItemTags.SWORD_ENCHANTABLE)
+                .add(ModItems.AMETHYST_DAGGER.get())
+                .add(ModItems.STEEL_SWORD.get())
+                .add(ModItems.RAINBOWGEM_SWORD.get())
+                .add(ModItems.RUBY_SWORD.get())
+                .add(ModItems.HELLALLOY_SWORD.get())
+                .add(ModItems.STYX_SWORD.get());
+
+        tag(ItemTags.MINING_ENCHANTABLE)
+                .add(ModItems.STEEL_PICKAXE.get())
+                .add(ModItems.STEEL_SHOVEL.get())
+                .add(ModItems.STEEL_AXE.get())
+                .add(ModItems.STEEL_HOE.get())
+                .add(ModItems.RAINBOWGEM_PICKAXE.get())
+                .add(ModItems.RAINBOWGEM_SHOVEL.get())
+                .add(ModItems.RAINBOWGEM_AXE.get())
+                .add(ModItems.RAINBOWGEM_HOE.get())
+                .add(ModItems.HELLALLOY_PICKAXE.get())
+                .add(ModItems.HELLALLOY_SHOVEL.get())
+                .add(ModItems.HELLALLOY_AXE.get())
+                .add(ModItems.STYX_PICKAXE.get());
     }
 }

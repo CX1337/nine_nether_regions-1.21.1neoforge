@@ -53,6 +53,8 @@ public class ModItemModelsProvider extends ItemModelProvider {
         basicItem(ModItems.STEEL_BASE.get());
         basicItem(ModItems.STEEL_INGOT.get());
         basicItem(ModItems.STEEL_NUGGET.get());
+        basicItem(ModItems.RUBY.get());
+        basicItem(ModItems.RAINBOWGEM.get());
         basicItem(ModItems.UNDERWORLD_BRICK.get());
         basicItem(ModItems.UNDERWORLD_CRYSTAL.get());
         basicItem(ModItems.HELLALLOY_ROD.get());
@@ -60,6 +62,10 @@ public class ModItemModelsProvider extends ItemModelProvider {
 
         //盔甲。
         for (var sup : List.of(ModItems.HELLALLOY_HELMET, ModItems.HELLALLOY_CHESTPLATE,ModItems.HELLALLOY_LEGGINGS, ModItems.HELLALLOY_BOOTS)){
+            basicItem(sup.get());
+        }
+        for (var sup : List.of(ModItems.RAINBOWGEM_HELMET, ModItems.RAINBOWGEM_CHESTPLATE,ModItems.RAINBOWGEM_LEGGINGS,
+                ModItems.RAINBOWGEM_BOOTS)){
             basicItem(sup.get());
         }
         for (var sup : List.of(ModItems.STYX_HELMET, ModItems.STYX_CHESTPLATE,ModItems.STYX_LEGGINGS, ModItems.STYX_BOOTS)){
@@ -83,6 +89,12 @@ public class ModItemModelsProvider extends ItemModelProvider {
         handheldItem(ModItems.STEEL_PICKAXE.get());
         handheldItem(ModItems.STEEL_SHOVEL.get());
         handheldItem(ModItems.STEEL_SWORD.get());
+        handheldItem(ModItems.RAINBOWGEM_AXE.get());
+        handheldItem(ModItems.RAINBOWGEM_HOE.get());
+        handheldItem(ModItems.RAINBOWGEM_PICKAXE.get());
+        handheldItem(ModItems.RAINBOWGEM_SHOVEL.get());
+        handheldItem(ModItems.RAINBOWGEM_SWORD.get());
+        handheldItem(ModItems.RUBY_SWORD.get());
         handheldItem(ModItems.STYX_PICKAXE.get());
 
         //basicItem(ModBlocks.???_DOOR.asItem),门和活板门有专用贴图需要绘制。

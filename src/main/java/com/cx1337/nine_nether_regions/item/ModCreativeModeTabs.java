@@ -54,6 +54,19 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.STEEL_BOOTS);
                         output.accept(ModItems.STEEL_HORSE_ARMOR);
 
+                        output.accept(ModItems.RUBY);
+                        output.accept(ModItems.RAINBOWGEM);
+                        output.accept(ModItems.RAINBOWGEM_AXE);
+                        output.accept(ModItems.RAINBOWGEM_HOE);
+                        output.accept(ModItems.RAINBOWGEM_PICKAXE);
+                        output.accept(ModItems.RAINBOWGEM_SHOVEL);
+                        output.accept(ModItems.RAINBOWGEM_HELMET);
+                        output.accept(ModItems.RAINBOWGEM_CHESTPLATE);
+                        output.accept(ModItems.RAINBOWGEM_LEGGINGS);
+                        output.accept(ModItems.RAINBOWGEM_BOOTS);
+                        output.accept(ModItems.RAINBOWGEM_SWORD);
+                        output.accept(ModItems.RUBY_SWORD);
+
                         output.accept(ModItems.HELLALLOY_INGOT);
                         output.accept(ModItems.HELLALLOY_AXE);
                         output.accept(ModItems.HELLALLOY_HOE);
@@ -99,6 +112,7 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModBlocks.HELLALLOY_BLOCK);
                         output.accept(ModBlocks.STEEL_BLOCK);
+                        output.accept(ModBlocks.RAINBOWGEM_BLOCK);
                         output.accept(ModBlocks.STYX_BLOCK);
 
                         output.accept(ModBlocks.GLOWING_UNDERWORLD_BRICKS);
