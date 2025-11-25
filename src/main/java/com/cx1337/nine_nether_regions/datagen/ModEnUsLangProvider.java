@@ -20,6 +20,11 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(ModItems.ENCHANTED_GHOSTLIUM_APPLE.get(), "Enchanted Ghostlium Apple");
         add(ModItems.AMETHYST_DAGGER.get(), "Amethyst Dagger");
         add(ModItems.BLOODBLADE_ESSENCE.get(), "Bloodblade Essence");
+        add(ModItems.CHERRY_STICK.get(), "§d Cherry Stick");
+        add(ModItems.CHERRY_HELMET.get(), "§d Cherry Helmet");
+        add(ModItems.CHERRY_CHESTPLATE.get(), "§d Cherry Chestplate");
+        add(ModItems.CHERRY_LEGGINGS.get(), "§d Cherry Leggings");
+        add(ModItems.CHERRY_BOOTS.get(), "§d Cherry Boots");
         add(ModItems.STYX_FERRYMAN_MUSIC_DISC.get(), "Music Disc--Styx Ferryman");
         add(ModItems.DIAMOND_BOWSTRING.get(), "Diamond Bowstring");
         add(ModItems.EMPTY_FABRIC.get(), "Empty Fabric");
@@ -61,6 +66,10 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(ModItems.STEEL_LEGGINGS.get(), "Steel Leggings");
         add(ModItems.STEEL_BOOTS.get(), "Steel Boots");
         add(ModItems.STEEL_HORSE_ARMOR.get(), "Steel Horse Armor");
+        add(ModItems.WOOD_HELMET.get(), "Wood Helmet");
+        add(ModItems.WOOD_CHESTPLATE.get(), "Wood Chestplate");
+        add(ModItems.WOOD_LEGGINGS.get(), "Wood Leggings");
+        add(ModItems.WOOD_BOOTS.get(), "Wood Boots");
         add(ModItems.RUBY.get(), "Ruby");
         add(ModItems.RAINBOWGEM.get(), "Rainbow Jade");
         add(ModItems.RAINBOWGEM_AXE.get(), "Rainbow Jade Axe");

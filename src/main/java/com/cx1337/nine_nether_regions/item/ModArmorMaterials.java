@@ -11,6 +11,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.EnumMap;
@@ -18,6 +19,30 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class ModArmorMaterials {
+    //木制盔甲
+    public static final Holder<ArmorMaterial> WOOD_ARMOR_MATERIAL = register("wood",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 1);
+                attribute.put(ArmorItem.Type.LEGGINGS, 1);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 2);
+                attribute.put(ArmorItem.Type.HELMET, 1);
+                attribute.put(ArmorItem.Type.BODY, 1);
+            }), 4, 0.0F, 0.0F, () -> Items.STICK,
+            SoundEvents.ARMOR_EQUIP_LEATHER,
+            ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, "wood"));
+
+    //樱花盔甲
+    public static final Holder<ArmorMaterial> CHERRY_ARMOR_MATERIAL = register("cherry",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 1);
+                attribute.put(ArmorItem.Type.LEGGINGS, 1);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 2);
+                attribute.put(ArmorItem.Type.HELMET, 1);
+                attribute.put(ArmorItem.Type.BODY, 1);
+            }), 4, 0.0F, 0.0F, () -> ModItems.CHERRY_STICK.get(),
+            SoundEvents.ARMOR_EQUIP_LEATHER,
+            ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, "cherry"));
+
     //精钢盔甲
     public static final Holder<ArmorMaterial> STEEL_ARMOR_MATERIAL = register("steel",
             Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {

@@ -40,6 +40,16 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.MAGIC_FABRIC);
                         output.accept(ModItems.STYX_FABRIC);
 
+                        output.accept(ModItems.WOOD_HELMET);
+                        output.accept(ModItems.WOOD_CHESTPLATE);
+                        output.accept(ModItems.WOOD_LEGGINGS);
+                        output.accept(ModItems.WOOD_BOOTS);
+                        output.accept(ModItems.CHERRY_STICK);
+                        output.accept(ModItems.CHERRY_HELMET);
+                        output.accept(ModItems.CHERRY_CHESTPLATE);
+                        output.accept(ModItems.CHERRY_LEGGINGS);
+                        output.accept(ModItems.CHERRY_BOOTS);
+
                         output.accept(ModItems.STEEL_BASE);
                         output.accept(ModItems.STEEL_INGOT);
                         output.accept(ModItems.STEEL_NUGGET);

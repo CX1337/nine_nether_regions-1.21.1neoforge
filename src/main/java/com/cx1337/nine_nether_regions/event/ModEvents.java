@@ -266,7 +266,6 @@ public class ModEvents {
     @SubscribeEvent
     public void onBrewingRecipeRegister(RegisterBrewingRecipesEvent event) {
         PotionBrewing.Builder builder = event.getBuilder();
-
         builder.addMix(Potions.AWKWARD, ModItems.GHOSTLIUM.get(), ModPotions.DECLINE_POTION);
         builder.addMix(Potions.AWKWARD, ModBlocks.BLOODBLADE_ROCK.get().asItem(), ModPotions.BB_CURSE_POTION);
     }

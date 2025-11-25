@@ -41,6 +41,7 @@ public class ModItemModelsProvider extends ItemModelProvider {
         basicItem(ModItems.GHOSTLIUM_APPLE.get());
         basicItem(ModItems.ENCHANTED_GHOSTLIUM_APPLE.get());
         basicItem(ModItems.BLOODBLADE_ESSENCE.get());
+        basicItem(ModItems.CHERRY_STICK.get());
         basicItem(ModItems.DIAMOND_BOWSTRING.get());
         basicItem(ModItems.EMPTY_FABRIC.get());
         basicItem(ModItems.MAGIC_FABRIC.get());
@@ -61,7 +62,8 @@ public class ModItemModelsProvider extends ItemModelProvider {
         basicItem(ModItems.NETHERITE_ROD.get());
 
         //盔甲。
-        for (var sup : List.of(ModItems.HELLALLOY_HELMET, ModItems.HELLALLOY_CHESTPLATE,ModItems.HELLALLOY_LEGGINGS, ModItems.HELLALLOY_BOOTS)){
+        for (var sup : List.of(ModItems.HELLALLOY_HELMET, ModItems.HELLALLOY_CHESTPLATE,ModItems.HELLALLOY_LEGGINGS,
+                ModItems.HELLALLOY_BOOTS)){
             basicItem(sup.get());
         }
         for (var sup : List.of(ModItems.RAINBOWGEM_HELMET, ModItems.RAINBOWGEM_CHESTPLATE,ModItems.RAINBOWGEM_LEGGINGS,
@@ -73,6 +75,12 @@ public class ModItemModelsProvider extends ItemModelProvider {
         }
         for (var sup : List.of(ModItems.STEEL_HELMET, ModItems.STEEL_CHESTPLATE,ModItems.STEEL_LEGGINGS, ModItems.STEEL_BOOTS,
                 ModItems.STEEL_HORSE_ARMOR)){
+            basicItem(sup.get());
+        }
+        for (var sup : List.of(ModItems.WOOD_HELMET, ModItems.WOOD_CHESTPLATE,ModItems.WOOD_LEGGINGS, ModItems.WOOD_BOOTS)){
+            basicItem(sup.get());
+        }
+        for (var sup : List.of(ModItems.CHERRY_HELMET, ModItems.CHERRY_CHESTPLATE,ModItems.CHERRY_LEGGINGS, ModItems.CHERRY_BOOTS)){
             basicItem(sup.get());
         }
 

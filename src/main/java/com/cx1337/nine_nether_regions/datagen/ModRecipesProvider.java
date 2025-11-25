@@ -261,6 +261,108 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy(getHasName(ModItems.STEEL_INGOT), has(ModItems.STEEL_INGOT))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.WOOD_HELMET, 1)
+                .pattern("###")
+                .pattern("# #")
+                .define('#', Items.STICK)
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.WOOD_CHESTPLATE, 1)
+                .pattern("# #")
+                .pattern("###")
+                .pattern("###")
+                .define('#', Items.STICK)
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.WOOD_LEGGINGS, 1)
+                .pattern("###")
+                .pattern("# #")
+                .pattern("# #")
+                .define('#', Items.STICK)
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.WOOD_BOOTS, 1)
+                .pattern("# #")
+                .pattern("# #")
+                .define('#', Items.STICK)
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.CHERRY_STICK, 6)
+                .pattern("#")
+                .pattern("#")
+                .pattern("#")
+                .define('#', Items.CHERRY_PLANKS)
+                .unlockedBy(getHasName(Items.CHERRY_PLANKS), has(Items.CHERRY_PLANKS))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.CHERRY_HELMET, 1)
+                .pattern("###")
+                .pattern("# #")
+                .define('#', ModItems.CHERRY_STICK)
+                .unlockedBy(getHasName(ModItems.CHERRY_STICK), has(ModItems.CHERRY_STICK))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.CHERRY_CHESTPLATE, 1)
+                .pattern("# #")
+                .pattern("###")
+                .pattern("###")
+                .define('#', ModItems.CHERRY_STICK)
+                .unlockedBy(getHasName(ModItems.CHERRY_STICK), has(ModItems.CHERRY_STICK))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.CHERRY_LEGGINGS, 1)
+                .pattern("###")
+                .pattern("# #")
+                .pattern("# #")
+                .define('#', ModItems.CHERRY_STICK)
+                .unlockedBy(getHasName(ModItems.CHERRY_STICK), has(ModItems.CHERRY_STICK))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.CHERRY_BOOTS, 1)
+                .pattern("# #")
+                .pattern("# #")
+                .define('#', ModItems.CHERRY_STICK)
+                .unlockedBy(getHasName(ModItems.CHERRY_STICK), has(ModItems.CHERRY_STICK))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.CHAINMAIL_HELMET, 1)
+                .pattern("#R#")
+                .pattern("R R")
+                .define('#', Items.IRON_NUGGET)
+                .define('R', Items.CHAIN)
+                .unlockedBy(getHasName(Items.CHAIN), has(Items.CHAIN))
+                .save(recipeOutput, NineNetherRegions.MODID + ":" +"ch_helmet");
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.CHAINMAIL_CHESTPLATE, 1)
+                .pattern("R R")
+                .pattern("R#R")
+                .pattern("#R#")
+                .define('#', Items.IRON_NUGGET)
+                .define('R', Items.CHAIN)
+                .unlockedBy(getHasName(Items.CHAIN), has(Items.CHAIN))
+                .save(recipeOutput, NineNetherRegions.MODID + ":" +"ch_chestplate");
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.CHAINMAIL_LEGGINGS, 1)
+                .pattern("R#R")
+                .pattern("R R")
+                .pattern("# #")
+                .define('#', Items.IRON_NUGGET)
+                .define('R', Items.CHAIN)
+                .unlockedBy(getHasName(Items.CHAIN), has(Items.CHAIN))
+                .save(recipeOutput, NineNetherRegions.MODID + ":" +"ch_leggings");
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.CHAINMAIL_BOOTS, 1)
+                .pattern("R R")
+                .pattern("# #")
+                .define('#', Items.IRON_NUGGET)
+                .define('R', Items.CHAIN)
+                .unlockedBy(getHasName(Items.CHAIN), has(Items.CHAIN))
+                .save(recipeOutput, NineNetherRegions.MODID + ":" +"ch_boots");
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.RUBY, 1)
                 .pattern(" # ")
                 .pattern("#$#")

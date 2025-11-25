@@ -31,6 +31,14 @@ public class ModItemTagsProvider extends ItemTagsProvider {
                 .add(ModItems.GHOSTLIUM.get());
 
         tag(Tags.Items.ARMORS)
+                .add(ModItems.WOOD_HELMET.get())
+                .add(ModItems.WOOD_CHESTPLATE.get())
+                .add(ModItems.WOOD_LEGGINGS.get())
+                .add(ModItems.WOOD_BOOTS.get())
+                .add(ModItems.CHERRY_HELMET.get())
+                .add(ModItems.CHERRY_CHESTPLATE.get())
+                .add(ModItems.CHERRY_LEGGINGS.get())
+                .add(ModItems.CHERRY_BOOTS.get())
                 .add(ModItems.HELLALLOY_HELMET.get())
                 .add(ModItems.HELLALLOY_CHESTPLATE.get())
                 .add(ModItems.HELLALLOY_LEGGINGS.get())
@@ -49,6 +57,14 @@ public class ModItemTagsProvider extends ItemTagsProvider {
                 .add(ModItems.RAINBOWGEM_BOOTS.get());
 
         tag(ItemTags.ARMOR_ENCHANTABLE)
+                .add(ModItems.WOOD_HELMET.get())
+                .add(ModItems.WOOD_CHESTPLATE.get())
+                .add(ModItems.WOOD_LEGGINGS.get())
+                .add(ModItems.WOOD_BOOTS.get())
+                .add(ModItems.CHERRY_HELMET.get())
+                .add(ModItems.CHERRY_CHESTPLATE.get())
+                .add(ModItems.CHERRY_LEGGINGS.get())
+                .add(ModItems.CHERRY_BOOTS.get())
                 .add(ModItems.STEEL_HELMET.get())
                 .add(ModItems.STEEL_CHESTPLATE.get())
                 .add(ModItems.STEEL_LEGGINGS.get())

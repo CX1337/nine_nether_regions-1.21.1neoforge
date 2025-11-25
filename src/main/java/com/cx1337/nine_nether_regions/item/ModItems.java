@@ -124,6 +124,9 @@ public class ModItems {
                 }
             });
 
+    public static final DeferredItem<Item> CHERRY_STICK =
+            ITEMS.register("cherry_stick", () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+
     public static final DeferredItem<Item> STEEL_BASE =
             ITEMS.register("steel_base", () -> new Item(new Item.Properties().rarity(Rarity.COMMON)){
                 @Override
@@ -281,57 +284,153 @@ public class ModItems {
             });
 
     //盔甲。
-    //精钢盔甲。
-    public static final DeferredItem<ArmorItem> STEEL_HELMET =
-            ITEMS.register("steel_helmet", () ->new ArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
-                    new Item.Properties() .durability(ArmorItem.Type.HELMET.getDurability(33)).rarity(Rarity.COMMON)){
+    //木盔甲。
+    public static final DeferredItem<ArmorItem> WOOD_HELMET =
+            ITEMS.register("wood_helmet", () ->new ArmorItem(ModArmorMaterials.WOOD_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties() .durability(ArmorItem.Type.HELMET.getDurability(3)).rarity(Rarity.COMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+            });
+    public static final DeferredItem<ArmorItem> WOOD_CHESTPLATE =
+            ITEMS.register("wood_chestplate", () ->new ArmorItem(ModArmorMaterials.WOOD_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties() .durability(ArmorItem.Type.CHESTPLATE.getDurability(3)).rarity(Rarity.COMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+            });
+    public static final DeferredItem<ArmorItem> WOOD_LEGGINGS =
+            ITEMS.register("wood_leggings", () ->new ArmorItem(ModArmorMaterials.WOOD_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties() .durability(ArmorItem.Type.LEGGINGS.getDurability(3)).rarity(Rarity.COMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+            });
+    public static final DeferredItem<ArmorItem> WOOD_BOOTS =
+            ITEMS.register("wood_boots", () ->new ArmorItem(ModArmorMaterials.WOOD_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+                    new Item.Properties() .durability(ArmorItem.Type.BOOTS.getDurability(3)).rarity(Rarity.COMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+            });
 
+    //樱花盔甲。
+    public static final DeferredItem<ArmorItem> CHERRY_HELMET =
+            ITEMS.register("cherry_helmet", () ->new ArmorItem(ModArmorMaterials.CHERRY_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties() .durability(66).rarity(Rarity.COMMON)){
                 @Override
                 public boolean isEnchantable(ItemStack stack) {
                     return true;
                 }
                 @Override
-                public int getEnchantmentValue() {
-                    return ModToolTiers.STEEL.getEnchantmentValue();
+                public boolean isDamageable(ItemStack stack) {
+                    return false;
+                }
+                @Override
+                public void setDamage(ItemStack stack, int damage) {
+                    super.setDamage(stack, 0);
+                }
+                @Override
+                public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+                    return true;
+                }
+            });
+    public static final DeferredItem<ArmorItem> CHERRY_CHESTPLATE =
+            ITEMS.register("cherry_chestplate", () ->new ArmorItem(ModArmorMaterials.CHERRY_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties() .durability(99).rarity(Rarity.COMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public boolean isDamageable(ItemStack stack) {
+                    return false;
+                }
+                @Override
+                public void setDamage(ItemStack stack, int damage) {
+                    super.setDamage(stack, 0);
+                }
+                @Override
+                public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+                    return true;
+                }
+            });
+    public static final DeferredItem<ArmorItem> CHERRY_LEGGINGS =
+            ITEMS.register("cherry_leggings", () ->new ArmorItem(ModArmorMaterials.CHERRY_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties() .durability(88).rarity(Rarity.COMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public boolean isDamageable(ItemStack stack) {
+                    return false;
+                }
+                @Override
+                public void setDamage(ItemStack stack, int damage) {
+                    super.setDamage(stack, 0);
+                }
+                @Override
+                public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+                    return true;
+                }
+            });
+    public static final DeferredItem<ArmorItem> CHERRY_BOOTS =
+            ITEMS.register("cherry_boots", () ->new ArmorItem(ModArmorMaterials.CHERRY_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+                    new Item.Properties() .durability(66).rarity(Rarity.COMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
+                }
+                @Override
+                public boolean isDamageable(ItemStack stack) {
+                    return false;
+                }
+                @Override
+                public void setDamage(ItemStack stack, int damage) {
+                    super.setDamage(stack, 0);
+                }
+                @Override
+                public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+                    return true;
+                }
+            });
+
+    //精钢盔甲。
+    public static final DeferredItem<ArmorItem> STEEL_HELMET =
+            ITEMS.register("steel_helmet", () ->new ArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties() .durability(ArmorItem.Type.HELMET.getDurability(33)).rarity(Rarity.COMMON)){
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return true;
                 }
             });
     public static final DeferredItem<ArmorItem> STEEL_CHESTPLATE =
             ITEMS.register("steel_chestplate", () ->new ArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
                     new Item.Properties() .durability(ArmorItem.Type.CHESTPLATE.getDurability(30)).rarity(Rarity.COMMON)){
-
                 @Override
                 public boolean isEnchantable(ItemStack stack) {
                     return true;
-                }
-                @Override
-                public int getEnchantmentValue() {
-                    return ModToolTiers.STEEL.getEnchantmentValue();
                 }
             });
     public static final DeferredItem<ArmorItem> STEEL_LEGGINGS =
             ITEMS.register("steel_leggings", () ->new ArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
                     new Item.Properties() .durability(ArmorItem.Type.LEGGINGS.getDurability(31)).rarity(Rarity.COMMON)){
-
                 @Override
                 public boolean isEnchantable(ItemStack stack) {
                     return true;
-                }
-                @Override
-                public int getEnchantmentValue() {
-                    return ModToolTiers.STEEL.getEnchantmentValue();
                 }
             });
     public static final DeferredItem<ArmorItem> STEEL_BOOTS =
             ITEMS.register("steel_boots", () ->new ArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
                     new Item.Properties() .durability(ArmorItem.Type.BOOTS.getDurability(32)).rarity(Rarity.COMMON)){
-
                 @Override
                 public boolean isEnchantable(ItemStack stack) {
                     return true;
-                }
-                @Override
-                public int getEnchantmentValue() {
-                    return ModToolTiers.STEEL.getEnchantmentValue();
                 }
             });
     public static final DeferredItem<Item> STEEL_HORSE_ARMOR =

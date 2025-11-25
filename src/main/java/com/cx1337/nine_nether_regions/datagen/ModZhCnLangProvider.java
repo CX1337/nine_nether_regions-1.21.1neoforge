@@ -20,6 +20,11 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add(ModItems.ENCHANTED_GHOSTLIUM_APPLE.get(), "附魔幽染苹果");
         add(ModItems.AMETHYST_DAGGER.get(), "紫晶短剑");
         add(ModItems.BLOODBLADE_ESSENCE.get(), "血刃精华");
+        add(ModItems.CHERRY_STICK.get(), "§d樱花木棍");
+        add(ModItems.CHERRY_HELMET.get(), "§d樱花木头盔");
+        add(ModItems.CHERRY_CHESTPLATE.get(), "§d樱花木胸甲");
+        add(ModItems.CHERRY_LEGGINGS.get(), "§d樱花木护腿");
+        add(ModItems.CHERRY_BOOTS.get(), "§d樱花木靴子");
         add(ModItems.STYX_FERRYMAN_MUSIC_DISC.get(), "音乐唱片（冥河渡客）");
         add(ModItems.DIAMOND_BOWSTRING.get(), "钻石弓弦");
         add(ModItems.EMPTY_FABRIC.get(), "空白布料");
@@ -61,6 +66,10 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add(ModItems.STEEL_LEGGINGS.get(), "精钢护腿");
         add(ModItems.STEEL_BOOTS.get(), "精钢靴子");
         add(ModItems.STEEL_HORSE_ARMOR.get(), "精钢马铠");
+        add(ModItems.WOOD_HELMET.get(), "木头盔");
+        add(ModItems.WOOD_CHESTPLATE.get(), "木胸甲");
+        add(ModItems.WOOD_LEGGINGS.get(), "木护腿");
+        add(ModItems.WOOD_BOOTS.get(), "木靴子");
         add(ModItems.RUBY.get(), "红宝石");
         add(ModItems.RAINBOWGEM.get(), "虹玉");
         add(ModItems.RAINBOWGEM_AXE.get(), "虹玉斧");
