@@ -39,7 +39,7 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("###")
                 .define('#', ModItems.GHOSTLIUM)
                 .define('$', Blocks.DRAGON_EGG)
-                .define('R', ModBlocks.UNDERWORLD_CRYSTAL_ORE)
+                .define('R', ModItems.RUBY)
                 .unlockedBy(getHasName(Blocks.DRAGON_EGG), has(Blocks.DRAGON_EGG))
                 .save(recipeOutput, NineNetherRegions.MODID + ":" +"dragon_egg_new");
 
@@ -62,12 +62,13 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.HELL_NUCLEUS, 1)
-                .pattern("###")
+                .pattern("#C#")
                 .pattern("#$#")
                 .pattern("#R#")
-                .define('#', ModBlocks.UNDERWORLD_CRYSTAL_ORE)
+                .define('#', ModItems.UNDERWORLD_CRYSTAL)
                 .define('$', Blocks.DRAGON_EGG)
                 .define('R', Items.LAVA_BUCKET)
+                .define('C', Blocks.CONDUIT)
                 .unlockedBy(getHasName(Blocks.DRAGON_EGG), has(Blocks.DRAGON_EGG))
                 .save(recipeOutput);
 
@@ -97,6 +98,15 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy(getHasName(Items.ENCHANTED_GOLDEN_APPLE), has(Items.ENCHANTED_GOLDEN_APPLE))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.WEB_FRUIT, 1)
+                .pattern(" # ")
+                .pattern("#$#")
+                .pattern(" # ")
+                .define('#', ModItems.WEB_BALL)
+                .define('$', Items.CHORUS_FRUIT)
+                .unlockedBy(getHasName(Items.CHORUS_FRUIT), has(Items.CHORUS_FRUIT))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.AMETHYST_DAGGER, 1)
                 .pattern("#")
                 .pattern("$")
@@ -123,6 +133,64 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.FIRE_CORE, 1)
+                .pattern(" $ ")
+                .pattern("$#$")
+                .pattern(" $ ")
+                .define('#', Items.FIRE_CHARGE)
+                .define('$', Items.BLAZE_ROD)
+                .unlockedBy(getHasName(Items.BLAZE_ROD), has(Items.BLAZE_ROD))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.FIRE_STAFF, 1)
+                .pattern(" # ")
+                .pattern(" R ")
+                .pattern(" R ")
+                .define('#', ModItems.FIRE_CORE)
+                .define('R', Items.CHAIN)
+                .unlockedBy(getHasName(ModItems.FIRE_CORE), has(ModItems.FIRE_CORE))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.WITHER_CORE, 1)
+                .pattern("#$#")
+                .pattern("$R$")
+                .pattern("#$#")
+                .define('#', Items.SOUL_SAND)
+                .define('$', Items.WITHER_SKELETON_SKULL)
+                .define('R', Items.NETHER_STAR)
+                .unlockedBy(getHasName(Items.NETHER_STAR), has(Items.NETHER_STAR))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.WITHER_STAFF, 1)
+                .pattern("$#$")
+                .pattern(" R ")
+                .pattern(" R ")
+                .define('#', ModItems.WITHER_CORE)
+                .define('$', Items.WITHER_SKELETON_SKULL)
+                .define('R', ModItems.NETHERITE_ROD)
+                .unlockedBy(getHasName(ModItems.WITHER_CORE), has(ModItems.WITHER_CORE))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.VOID_CORE, 1)
+                .pattern("R$R")
+                .pattern("$#$")
+                .pattern("R$R")
+                .define('#', Items.DRAGON_EGG)
+                .define('$', Items.END_CRYSTAL)
+                .define('R', Items.ENDER_EYE)
+                .unlockedBy(getHasName(Items.DRAGON_EGG), has(Items.DRAGON_EGG))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.VOID_STAFF, 1)
+                .pattern("$#$")
+                .pattern(" R ")
+                .pattern(" R ")
+                .define('#', ModItems.VOID_CORE)
+                .define('R', ModItems.NETHERITE_ROD)
+                .define('$', Items.END_CRYSTAL)
+                .unlockedBy(getHasName(ModItems.VOID_CORE), has(ModItems.VOID_CORE))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.EMPTY_FABRIC, 3)
                 .pattern("###")
                 .pattern("$$$")
@@ -137,17 +205,6 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("###")
                 .pattern("###")
                 .define('#', ModItems.HELLALLOY_INGOT)
-                .unlockedBy(getHasName(ModItems.HELLALLOY_INGOT), has(ModItems.HELLALLOY_INGOT))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.HELLALLOY_ROYALGUARD_SHIELD, 1)
-                .pattern("#%#")
-                .pattern("R$R")
-                .pattern("#%#")
-                .define('#', ModItems.HELLALLOY_ROD)
-                .define('%', Items.AMETHYST_BLOCK)
-                .define('R', ModItems.NETHERITE_ROD)
-                .define('$', ModItems.HELLALLOY_INGOT)
                 .unlockedBy(getHasName(ModItems.HELLALLOY_INGOT), has(ModItems.HELLALLOY_INGOT))
                 .save(recipeOutput);
 
@@ -522,6 +579,20 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy(getHasName(ModBlocks.BLOODBLADE_ROCK), has(ModBlocks.BLOODBLADE_ROCK))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.RUBY_BLOCK, 1)
+                .pattern("##")
+                .pattern("##")
+                .define('#', ModItems.RUBY)
+                .unlockedBy(getHasName(ModItems.RUBY), has(ModItems.RUBY))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.WEB_BALL, 1)
+                .pattern("##")
+                .pattern("##")
+                .define('#', Blocks.COBWEB)
+                .unlockedBy(getHasName(Blocks.COBWEB), has(Blocks.COBWEB))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.HELLALLOY_ROD, 4)
                 .pattern("#")
                 .pattern("#")
@@ -659,6 +730,16 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .requires(ModBlocks.STYX_BLOCK)
                 .unlockedBy(getHasName(ModBlocks.STYX_BLOCK), has(ModBlocks.STYX_BLOCK))
                 .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RUBY, 4)
+                .requires(ModBlocks.RUBY_BLOCK)
+                .unlockedBy(getHasName(ModBlocks.RUBY_BLOCK), has(ModBlocks.RUBY_BLOCK))
+                .save(recipeOutput, NineNetherRegions.MODID + ":" +"ruby_no2");
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RAINBOWGEM, 9)
+                .requires(ModBlocks.RAINBOWGEM_BLOCK)
+                .unlockedBy(getHasName(ModBlocks.RAINBOWGEM_BLOCK), has(ModBlocks.RAINBOWGEM_BLOCK))
+                .save(recipeOutput, NineNetherRegions.MODID + ":" +"rainbowgem_no2");
 
         //标准栅栏/栅栏门预留。
         //fenceBuilder(ModBlocks.???_FENCE.get(), Ingredient.of(ModItems/Blocks:???)).group("???")

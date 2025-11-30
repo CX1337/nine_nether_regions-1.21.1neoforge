@@ -1,5 +1,6 @@
 package com.cx1337.nine_nether_regions.item;
 
+import com.cx1337.nine_nether_regions.effect.ModEffects;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
@@ -23,5 +24,9 @@ public class ModFoodProperties {
                     .effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 6600, 0),1.0F)
                     .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 6600, 1),1.0F)
                     .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, 6200, 1),1.0F)
+                    .alwaysEdible().build();
+    public static final FoodProperties WEB_FRUIT =
+            new FoodProperties.Builder().nutrition(5).saturationModifier(0.9F)
+                    .effect(() -> new MobEffectInstance(ModEffects.SPIDER_CLIMB, 1200, 0),1.0F)
                     .alwaysEdible().build();
 }

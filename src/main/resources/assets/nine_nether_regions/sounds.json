@@ -6,5 +6,53 @@
         "stream": true
       }
     ]
+  },
+  "lonely_mountain": {
+    "sounds": [
+      {
+        "name": "nine_nether_regions:lonely_mountain",
+        "stream": true
+      }
+    ]
+  },
+  "mysterious_lights": {
+    "sounds": [
+      {
+        "name": "nine_nether_regions:mysterious_lights",
+        "stream": true
+      }
+    ]
+  },
+  "think_about_it": {
+    "sounds": [
+      {
+        "name": "nine_nether_regions:think_about_it",
+        "stream": true
+      }
+    ]
+  },
+  "night_vigil": {
+    "sounds": [
+      {
+        "name": "nine_nether_regions:night_vigil",
+        "stream": true
+      }
+    ]
+  },
+  "go_on_without_me": {
+    "sounds": [
+      {
+        "name": "nine_nether_regions:go_on_without_me",
+        "stream": true
+      }
+    ]
+  },
+  "satin_danger": {
+    "sounds": [
+      {
+        "name": "nine_nether_regions:satin_danger",
+        "stream": true
+      }
+    ]
   }
 }

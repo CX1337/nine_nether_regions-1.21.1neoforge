@@ -1,0 +1,8 @@
+{
+  "comparator_output": 15,
+  "description": {
+    "translate": "item.nine_nether_regions.underworld_abyss_music_disc.desc"
+  },
+  "length_in_seconds": 178.0,
+  "sound_event": "nine_nether_regions:mysterious_lights"
+}

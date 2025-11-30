@@ -2,7 +2,6 @@ package com.cx1337.nine_nether_regions.datagen;
 
 import com.cx1337.nine_nether_regions.NineNetherRegions;
 import com.cx1337.nine_nether_regions.block.ModBlocks;
-import com.cx1337.nine_nether_regions.effect.ModEffects;
 import com.cx1337.nine_nether_regions.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -16,10 +15,12 @@ public class ModEnUsLangProvider extends LanguageProvider {
     protected void addTranslations() {
         add(ModItems.ALLOY_HILT.get(), "Alloy Hilt");
         add(ModItems.AMETHYST_BEETROOT.get(), "Amethyst Beetroot");
+        add(ModItems.CAVES_MUSIC_DISC.get(), "Music Disc--Biomes/Caves");
         add(ModItems.GHOSTLIUM_APPLE.get(), "Ghostlium Apple");
         add(ModItems.ENCHANTED_GHOSTLIUM_APPLE.get(), "Enchanted Ghostlium Apple");
         add(ModItems.AMETHYST_DAGGER.get(), "Amethyst Dagger");
         add(ModItems.BLOODBLADE_ESSENCE.get(), "Bloodblade Essence");
+        add(ModItems.BLOODBLADE_PEAK_MUSIC_DISC.get(), "Music Disc--Biomes/Bloodblade Peak");
         add(ModItems.CHERRY_STICK.get(), "§d Cherry Stick");
         add(ModItems.CHERRY_HELMET.get(), "§d Cherry Helmet");
         add(ModItems.CHERRY_CHESTPLATE.get(), "§d Cherry Chestplate");
@@ -28,7 +29,9 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(ModItems.STYX_FERRYMAN_MUSIC_DISC.get(), "Music Disc--Styx Ferryman");
         add(ModItems.DIAMOND_BOWSTRING.get(), "Diamond Bowstring");
         add(ModItems.EMPTY_FABRIC.get(), "Empty Fabric");
+        add(ModItems.FLUORESCENCE_FOREST_MUSIC_DISC.get(), "Music Disc--Biomes/Fluorescence Forest");
         add(ModItems.MAGIC_FABRIC.get(), "Magic Fabric");
+        add(ModItems.MANJUSAKA_PLAIN_MUSIC_DISC.get(), "Music Disc--Biomes/Manjusaka Plain");
         add(ModItems.STYX_FABRIC.get(), "Styx Fabric");
         add(ModItems.GHOSTLIUM.get(), "Ghostlium");
         add(ModItems.HELLALLOY_INGOT.get(), "§aHellalloy Ingot");
@@ -36,7 +39,6 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(ModItems.HELLALLOY_HOE.get(), "§aHellalloy Hoe");
         add(ModItems.HELLALLOY_PICKAXE.get(), "§aHellalloy Pickaxe");
         add(ModItems.HELLALLOY_SHOVEL.get(), "§aHellalloy Shovel");
-        add(ModItems.HELLALLOY_ROYALGUARD_SHIELD.get(), "§aHellalloy Royalguard Shield(WIP)");
         add(ModItems.HELLALLOY_HELMET.get(), "§aHellalloy Helmet");
         add(ModItems.HELLALLOY_CHESTPLATE.get(), "§aHellalloy Chestplate");
         add(ModItems.HELLALLOY_LEGGINGS.get(), "§aHellalloy Leggings");
@@ -66,10 +68,17 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(ModItems.STEEL_LEGGINGS.get(), "Steel Leggings");
         add(ModItems.STEEL_BOOTS.get(), "Steel Boots");
         add(ModItems.STEEL_HORSE_ARMOR.get(), "Steel Horse Armor");
+        add(ModItems.WEB_BALL.get(), "Web Ball");
         add(ModItems.WOOD_HELMET.get(), "Wood Helmet");
         add(ModItems.WOOD_CHESTPLATE.get(), "Wood Chestplate");
         add(ModItems.WOOD_LEGGINGS.get(), "Wood Leggings");
         add(ModItems.WOOD_BOOTS.get(), "Wood Boots");
+        add(ModItems.FIRE_CORE.get(), "Fire Core");
+        add(ModItems.FIRE_STAFF.get(), "Fire Staff");
+        add(ModItems.WITHER_CORE.get(), "Wither Core");
+        add(ModItems.WITHER_STAFF.get(), "Wither Staff");
+        add(ModItems.VOID_CORE.get(), "Void Core");
+        add(ModItems.VOID_STAFF.get(), "Void Staff");
         add(ModItems.RUBY.get(), "Ruby");
         add(ModItems.RAINBOWGEM.get(), "Rainbow Jade");
         add(ModItems.RAINBOWGEM_AXE.get(), "Rainbow Jade Axe");
@@ -82,8 +91,10 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(ModItems.RAINBOWGEM_CHESTPLATE.get(), "Rainbow Jade Chestplate");
         add(ModItems.RAINBOWGEM_LEGGINGS.get(), "Rainbow Jade Leggings");
         add(ModItems.RAINBOWGEM_BOOTS.get(), "Rainbow Jade Boots");
+        add(ModItems.THE_STYX_MUSIC_DISC.get(), "Music Disc--Biomes/The Styx,Underworld Plains");
         add(ModItems.UNDERWORLD_BRICK.get(), "Underworld Brick");
         add(ModItems.UNDERWORLD_CRYSTAL.get(), "§bUnderworld Crystal");
+        add(ModItems.UNDERWORLD_ABYSS_MUSIC_DISC.get(), "Music Disc--Biomes/Underworld Abyss");
 
         add(ModBlocks.BLOODY_SAND.get(), "Bloody Sand");
         add(ModBlocks.BLOODBLADE_ORE.get(), "§4Bloodblade_ore");
@@ -104,6 +115,7 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(ModBlocks.PINESAP.get(), "Pinesap");
         add(ModBlocks.STYX_BLOCK.get(), "§5§lStyx Block");
         add(ModBlocks.STEEL_BLOCK.get(), "Steel Block");
+        add(ModBlocks.RUBY_BLOCK.get(), "Ruby Block");
         add(ModBlocks.RAINBOWGEM_BLOCK.get(), "Rainbowgem Block");
         add(ModBlocks.UNDERWORLDRACK.get(), "Underworldrack");
         add(ModBlocks.UNDERWORLD_BRICKS.get(), "Underworld Bricks");
@@ -126,20 +138,29 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add("item.minecraft.potion.effect.bb_curse_potion", "Bloodblade Curse Potion");
         add("item.minecraft.splash_potion.effect.bb_curse_potion", "Bloodblade Curse Splash Potion");
         add("item.minecraft.lingering_potion.effect.bb_curse_potion", "Bloodblade Curse Lingering Potion");
+        add("effect.nine_nether_regions.spider_climb", "Spider Climb");
+        add("effect.nine_nether_regions.frost", "frost");
 
         add("painting.nine_nether_regions.wayfarer.title", "Wayfarer");
         add("painting.nine_nether_regions.wayfarer.author", "CX1337");
         add("painting.nine_nether_regions.the_sword.title", "The Sword");
         add("painting.nine_nether_regions.the_sword.author", "05Z08");
 
-        add("itemGroup.nine_nether_regions_materials_tab", "§2§lNine Nether Regions:items");
-        add("itemGroup.nine_nether_regions_blocks_tab", "§2§lNine Nether Regions:blocks");
+        add("itemGroup.nine_nether_regions_materials_tab", "§2§lNnR:items");
+        add("itemGroup.nine_nether_regions_blocks_tab", "§2§lNnR:blocks");
 
         add("item.nine_nether_regions.styx_ferryman_music_disc.desc", "Rafael Krux--Dawn of the Apocalypse");
+        add("item.nine_nether_regions.bloodblade_peak_music_disc.desc", "Rafael Krux--Lonely Mountain");
+        add("item.nine_nether_regions.underworld_abyss_music_disc.desc", " Bryan Teoh--Mysterious Lights");
+        add("item.nine_nether_regions.the_styx_music_disc.desc", "Bryan Teoh--Think About It");
+        add("item.nine_nether_regions.fluorescence_forest_music_disc.desc", "Kevin MacLeod--Night Vigil");
+        add("item.nine_nether_regions.manjusaka_plain_music_disc.desc", "Bryan Teoh--Go On Without Me");
+        add("item.nine_nether_regions.caves_music_disc.desc", "Kevin MacLeod--Satin Danger");
 
         add("tooltip.nine_nether_regions.amethyst_dagger", "§8§oAlthough this short sword is indeed small, the recipe is simple, and the attack power is not high, thanks to the vitality contained in amethyst, players have a 33% chance of recovering 1 point of health each time they use it to attack. Meanwhile, precisely because of its compact size, players can swing it faster.\nOf course, due to the fragility of amethyst itself, the durability of this short sword is not as high.");
         add("tooltip.nine_nether_regions.ghostlium_apple", "§8§o Tainted with a bit of the Underworld's power... but it tastes delicious!");
         add("tooltip.nine_nether_regions.enchanted_ghostlium_apple", "§8§oAn Enchanted Golden Apple, enhanced in every way by the Underworld's power. Delicious, filling, and incredibly potent.");
+        add("tooltip.nine_nether_regions.web_fruit", "§8§oThe Web Ball neutralizes the teleportation ability of Chorus Fruit, while granting players wall-climbing capabilities similar to spiders for a limited time.");
         add("tooltip.nine_nether_regions.bloodblade_essence", "§8§oAn indescribable mass of matter…… but the energy contained within should not be underestimated.");
         add("tooltip.nine_nether_regions.hellalloy_block", "§8§oFilled with the Power From the Underworld.");
         add("tooltip.nine_nether_regions.hellalloy_ingot", "§8§oStrengthened by the Power of the Underworld,the Alloy Ingot is Incredibly Hard.");
@@ -156,7 +177,7 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add("tooltip.nine_nether_regions.styx_ingot", "§8§oJust Like Styx Ferryman's Will.Unbreakable.");
         add("tooltip.nine_nether_regions.styx_sword", "§8§oPress§r §3§oAlt§r§8§o to display more.");
         add("tooltip.nine_nether_regions.styx_sword_alt",
-                "§6§oIndestructible: §r§8§oUnder normal circumstances, this weapon's durability is not consumed. If the weapon's durability is damaged by some means, it will recover very quickly (42 points per 4 ticks).\n§r§6§oBattle-sword's Edge: §r§8§oWhen attacking a creature, the Styx Battle-sword simultaneously deals area damage to all non-friendly creatures within a 3-block radius centered on the player, dealing §r§e§o(Battle-sword's attack power + target's max health × 5%) §r§8§o damage.\n§r§6§oSoul Siphon: §r§8§oEach time the battle-sword attacks, it forcibly restores §r§d§o(player's max health × 8%) §r§8§o health to the player.");
+                "§6§oIndestructible: §r§8§oUnder normal circumstances, this weapon's durability is not consumed. If the weapon's durability is damaged by some means, it will recover very quickly (42 points per 4 ticks).\n§r§6§oBattle-sword's Edge: §r§8§oWhen attacking a creature, the Styx Battle-sword simultaneously deals area damage to all non-friendly creatures within a 3-block radius centered on the player, dealing §r§e§o(Battle-sword's attack power + target's max health × 5%) §r§8§o damage.\n§r§6§oSoul Siphon: §r§8§oEach time the battle-sword attacks, it forcibly restores §r§d§o(player's max health × 8%) §r§8§o health to the player.\n§r§4§oWarning: Due to changes in this sword's attack mechanics, most utility enchantments (such as Sharpness, Smite) will likely have no effect on it!");
         add("tooltip.nine_nether_regions.styx_pickaxe", "§8§oPress§r §3§oAlt§r§8§o to display more.");
         add("tooltip.nine_nether_regions.styx_pickaxe_alt", "§8§oThis pickaxe is the best among all pickaxes.\nUnder normal circumstances, its durability cannot be consumed. If under special circumstances its durability is reduced, it will rapidly restore to full durability (restores 24 points per 4 ticks).\nBlessed by the power of Styx, this pickaxe breaks any block 2.5 times faster than normal, and when breaking any block, there is a 24% chance to drop a diamond and a 12% chance to drop a netherite scrap.");
         add("tooltip.nine_nether_regions.steel_base", "§8§oAfter a thousand trials and tribulations, one can obtain a good piece of steel.");
@@ -180,7 +201,7 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add("tooltip.nine_nether_regions.styx_leggings", "§6§lMay the Power of Styx be with you.\n§r§8§oPress§r §3§oAlt§r§8§o to display more.");
         add("tooltip.nine_nether_regions.styx_boots", "§6§lMay the Power of Styx be with you.\n§r§8§oPress§r §3§oAlt§r§8§o to display more.");
         add("tooltip.nine_nether_regions.styx_helmet_alt",
-                "§6§oIndestructible:§r§8§oUnder normal circumstances, the durability of this equipment will not be depleted. If the durability of the equipment is damaged by some means, its durability will quickly recover (42 points restored every 4 ticks)\n§r§6§oFull Set Effect - Immovable as Mountains:§r§8§oWhen original damage ≤3 points or of type §r§5§oMagic, §r§e§oExplosion, §r§3§oFreeze, §r§1§oWarden's Sonic Boom§r§8§o, forcibly reduces damage to 0; continuously provides §r§6§oResistance Boost and Damage Absorption§r§8§o effects (all effects level 3); forcibly restores 1.5 health point every 10 ticks and provides 72% all damage reduction.\n§r§6§oSingle Piece Effect:§r§8§oContinuously provides §r§6§oNight Vision, Water Breathing, Saturation§r§8§o effects (all effects level 2), and grants immunity to §7§oBlindness, Darkness, Hunger§r§8§o effects.");
+                "§6§oIndestructible:§r§8§oUnder normal circumstances, the durability of this equipment will not be depleted. If the durability of the equipment is damaged by some means, its durability will quickly recover (42 points restored every 4 ticks)\n§r§6§oFull Set Effect - Immovable as Mountains:§r§8§oWhen original damage ≤3 points or of type §r§5§oMagic, §r§e§oExplosion, §r§3§oFreeze, §r§1§oWarden's Sonic Boom§r§8§o, forcibly reduces damage to 0; continuously provides §r§6§oResistance Boost and Damage Absorption§r§8§o effects (all effects level 3); forcibly restores 1.5 health point every 10 ticks and provides 72% all damage reduction.\n§r§6§oSingle Piece Effect:§r§8§oContinuously provides §r§6§oNight Vision, Water Breathing, Saturation§r§8§o effects (all effects level 2), and grants immunity to §7§oBlindness, Darkness, Hunger, Bloodblade Curse§r§8§o effects.");
         add("tooltip.nine_nether_regions.styx_chestplate_alt",
                 "§6§oIndestructible:§r§8§oUnder normal circumstances, the durability of this equipment will not be depleted. If the durability of the equipment is damaged by some means, its durability will quickly recover (42 points restored every 4 ticks)\n§r§6§oFull Set Effect - Immovable as Mountains:§r§8§oWhen original damage ≤3 points or of type §r§5§oMagic, §r§e§oExplosion, §r§3§oFreeze, §r§1§oWarden's Sonic Boom§r§8§o, forcibly reduces damage to 0; continuously provides §r§6§oResistance Boost and Damage Absorption§r§8§o effects (all effects level 3); forcibly restores 1.5 health point every 10 ticks and provides 72% all damage reduction.\n§r§6§oSingle Piece Effect:§r§8§oContinuously provides §r§6§oFire Resistance, Haste§r§8§o effects (all effects level 2) and §r§6§oStrength§r§8§o effect (level 3), and grants immunity to §7§oWither, Poison, Mining Fatigue, Weakness§r§8§o effects.");
         add("tooltip.nine_nether_regions.styx_leggings_alt",
@@ -189,6 +210,9 @@ public class ModEnUsLangProvider extends LanguageProvider {
                 "§6§oIndestructible:§r§8§oUnder normal circumstances, the durability of this equipment will not be depleted. If the durability of the equipment is damaged by some means, its durability will quickly recover (42 points restored every 4 ticks)\n§r§6§oFull Set Effect - Immovable as Mountains:§r§8§oWhen original damage ≤3 points or of type §r§5§oMagic, §r§e§oExplosion, §r§3§oFreeze, §r§1§oWarden's Sonic Boom§r§8§o, forcibly reduces damage to 0; continuously provides §r§6§oResistance Boost and Damage Absorption§r§8§o effects (all effects level 3); forcibly restores 1.5 health point every 10 ticks and provides 72% all damage reduction.\n §r§6§oSingle Piece Effect:§r§8§oContinuously provides §r§6§oSpeed§r§8§o effect (level 3), and grants immunity to §7§oSlowness, Levitation, Infested§r§8§o effects, while also providing 85% resistance to fall damage.");
         add("tooltip.nine_nether_regions.hellalloy_longbow", "§8§oMore precise,more powerful.");
         add("tooltip.nine_nether_regions.reinforced_obsidian", "§8§oIt's REALLY hard...It must have some purpose.");
+        add("tooltip.nine_nether_regions.fire_staff", "§8§oSurrounded by flames from the Nether. \nRight-click to launch a Blaze fireball.");
+        add("tooltip.nine_nether_regions.wither_staff", "§8§oCondenses the destructive power of the Wither.\nRight-click to launch a black wither skull.");
+        add("tooltip.nine_nether_regions.void_staff", "§8§oInfused with power from the Void and the great dragon.\nRight-click to launch a dragon fireball.");
         add("tooltip.nine_nether_regions.rainbowgem", "§8§oA strange gem formed by the fusion of various gems, extremely hard and nearly rivaling Netherite.");
         add("tooltip.nine_nether_regions.ruby_sword", "§8§oA bloodthirsty sword that deals decent damage, at the cost of being extremely fragile.");
     }

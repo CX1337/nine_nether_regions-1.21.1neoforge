@@ -36,6 +36,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.AMETHYST_BEETROOT);
                         output.accept(ModItems.GHOSTLIUM_APPLE);
                         output.accept(ModItems.ENCHANTED_GHOSTLIUM_APPLE);
+                        output.accept(ModItems.WEB_BALL);
+                        output.accept(ModItems.WEB_FRUIT);
                         output.accept(ModItems.EMPTY_FABRIC);
                         output.accept(ModItems.MAGIC_FABRIC);
                         output.accept(ModItems.STYX_FABRIC);
@@ -63,6 +65,13 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.STEEL_LEGGINGS);
                         output.accept(ModItems.STEEL_BOOTS);
                         output.accept(ModItems.STEEL_HORSE_ARMOR);
+
+                        output.accept(ModItems.FIRE_CORE);
+                        output.accept(ModItems.FIRE_STAFF);
+                        output.accept(ModItems.WITHER_CORE);
+                        output.accept(ModItems.WITHER_STAFF);
+                        output.accept(ModItems.VOID_CORE);
+                        output.accept(ModItems.VOID_STAFF);
 
                         output.accept(ModItems.RUBY);
                         output.accept(ModItems.RAINBOWGEM);
@@ -97,6 +106,12 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.STYX_LEGGINGS);
                         output.accept(ModItems.STYX_BOOTS);
 
+                        output.accept(ModItems.BLOODBLADE_PEAK_MUSIC_DISC);
+                        output.accept(ModItems.CAVES_MUSIC_DISC);
+                        output.accept(ModItems.FLUORESCENCE_FOREST_MUSIC_DISC);
+                        output.accept(ModItems.MANJUSAKA_PLAIN_MUSIC_DISC);
+                        output.accept(ModItems.THE_STYX_MUSIC_DISC);
+                        output.accept(ModItems.UNDERWORLD_ABYSS_MUSIC_DISC);
                         output.accept(ModItems.STYX_FERRYMAN_MUSIC_DISC);
                     }).build());
 
@@ -122,6 +137,7 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModBlocks.HELLALLOY_BLOCK);
                         output.accept(ModBlocks.STEEL_BLOCK);
+                        output.accept(ModBlocks.RUBY_BLOCK);
                         output.accept(ModBlocks.RAINBOWGEM_BLOCK);
                         output.accept(ModBlocks.STYX_BLOCK);
 

@@ -3,6 +3,7 @@ package com.cx1337.nine_nether_regions;
 import com.cx1337.nine_nether_regions.block.ModBlocks;
 import com.cx1337.nine_nether_regions.client.event.ClientEvents;
 import com.cx1337.nine_nether_regions.effect.ModEffects;
+import com.cx1337.nine_nether_regions.enchantment.ModEnchantmentEffects;
 import com.cx1337.nine_nether_regions.item.ModCreativeModeTabs;
 import com.cx1337.nine_nether_regions.event.ModEvents;
 import com.cx1337.nine_nether_regions.item.ModItems;
@@ -46,6 +47,8 @@ public class NineNetherRegions {
 
         ModEffects.register(modEventBus);
         ModPotions.register(modEventBus);
+
+        ModEnchantmentEffects.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(ClientEvents.class);

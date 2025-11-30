@@ -3,6 +3,8 @@ package com.cx1337.nine_nether_regions.effect;
 import com.cx1337.nine_nether_regions.NineNetherRegions;
 import com.cx1337.nine_nether_regions.effect.effects.BloodbladeCurseEffect;
 import com.cx1337.nine_nether_regions.effect.effects.DeclineEffect;
+import com.cx1337.nine_nether_regions.effect.effects.FrostEffect;
+import com.cx1337.nine_nether_regions.effect.effects.SpiderClimbEffect;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -16,8 +18,13 @@ public class ModEffects {
 
     public static final DeferredHolder<MobEffect, DeclineEffect> DECLINE =
             MOB_EFFECTS.register("decline", () -> new DeclineEffect(MobEffectCategory.HARMFUL, 0x013220));
+    public static final DeferredHolder<MobEffect, SpiderClimbEffect> SPIDER_CLIMB =
+            MOB_EFFECTS.register("spider_climb", () -> new SpiderClimbEffect(MobEffectCategory.BENEFICIAL, 0x566363));
     public static final DeferredHolder<MobEffect, BloodbladeCurseEffect> BLOODBLADE_CURSE =
-            MOB_EFFECTS.register("bloodblade_curse", BloodbladeCurseEffect::new);
+            MOB_EFFECTS.register("bloodblade_curse", () -> new BloodbladeCurseEffect(MobEffectCategory.HARMFUL, 0x2C0303));
+    public static final DeferredHolder<MobEffect, FrostEffect> FROST =
+            MOB_EFFECTS.register("frost", () -> new FrostEffect(MobEffectCategory.HARMFUL, 0x87CEEB));
+
 
     public static void register(IEventBus eventBus){
         MOB_EFFECTS.register(eventBus);

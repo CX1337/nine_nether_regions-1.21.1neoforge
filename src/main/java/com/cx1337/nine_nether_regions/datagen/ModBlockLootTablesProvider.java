@@ -56,6 +56,7 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.NULL_GRASSBLOCK.get());
         dropSelf(ModBlocks.STYX_BLOCK.get());
         dropSelf(ModBlocks.STEEL_BLOCK.get());
+        dropSelf(ModBlocks.RUBY_BLOCK.get());
         dropSelf(ModBlocks.RAINBOWGEM_BLOCK.get());
         dropSelf(ModBlocks.UNDERWORLDRACK.get());
         dropSelf(ModBlocks.UNDERWORLD_SPIRIT_STONE.get());

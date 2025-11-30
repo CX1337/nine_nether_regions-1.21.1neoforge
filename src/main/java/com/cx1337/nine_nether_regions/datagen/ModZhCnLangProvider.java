@@ -2,7 +2,6 @@ package com.cx1337.nine_nether_regions.datagen;
 
 import com.cx1337.nine_nether_regions.NineNetherRegions;
 import com.cx1337.nine_nether_regions.block.ModBlocks;
-import com.cx1337.nine_nether_regions.effect.ModEffects;
 import com.cx1337.nine_nether_regions.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -16,19 +15,24 @@ public class ModZhCnLangProvider extends LanguageProvider {
     protected void addTranslations() {
         add(ModItems.ALLOY_HILT.get(), "合金剑柄");
         add(ModItems.AMETHYST_BEETROOT.get(), "紫晶甜菜根");
+        add(ModItems.CAVES_MUSIC_DISC.get(), "音乐唱片——群系/洞穴类群系");
         add(ModItems.GHOSTLIUM_APPLE.get(), "幽染苹果");
         add(ModItems.ENCHANTED_GHOSTLIUM_APPLE.get(), "附魔幽染苹果");
+        add(ModItems.WEB_FRUIT.get(), "蛛网果");
         add(ModItems.AMETHYST_DAGGER.get(), "紫晶短剑");
         add(ModItems.BLOODBLADE_ESSENCE.get(), "血刃精华");
+        add(ModItems.BLOODBLADE_PEAK_MUSIC_DISC.get(), "音乐唱片——群系/血刃高峰");
         add(ModItems.CHERRY_STICK.get(), "§d樱花木棍");
         add(ModItems.CHERRY_HELMET.get(), "§d樱花木头盔");
         add(ModItems.CHERRY_CHESTPLATE.get(), "§d樱花木胸甲");
         add(ModItems.CHERRY_LEGGINGS.get(), "§d樱花木护腿");
         add(ModItems.CHERRY_BOOTS.get(), "§d樱花木靴子");
-        add(ModItems.STYX_FERRYMAN_MUSIC_DISC.get(), "音乐唱片（冥河渡客）");
+        add(ModItems.STYX_FERRYMAN_MUSIC_DISC.get(), "音乐唱片——冥河渡客");
         add(ModItems.DIAMOND_BOWSTRING.get(), "钻石弓弦");
         add(ModItems.EMPTY_FABRIC.get(), "空白布料");
+        add(ModItems.FLUORESCENCE_FOREST_MUSIC_DISC.get(), "音乐唱片——群系/荧火森林");
         add(ModItems.MAGIC_FABRIC.get(), "魔力布料");
+        add(ModItems.MANJUSAKA_PLAIN_MUSIC_DISC.get(), "音乐唱片——群系/彼岸花平原");
         add(ModItems.STYX_FABRIC.get(), "冥河布料");
         add(ModItems.GHOSTLIUM.get(), "幽冥质");
         add(ModItems.HELLALLOY_INGOT.get(), "§a幽冥合金锭");
@@ -36,7 +40,6 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add(ModItems.HELLALLOY_HOE.get(), "§a幽冥合金锄");
         add(ModItems.HELLALLOY_PICKAXE.get(), "§a幽冥合金镐");
         add(ModItems.HELLALLOY_SHOVEL.get(), "§a幽冥合金铲");
-        add(ModItems.HELLALLOY_ROYALGUARD_SHIELD.get(), "§a幽冥合金禁卫盾(WIP)");
         add(ModItems.HELLALLOY_HELMET.get(), "§a幽冥合金战盔");
         add(ModItems.HELLALLOY_CHESTPLATE.get(), "§a幽冥合金胸甲");
         add(ModItems.HELLALLOY_LEGGINGS.get(), "§a幽冥合金护腿");
@@ -66,10 +69,17 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add(ModItems.STEEL_LEGGINGS.get(), "精钢护腿");
         add(ModItems.STEEL_BOOTS.get(), "精钢靴子");
         add(ModItems.STEEL_HORSE_ARMOR.get(), "精钢马铠");
+        add(ModItems.WEB_BALL.get(), "蛛网球");
         add(ModItems.WOOD_HELMET.get(), "木头盔");
         add(ModItems.WOOD_CHESTPLATE.get(), "木胸甲");
         add(ModItems.WOOD_LEGGINGS.get(), "木护腿");
         add(ModItems.WOOD_BOOTS.get(), "木靴子");
+        add(ModItems.FIRE_CORE.get(), "烈焰核心");
+        add(ModItems.FIRE_STAFF.get(), "烈焰法杖");
+        add(ModItems.WITHER_CORE.get(), "凋灵核心");
+        add(ModItems.WITHER_STAFF.get(), "凋灵法杖");
+        add(ModItems.VOID_CORE.get(), "虚空核心");
+        add(ModItems.VOID_STAFF.get(), "虚无魔杖");
         add(ModItems.RUBY.get(), "红宝石");
         add(ModItems.RAINBOWGEM.get(), "虹玉");
         add(ModItems.RAINBOWGEM_AXE.get(), "虹玉斧");
@@ -82,8 +92,10 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add(ModItems.RAINBOWGEM_CHESTPLATE.get(), "虹玉胸甲");
         add(ModItems.RAINBOWGEM_LEGGINGS.get(), "虹玉护腿");
         add(ModItems.RAINBOWGEM_BOOTS.get(), "虹玉靴子");
+        add(ModItems.THE_STYX_MUSIC_DISC.get(), "音乐唱片——群系/冥河、幽冥平川");
         add(ModItems.UNDERWORLD_BRICK.get(), "冥界砖");
         add(ModItems.UNDERWORLD_CRYSTAL.get(), "§b幽冥晶");
+        add(ModItems.UNDERWORLD_ABYSS_MUSIC_DISC.get(), "音乐唱片——群系/冥界深渊");
 
         add(ModBlocks.BLOODY_SAND.get(), "血染沙");
         add(ModBlocks.BLOODBLADE_ORE.get(), "§4血刃矿石");
@@ -104,6 +116,7 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add(ModBlocks.PINESAP.get(), "水晶兰");
         add(ModBlocks.STYX_BLOCK.get(), "§5§l冥河块");
         add(ModBlocks.STEEL_BLOCK.get(), "精钢块");
+        add(ModBlocks.RUBY_BLOCK.get(), "红宝石块");
         add(ModBlocks.RAINBOWGEM_BLOCK.get(), "虹玉块");
         add(ModBlocks.UNDERWORLDRACK.get(), "冥界岩");
         add(ModBlocks.UNDERWORLD_BRICKS.get(), "冥界砖块");
@@ -126,6 +139,8 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add("item.minecraft.potion.effect.bb_curse_potion", "血咒药水");
         add("item.minecraft.splash_potion.effect.bb_curse_potion", "喷溅型血咒药水");
         add("item.minecraft.lingering_potion.effect.bb_curse_potion", "滞留型血咒药水");
+        add("effect.nine_nether_regions.spider_climb", "蛛攀");
+        add("effect.nine_nether_regions.frost", "冻结");
 
         add("painting.nine_nether_regions.wayfarer.title", "Wayfarer");
         add("painting.nine_nether_regions.wayfarer.author", "CX1337");
@@ -136,10 +151,17 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add("itemGroup.nine_nether_regions_blocks_tab", "§2§l九幽引：方块");
 
         add("item.nine_nether_regions.styx_ferryman_music_disc.desc", "Rafael Krux--Dawn of the Apocalypse（天启黎明）");
+        add("item.nine_nether_regions.bloodblade_peak_music_disc.desc", "Rafael Krux--Lonely Mountain（孤山）");
+        add("item.nine_nether_regions.underworld_abyss_music_disc.desc", "Bryan Teoh--Mysterious Lights（神秘之光）");
+        add("item.nine_nether_regions.the_styx_music_disc.desc", "Bryan Teoh--Think About It（为之思量）");
+        add("item.nine_nether_regions.fluorescence_forest_music_disc.desc", "Kevin MacLeod--Night Vigil（守夜人）");
+        add("item.nine_nether_regions.manjusaka_plain_music_disc.desc", "Bryan Teoh--Go On Without Me（君自前行）");
+        add("item.nine_nether_regions.caves_music_disc.desc", "Kevin MacLeod--Satin Danger（危机如缎）");
 
-        add("tooltip.nine_nether_regions.amethyst_dagger", "§8§o虽然这把短剑确实很小，合成配方简单，攻击力也不高，但是得益于紫水晶的生命力，使用它攻击时每次命中敌人都有33%概率为你恢复1点生命值；也正因为它很小巧，你可以更快速的挥动它。\n当然，由于紫水晶质地很脆，它的耐久度在同类武器中并不优秀。");
+        add("tooltip.nine_nether_regions.amethyst_dagger", "§8§o虽然这把短剑确实很小，合成配方简单，攻击力也不高；但是得益于紫水晶的生命力，使用它攻击时每次命中敌人都有33%概率为你恢复1点生命值；也正因为它很小巧，你可以更快速的挥动它。\n当然，由于紫水晶质地很脆，它的耐久度在同类武器中并不优秀。");
         add("tooltip.nine_nether_regions.ghostlium_apple", "§8§o沾染了一点点幽冥界的力量……但是尝起来很美味！");
         add("tooltip.nine_nether_regions.enchanted_ghostlium_apple", "§8§o被幽冥之力全方位强化过的附魔金苹果，美味顶饱而且效果强大。");
+        add("tooltip.nine_nether_regions.web_fruit", "§8§o蛛网球抹除了紫颂果的瞬移能力，取而代之的是赋予玩家一段时间的类似蜘蛛的攀爬能力。");
         add("tooltip.nine_nether_regions.bloodblade_essence", "§8§o一团不可名状的物质……但是内部蕴含的能量不可小觑。");
         add("tooltip.nine_nether_regions.hellalloy_block", "§8§o浸润着来自冥界的力量……");
         add("tooltip.nine_nether_regions.hellalloy_ingot", "§8§o被冥界力量强化过的合金锭，坚硬无比。");
@@ -157,7 +179,7 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add("tooltip.nine_nether_regions.styx_ingot", "§8§o正如冥河渡客的意志，坚不可摧。");
         add("tooltip.nine_nether_regions.styx_sword", "§8§o按下§r §3§oAlt§r§8§o以显示更多。");
         add("tooltip.nine_nether_regions.styx_sword_alt",
-                "§6§o坚不可摧：§r§8§o正常情况下该武器耐久不会被消耗。如果通过某种手段使得该武器耐久受损，则武器耐久会极快速恢复（每4tick恢复42点）。\n§r§6§o战刃之锋：§r§8§o当蓄力条为满攻击生物时，冥河战刃会同时对以玩家为中心半径3格内所有非友方生物造成§r§e§o（战刃攻击力+目标最大生命值×5%）§r§8§o的范围伤害。\n§r§6§o灵魂汲取：§r§8§o蓄力条为满时战刃每次攻击都会强制为玩家恢复§r§d§o（玩家最大生命值×8%）§r§8§o的血量。");
+                "§6§o坚不可摧：§r§8§o正常情况下该武器耐久不会被消耗。如果通过某种手段使得该武器耐久受损，则武器耐久会极快速恢复（每4tick恢复42点）。\n§r§6§o战刃之锋：§r§8§o当蓄力条为满攻击生物时，冥河战刃会同时对以玩家为中心半径3格内所有非友方生物造成§r§e§o（战刃攻击力+目标最大生命值×5%）§r§8§o的范围伤害。\n§r§6§o灵魂汲取：§r§8§o蓄力条为满时战刃每次攻击都会强制为玩家恢复§r§d§o（玩家最大生命值×8%）§r§8§o的血量。\n§r§4§o警告：由于该剑攻击逻辑发生变化，大多数效用性附魔（如锋利、亡灵杀手）在该剑上大概率无法起效！");
         add("tooltip.nine_nether_regions.styx_pickaxe", "§8§o按下§r §3§oAlt§r§8§o以显示更多。");
         add("tooltip.nine_nether_regions.styx_pickaxe_alt",
                 "§8§o这把镐子是所有镐子中的佼佼者。\n正常情况下它的耐久无法被消耗，如果遇到特殊情况使它的耐久降低，它会极快速的恢复满耐久值（每4tick恢复24点）。\n受到冥河之力的祝福，这把镐子破坏任何方块的速度都为原来的2.5倍，且破坏任何方块均有24%的概率掉落钻石，12%的概率掉落下界合金碎片。");
@@ -166,7 +188,7 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add("tooltip.nine_nether_regions.styx_leggings", "§6§l愿冥河之力与你同在。\n§r§8§o按下§r §3§oAlt§r§8§o以显示更多。");
         add("tooltip.nine_nether_regions.styx_boots", "§6§l愿冥河之力与你同在。\n§r§8§o按下§r §3§oAlt§r§8§o以显示更多。");
         add("tooltip.nine_nether_regions.styx_helmet_alt",
-                "§6§o坚不可摧：§r§8§o正常情况下该装备耐久不会被消耗。如果通过某种手段使得该装备耐久受损，则装备耐久会极快速恢复（每4tick恢复42点）。\n§r§6§o全套效果——不动如山：§r§8§o当原始伤害≤3点或类型为§r§5§o魔法、§r§e§o爆炸、§r§3§o冰冻、§r§1§o监守者音波§r§8§o时，强制将伤害数值降低为0；持续提供§r§6§o抗性提升、伤害吸收§r§8§o效果（全效果3级）；每10tick强制恢复1.5点生命值并提供72%对于几乎所有伤害的减免。\n§r§6§o单件效果：§r§8§o持续提供§r§6§o夜视、水下呼吸、饱和§r§8§o效果（全效果2级），且免疫§7§o失明、黑暗、饥饿§r§8§o效果。");
+                "§6§o坚不可摧：§r§8§o正常情况下该装备耐久不会被消耗。如果通过某种手段使得该装备耐久受损，则装备耐久会极快速恢复（每4tick恢复42点）。\n§r§6§o全套效果——不动如山：§r§8§o当原始伤害≤3点或类型为§r§5§o魔法、§r§e§o爆炸、§r§3§o冰冻、§r§1§o监守者音波§r§8§o时，强制将伤害数值降低为0；持续提供§r§6§o抗性提升、伤害吸收§r§8§o效果（全效果3级）；每10tick强制恢复1.5点生命值并提供72%对于几乎所有伤害的减免。\n§r§6§o单件效果：§r§8§o持续提供§r§6§o夜视、水下呼吸、饱和§r§8§o效果（全效果2级），且免疫§7§o失明、黑暗、饥饿、血刃诅咒§r§8§o效果。");
         add("tooltip.nine_nether_regions.styx_chestplate_alt",
                 "§6§o坚不可摧：§r§8§o正常情况下该装备耐久不会被消耗。如果通过某种手段使得该装备耐久受损，则装备耐久会极快速恢复（每4tick恢复42点）。\n§r§6§o全套效果——不动如山：§r§8§o当原始伤害≤3点或类型为§r§5§o魔法、§r§e§o爆炸、§r§3§o冰冻、§r§1§o监守者音波§r§8§o时，强制将伤害数值降低为0；持续提供§r§6§o抗性提升、伤害吸收§r§8§o效果（全效果3级）；每10tick强制恢复1.5点生命值并提供72%对于几乎所有伤害的减免。\n§r§6§o单件效果：§r§8§o持续提供§r§6§o抗火、急迫§r§8§o效果（全效果2级）和§r§6§o力量§r§8§o效果（3级），且免疫§7§o凋零、中毒、挖掘疲劳、虚弱§r§8§o效果。");
         add("tooltip.nine_nether_regions.styx_leggings_alt",
@@ -191,6 +213,9 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add("tooltip.nine_nether_regions.hellalloy_boots", "§8§o按下§r§3§oAlt§r§8§o以显示更多。");
         add("tooltip.nine_nether_regions.hellalloy_longbow", "§8§o更精准，更强大。");
         add("tooltip.nine_nether_regions.reinforced_obsidian", "§8§o它真的很硬……一定有它的用武之地。");
+        add("tooltip.nine_nether_regions.fire_staff", "§8§o被来自下界的火焰环绕着。\n按下右键以发射烈焰人火球。");
+        add("tooltip.nine_nether_regions.wither_staff", "§8§o凝聚着来自凋灵的毁灭之力。\n按下右键以发射黑色凋灵之首。");
+        add("tooltip.nine_nether_regions.void_staff", "§8§o充盈着来自虚空与那巨龙的力量。\n按下右键以发射末影龙火球。");
         add("tooltip.nine_nether_regions.rainbowgem", "§8§o一块由各种宝石融合起来得到的奇异宝石，质地非常坚硬，几乎可以媲美下界合金。");
         add("tooltip.nine_nether_regions.ruby_sword", "§8§o一把非常嗜血的剑，拥有相当不错的伤害，代价是它本身极为脆弱。");
     }

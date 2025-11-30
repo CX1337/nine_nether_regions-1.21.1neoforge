@@ -160,13 +160,22 @@ public class ModBlocks {
                     .strength(8.0F,12.0F)
                     .sound(SoundType.METAL)){
             });
-
+    public static final DeferredBlock<Block> RUBY_BLOCK =
+            registerBlocks("ruby_block", () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_RED)
+                    .instrument(NoteBlockInstrument.BIT)
+                    .requiresCorrectToolForDrops()
+                    .strength(6.0F,10.0F)
+                    .lightLevel(p_50872_ -> 8)
+                    .sound(SoundType.STONE)){
+            });
     public static final DeferredBlock<Block> RAINBOWGEM_BLOCK =
             registerBlocks("rainbowgem_block", () -> new Block(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_GREEN)
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .requiresCorrectToolForDrops()
                     .strength(22.0F,85.0F)
+                    .lightLevel(p_50872_ -> 4)
                     .sound(SoundType.STONE)){
             });
 

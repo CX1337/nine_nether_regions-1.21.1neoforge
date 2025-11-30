@@ -2,15 +2,18 @@ package com.cx1337.nine_nether_regions.item;
 
 import com.cx1337.nine_nether_regions.NineNetherRegions;
 import com.cx1337.nine_nether_regions.effect.ModEffects;
-import com.cx1337.nine_nether_regions.item.special.HellalloyShieldItem;
 import com.cx1337.nine_nether_regions.sound.ModSounds;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -18,8 +21,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
@@ -29,6 +31,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -213,6 +216,8 @@ public class ModItems {
             ITEMS.register("hellalloy_rod", () -> new Item(new Item.Properties().rarity(Rarity.RARE).fireResistant()));
     public static final DeferredItem<Item> GHOSTLIUM =
             ITEMS.register("ghostlium", () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+    public static final DeferredItem<Item> WEB_BALL =
+            ITEMS.register("web_ball", () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
 
     public static final DeferredItem<Item> AMETHYST_BEETROOT =
             ITEMS.register("amethyst_beetroot", () -> new Item(new Item.Properties().food(ModFoodProperties.AMETHYST_BEETROOT)
@@ -240,7 +245,15 @@ public class ModItems {
                     return true;
                 }
             });
-
+    public static final DeferredItem<Item> WEB_FRUIT =
+            ITEMS.register("web_fruit", () -> new Item(new Item.Properties().food(ModFoodProperties.WEB_FRUIT)
+                    .rarity(Rarity.COMMON)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.web_fruit"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
 
     //食物注册后需在ModFoodProperties中补全信息。
     //类似可用作燃料的方块/物品注册后需在ModDataMapProvider补全信息。
@@ -597,7 +610,7 @@ public class ModItems {
                             MobEffects.FIRE_RESISTANCE,310,0,true,false,false
                     ));
 
-                    if (player.isOnFire()){
+                    if (player.isOnFire() || player.isInLava()){
                         player.clearFire();
                     }
                     if (player.getRemainingFireTicks() > 0){
@@ -850,7 +863,7 @@ public class ModItems {
                             MobEffects.DAMAGE_BOOST,310,2,true,false,false
                     ));
 
-                    if (player.isOnFire()){
+                    if (player.isOnFire() || player.isInLava()){
                         player.clearFire();
                     }
                     if (player.getRemainingFireTicks() > 0){
@@ -1372,10 +1385,6 @@ public class ModItems {
                 }
             });
 
-    //幽冥合金禁卫盾。
-    public static final DeferredItem<HellalloyShieldItem> HELLALLOY_ROYALGUARD_SHIELD =
-            ITEMS.registerItem("hellalloy_royalguard_shield", HellalloyShieldItem::new, new Item.Properties().fireResistant());
-
     //幽冥合金剑。
     public static final DeferredItem<SwordItem> HELLALLOY_SWORD =
             ITEMS.register("hellalloy_sword", () -> new SwordItem(ModToolTiers.HELLALLOY, new Item.Properties()
@@ -1429,8 +1438,201 @@ public class ModItems {
                 }
             });
 
+    //法杖及配件
+    public static final DeferredItem<Item> FIRE_CORE =
+            ITEMS.register("fire_core", () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+    public static final DeferredItem<Item> FIRE_STAFF =
+            ITEMS.register("fire_staff", () -> new Item(new Item.Properties()
+                    .durability(101).rarity(Rarity.UNCOMMON)){
+                @Override
+                public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+                    ItemStack itemStack = player.getItemInHand(hand);
+                    player.startUsingItem(hand);
+
+                    if (!level.isClientSide) {
+                        Vec3 lookVec = player.getLookAngle();
+                        SmallFireball smallFireball = new SmallFireball(level, player,
+                                lookVec.scale(1.5));
+                        smallFireball.setPos(player.getX(), player.getEyeY(), player.getZ());
+                        level.addFreshEntity(smallFireball);
+                        level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                                SoundEvents.BLAZE_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F);
+
+                        EquipmentSlot slot = hand == InteractionHand.MAIN_HAND ?
+                                EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
+                        itemStack.hurtAndBreak(1, player, slot);
+
+                        player.getCooldowns().addCooldown(this, 20);
+                    }
+                    return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
+                }
+
+                @Override
+                public UseAnim getUseAnimation(ItemStack stack) {
+                    return UseAnim.BLOCK;
+                }
+                @Override
+                public int getUseDuration(ItemStack stack, LivingEntity entity) {
+                    return 8;
+                }
+
+                @Override
+                public boolean isValidRepairItem(ItemStack stack, ItemStack repairCandidate) {
+                    return repairCandidate.is(Items.BLAZE_POWDER);
+                }
+
+                @Override
+                public int getEnchantmentValue(ItemStack stack) {
+                    return 0;
+                }
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return false;
+                }
+
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.fire_staff"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
+    public static final DeferredItem<Item> WITHER_CORE =
+            ITEMS.register("wither_core", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant()));
+    public static final DeferredItem<Item> WITHER_STAFF =
+            ITEMS.register("wither_staff", () -> new Item(new Item.Properties()
+                    .durability(404).rarity(Rarity.RARE).fireResistant()){
+                @Override
+                public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+                    ItemStack itemStack = player.getItemInHand(hand);
+                    player.startUsingItem(hand);
+
+                    if (!level.isClientSide) {
+                        Vec3 lookVec = player.getLookAngle();
+                        WitherSkull witherSkull = new WitherSkull(level, player,
+                                lookVec.scale(1.5));
+                        witherSkull.setPos(player.getX(), player.getEyeY(), player.getZ());
+                        level.addFreshEntity(witherSkull);
+                        level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                                SoundEvents.WITHER_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F);
+
+                        EquipmentSlot slot = hand == InteractionHand.MAIN_HAND ?
+                                EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
+                        itemStack.hurtAndBreak(1, player, slot);
+
+                        player.getCooldowns().addCooldown(this, 50);
+                    }
+                    return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
+                }
+
+                @Override
+                public UseAnim getUseAnimation(ItemStack stack) {
+                    return UseAnim.BLOCK;
+                }
+                @Override
+                public int getUseDuration(ItemStack stack, LivingEntity entity) {
+                    return 8;
+                }
+
+                @Override
+                public boolean isValidRepairItem(ItemStack stack, ItemStack repairCandidate) {
+                    return repairCandidate.is(Items.SOUL_SAND);
+                }
+
+                @Override
+                public int getEnchantmentValue(ItemStack stack) {
+                    return 0;
+                }
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return false;
+                }
+
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.wither_staff"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
+    public static final DeferredItem<Item> VOID_CORE =
+            ITEMS.register("void_core", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant()));
+    public static final DeferredItem<Item> VOID_STAFF =
+            ITEMS.register("void_staff", () -> new Item(new Item.Properties()
+                    .durability(404).rarity(Rarity.EPIC).fireResistant()){
+                @Override
+                public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+                    ItemStack itemStack = player.getItemInHand(hand);
+                    player.startUsingItem(hand);
+
+                    if (!level.isClientSide) {
+                        Vec3 lookVec = player.getLookAngle();
+                        DragonFireball dragonFireball = new DragonFireball(level, player,
+                                lookVec.scale(1.5));
+                        dragonFireball.setPos(player.getX(), player.getEyeY(), player.getZ());
+                        level.addFreshEntity(dragonFireball);
+                        level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                                SoundEvents.ENDER_DRAGON_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F);
+
+                        EquipmentSlot slot = hand == InteractionHand.MAIN_HAND ?
+                                EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
+                        itemStack.hurtAndBreak(1, player, slot);
+
+                        player.getCooldowns().addCooldown(this, 160);
+                    }
+                    return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
+                }
+
+                @Override
+                public UseAnim getUseAnimation(ItemStack stack) {
+                    return UseAnim.BLOCK;
+                }
+                @Override
+                public int getUseDuration(ItemStack stack, LivingEntity entity) {
+                    return 8;
+                }
+
+                @Override
+                public boolean isValidRepairItem(ItemStack stack, ItemStack repairCandidate) {
+                    return repairCandidate.is(Items.DRAGON_BREATH);
+                }
+
+                @Override
+                public int getEnchantmentValue(ItemStack stack) {
+                    return 0;
+                }
+                @Override
+                public boolean isEnchantable(ItemStack stack) {
+                    return false;
+                }
+
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.nine_nether_regions.void_staff"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
     //唱片。
     public static final DeferredItem<Item> STYX_FERRYMAN_MUSIC_DISC =
             ITEMS.register("styx_ferryman_music_disc", () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.DAWN_OF_THE_APOCALYPSE_KEY)
                     .stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
+    public static final DeferredItem<Item> BLOODBLADE_PEAK_MUSIC_DISC =
+            ITEMS.register("bloodblade_peak_music_disc", () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.LONELY_MOUNTAIN_KEY)
+                    .stacksTo(1).rarity(Rarity.RARE).fireResistant()));
+    public static final DeferredItem<Item> UNDERWORLD_ABYSS_MUSIC_DISC =
+            ITEMS.register("underworld_abyss_music_disc", () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.MYSTERIOUS_LIGHTS_KEY)
+                    .stacksTo(1).rarity(Rarity.RARE).fireResistant()));
+    public static final DeferredItem<Item> THE_STYX_MUSIC_DISC =
+            ITEMS.register("the_styx_music_disc", () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.THINK_ABOUT_IT_KEY)
+                    .stacksTo(1).rarity(Rarity.RARE).fireResistant()));
+    public static final DeferredItem<Item> FLUORESCENCE_FOREST_MUSIC_DISC =
+            ITEMS.register("fluorescence_forest_music_disc", () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.NIGHT_VIGIL_KEY)
+                    .stacksTo(1).rarity(Rarity.RARE).fireResistant()));
+    public static final DeferredItem<Item> MANJUSAKA_PLAIN_MUSIC_DISC =
+            ITEMS.register("manjusaka_plain_music_disc", () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.GO_ON_WITHOUT_ME_KEY)
+                    .stacksTo(1).rarity(Rarity.RARE).fireResistant()));
+    public static final DeferredItem<Item> CAVES_MUSIC_DISC =
+            ITEMS.register("caves_music_disc", () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.SATIN_DANGER_KEY)
+                    .stacksTo(1).rarity(Rarity.RARE).fireResistant()));
 }

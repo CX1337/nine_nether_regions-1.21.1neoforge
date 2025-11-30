@@ -38,13 +38,18 @@ public class ModItemModelsProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         basicItem(ModItems.AMETHYST_BEETROOT.get());
+        basicItem(ModItems.CAVES_MUSIC_DISC.get());
         basicItem(ModItems.GHOSTLIUM_APPLE.get());
         basicItem(ModItems.ENCHANTED_GHOSTLIUM_APPLE.get());
+        basicItem(ModItems.WEB_FRUIT.get());
         basicItem(ModItems.BLOODBLADE_ESSENCE.get());
+        basicItem(ModItems.BLOODBLADE_PEAK_MUSIC_DISC.get());
         basicItem(ModItems.CHERRY_STICK.get());
         basicItem(ModItems.DIAMOND_BOWSTRING.get());
         basicItem(ModItems.EMPTY_FABRIC.get());
+        basicItem(ModItems.FLUORESCENCE_FOREST_MUSIC_DISC.get());
         basicItem(ModItems.MAGIC_FABRIC.get());
+        basicItem(ModItems.MANJUSAKA_PLAIN_MUSIC_DISC.get());
         basicItem(ModItems.STYX_FABRIC.get());
         basicItem(ModItems.STYX_TEAR.get());
         basicItem(ModItems.STYX_FERRYMAN_MUSIC_DISC.get());
@@ -56,8 +61,15 @@ public class ModItemModelsProvider extends ItemModelProvider {
         basicItem(ModItems.STEEL_NUGGET.get());
         basicItem(ModItems.RUBY.get());
         basicItem(ModItems.RAINBOWGEM.get());
+        basicItem(ModItems.THE_STYX_MUSIC_DISC.get());
         basicItem(ModItems.UNDERWORLD_BRICK.get());
         basicItem(ModItems.UNDERWORLD_CRYSTAL.get());
+        basicItem(ModItems.UNDERWORLD_ABYSS_MUSIC_DISC.get());
+        basicItem(ModItems.FIRE_CORE.get());
+        basicItem(ModItems.WITHER_CORE.get());
+        basicItem(ModItems.VOID_CORE.get());
+        basicItem(ModItems.WEB_BALL.get());
+        basicItem(ModItems.WEB_FRUIT.get());
         basicItem(ModItems.HELLALLOY_ROD.get());
         basicItem(ModItems.NETHERITE_ROD.get());
 

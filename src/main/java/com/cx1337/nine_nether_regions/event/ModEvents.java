@@ -93,10 +93,35 @@ public class ModEvents {
         }
     }
 
+    //樱花木套装效果
+    @SubscribeEvent
+    public void onPlayerTickCherry(PlayerTickEvent.Post event) {
+        if (event.getEntity().level().isClientSide()) {
+            return;
+        }
+
+        Player player = event.getEntity();
+        boolean fullSet =
+                player.getItemBySlot(EquipmentSlot.HEAD).is(ModItems.CHERRY_HELMET.get()) &&
+                        player.getItemBySlot(EquipmentSlot.CHEST).is(ModItems.CHERRY_CHESTPLATE.get()) &&
+                        player.getItemBySlot(EquipmentSlot.LEGS).is(ModItems.CHERRY_LEGGINGS.get()) &&
+                        player.getItemBySlot(EquipmentSlot.FEET).is(ModItems.CHERRY_BOOTS.get());
+
+        if (fullSet) {
+           addIfMissingCherry(player, MobEffects.LUCK, 310, 0, false);
+        }
+    }
+    private void addIfMissingCherry(Player player, Holder<MobEffect> effect, int duration, int amplifier, boolean particles) {
+        MobEffectInstance inst = player.getEffect(effect);
+        if (inst == null || inst.getAmplifier() < amplifier || inst.getDuration() < 300) {
+            player.addEffect(new MobEffectInstance(effect, duration, amplifier, true, particles, true));
+        }
+    }
+
     //幽冥合金套全套效果
     private int hellalloyTickCounter = 0;
     @SubscribeEvent
-    public void onPlayerTick(PlayerTickEvent.Post event) {
+    public void onPlayerTickHellalloy(PlayerTickEvent.Post event) {
         if (event.getEntity().level().isClientSide()) {
             return;
         }
@@ -109,7 +134,7 @@ public class ModEvents {
                         player.getItemBySlot(EquipmentSlot.FEET).is(ModItems.HELLALLOY_BOOTS.get());
 
         if (fullSet) {
-            addIfMissing(player, MobEffects.DAMAGE_RESISTANCE, 310, 1, false);
+            addIfMissingHellalloy(player, MobEffects.DAMAGE_RESISTANCE, 310, 1, false);
 
             // 强制恢复生命值
             hellalloyTickCounter++;
@@ -120,7 +145,7 @@ public class ModEvents {
                 float currentHealth = player.getHealth();
                 float maxHealth = player.getMaxHealth();
 
-                if (currentHealth < maxHealth) {
+                if (currentHealth < maxHealth && currentHealth > 0) {
                     float newHealth = Math.min(currentHealth + 0.7F, maxHealth);
                     player.setHealth(newHealth);
                 }
@@ -129,8 +154,7 @@ public class ModEvents {
             hellalloyTickCounter = 0;
         }
     }
-
-    private void addIfMissing(Player player, Holder<MobEffect> effect, int duration, int amplifier, boolean particles) {
+    private void addIfMissingHellalloy(Player player, Holder<MobEffect> effect, int duration, int amplifier, boolean particles) {
         MobEffectInstance inst = player.getEffect(effect);
         if (inst == null || inst.getAmplifier() < amplifier || inst.getDuration() < 300) {
             player.addEffect(new MobEffectInstance(effect, duration, amplifier, true, particles, true));
@@ -199,7 +223,7 @@ public class ModEvents {
                 float currentHealth = player.getHealth();
                 float maxHealth = player.getMaxHealth();
 
-                if (currentHealth < maxHealth) {
+                if (currentHealth < maxHealth && currentHealth > 0) {
                     float newHealth = Math.min(currentHealth + 1.5F, maxHealth);
                     player.setHealth(newHealth);
                 }

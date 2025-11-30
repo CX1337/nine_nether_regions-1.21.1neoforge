@@ -1,0 +1,8 @@
+{
+  "comparator_output": 15,
+  "description": {
+    "translate": "item.nine_nether_regions.bloodblade_peak_music_disc.desc"
+  },
+  "length_in_seconds": 190.0,
+  "sound_event": "nine_nether_regions:lonely_mountain"
+}
