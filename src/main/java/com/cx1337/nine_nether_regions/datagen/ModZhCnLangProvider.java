@@ -133,14 +133,29 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add("item.minecraft.potion.effect.decline_potion", "归寂药水");
         add("item.minecraft.splash_potion.effect.decline_potion", "喷溅型归寂药水");
         add("item.minecraft.lingering_potion.effect.decline_potion", "滞留型归寂药水");
+        add("item.minecraft.potion.effect.s_decline_potion", "强效归寂药水");
+        add("item.minecraft.splash_potion.effect.s_decline_potion", "喷溅型强效归寂药水");
+        add("item.minecraft.lingering_potion.effect.s_decline_potion", "滞留型强效归寂药水");
         add("death.attack.decline", "%1$s随风飘散了");
         add("death.attack.decline.player", "%1$s在与%2$s战斗时归于虚无");
         add("effect.nine_nether_regions.bloodblade_curse", "血刃诅咒");
         add("item.minecraft.potion.effect.bb_curse_potion", "血咒药水");
         add("item.minecraft.splash_potion.effect.bb_curse_potion", "喷溅型血咒药水");
         add("item.minecraft.lingering_potion.effect.bb_curse_potion", "滞留型血咒药水");
+        add("item.minecraft.potion.effect.s_bb_curse_potion", "强效血咒药水");
+        add("item.minecraft.splash_potion.effect.s_bb_curse_potion", "喷溅型强效血咒药水");
+        add("item.minecraft.lingering_potion.effect.s_bb_curse_potion", "滞留型强效血咒药水");
         add("effect.nine_nether_regions.spider_climb", "蛛攀");
         add("effect.nine_nether_regions.frost", "冻结");
+        add("item.minecraft.potion.effect.frost_potion", "冻结药水");
+        add("item.minecraft.splash_potion.effect.frost_potion", "喷溅型冻结药水");
+        add("item.minecraft.lingering_potion.effect.frost_potion", "滞留型冻结药水");
+        add("item.minecraft.potion.effect.s_frost_potion", "强效冻结药水");
+        add("item.minecraft.splash_potion.effect.s_frost_potion", "喷溅型强效冻结药水");
+        add("item.minecraft.lingering_potion.effect.s_frost_potion", "滞留型强效冻结药水");
+        add("effect.nine_nether_regions.wrapped", "缠绕");
+
+        add("enchantment.nine_nether_regions.storm_anger", "风暴之怒");
 
         add("painting.nine_nether_regions.wayfarer.title", "Wayfarer");
         add("painting.nine_nether_regions.wayfarer.author", "CX1337");

@@ -16,8 +16,10 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
@@ -291,6 +293,10 @@ public class ModEvents {
     public void onBrewingRecipeRegister(RegisterBrewingRecipesEvent event) {
         PotionBrewing.Builder builder = event.getBuilder();
         builder.addMix(Potions.AWKWARD, ModItems.GHOSTLIUM.get(), ModPotions.DECLINE_POTION);
+        builder.addMix(ModPotions.DECLINE_POTION, ModItems.RUBY.get(), ModPotions.S_DECLINE_POTION);
         builder.addMix(Potions.AWKWARD, ModBlocks.BLOODBLADE_ROCK.get().asItem(), ModPotions.BB_CURSE_POTION);
+        builder.addMix(ModPotions.BB_CURSE_POTION, ModItems.RUBY.get(), ModPotions.S_BB_CURSE_POTION);
+        builder.addMix(Potions.AWKWARD, Items.BLUE_ICE, ModPotions.FROST_POTION);
+        builder.addMix(ModPotions.FROST_POTION, ModItems.RUBY.get(), ModPotions.S_FROST_POTION);
     }
 }

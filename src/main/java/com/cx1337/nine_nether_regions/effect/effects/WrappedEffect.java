@@ -8,24 +8,15 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 
-public class FrostEffect extends MobEffect {
-    public FrostEffect(MobEffectCategory category, int color) {
+public class WrappedEffect extends MobEffect {
+    public WrappedEffect(MobEffectCategory category, int color) {
         super(category, color);
         this.addAttributeModifier(Attributes.MOVEMENT_SPEED,
-                ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, "frost_slowdown"), -0.3,
+                ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, "wrapped_stop"), -1.0,
                 AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-    }
-
-    @Override
-    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
-        if (!entity.level().isClientSide) {
-            int hurtInterval = Math.max(1, 50 >> amplifier);
-            if (entity.tickCount % hurtInterval == 0) {
-                entity.hurt(entity.damageSources().freeze(), 1.0F);
-                return true;
-            }
-        }
-        return true;
+        this.addAttributeModifier(Attributes.JUMP_STRENGTH,
+                ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, "wrapped_jump_stop"), -1.0,
+                AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }
 
     @Override
@@ -35,6 +26,15 @@ public class FrostEffect extends MobEffect {
 
     @Override
     public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
+        return true;
+    }
+
+    @Override
+    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
+        if (!entity.level().isClientSide) {
+            entity.setDeltaMovement(0, 0, 0);
+            return true;
+        }
         return true;
     }
 }

@@ -132,14 +132,29 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add("item.minecraft.potion.effect.decline_potion", "Decline Potion");
         add("item.minecraft.splash_potion.effect.decline_potion", "Decline Splash Potion");
         add("item.minecraft.lingering_potion.effect.decline_potion", "Decline Lingering Potion");
+        add("item.minecraft.potion.effect.s_decline_potion", "Strengthened Decline Potion");
+        add("item.minecraft.splash_potion.effect.s_decline_potion", "Strengthened Decline Splash Potion");
+        add("item.minecraft.lingering_potion.effect.s_decline_potion", "Strengthened Decline Lingering Potion");
         add("death.attack.decline", "%1$s was dissipated into the wind");
         add("death.attack.decline.player", "%1$s faded away while fighting with %2$s");
         add("effect.nine_nether_regions.bloodblade_curse", "Bloodblade Curse");
         add("item.minecraft.potion.effect.bb_curse_potion", "Bloodblade Curse Potion");
         add("item.minecraft.splash_potion.effect.bb_curse_potion", "Bloodblade Curse Splash Potion");
         add("item.minecraft.lingering_potion.effect.bb_curse_potion", "Bloodblade Curse Lingering Potion");
+        add("item.minecraft.potion.effect.s_bb_curse_potion", "Strengthened Bloodblade Curse Potion");
+        add("item.minecraft.splash_potion.effect.s_bb_curse_potion", "Strengthened Bloodblade Curse Splash Potion");
+        add("item.minecraft.lingering_potion.effect.s_bb_curse_potion", "Strengthened Bloodblade Curse Lingering Potion");
         add("effect.nine_nether_regions.spider_climb", "Spider Climb");
-        add("effect.nine_nether_regions.frost", "frost");
+        add("effect.nine_nether_regions.frost", "Frost");
+        add("item.minecraft.potion.effect.frost_potion", "Frost Potion");
+        add("item.minecraft.splash_potion.effect.frost_potion", "Frost Splash Potion");
+        add("item.minecraft.lingering_potion.effect.frost_potion", "Frost Lingering Potion");
+        add("item.minecraft.potion.effect.s_frost_potion", "Strengthened Frost Potion");
+        add("item.minecraft.splash_potion.effect.s_frost_potion", "Strengthened Frost Splash Potion");
+        add("item.minecraft.lingering_potion.effect.s_frost_potion", "Strengthened Frost Lingering Potion");
+        add("effect.nine_nether_regions.wrapped", "Wrapped");
+
+        add("enchantment.nine_nether_regions.storm_anger", "Anger of Storm");
 
         add("painting.nine_nether_regions.wayfarer.title", "Wayfarer");
         add("painting.nine_nether_regions.wayfarer.author", "CX1337");

@@ -82,6 +82,19 @@ public class ModItemTagsProvider extends ItemTagsProvider {
                 .add(ModItems.STYX_LEGGINGS.get())
                 .add(ModItems.STYX_BOOTS.get());
 
+        tag(ItemTags.TRIMMABLE_ARMOR)
+                .add(ModItems.WOOD_HELMET.get())
+                .add(ModItems.WOOD_CHESTPLATE.get())
+                .add(ModItems.WOOD_LEGGINGS.get())
+                .add(ModItems.WOOD_BOOTS.get())
+                .add(ModItems.STEEL_HELMET.get())
+                .add(ModItems.STEEL_CHESTPLATE.get())
+                .add(ModItems.STEEL_LEGGINGS.get())
+                .add(ModItems.STEEL_BOOTS.get())
+                .add(ModItems.RAINBOWGEM_HELMET.get())
+                .add(ModItems.RAINBOWGEM_CHESTPLATE.get())
+                .add(ModItems.RAINBOWGEM_LEGGINGS.get())
+                .add(ModItems.RAINBOWGEM_BOOTS.get());
 
         tag(ItemTags.BOW_ENCHANTABLE)
                 .add(ModItems.HELLALLOY_LONGBOW.get());
