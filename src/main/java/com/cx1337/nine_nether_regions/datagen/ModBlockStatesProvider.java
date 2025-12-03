@@ -2,16 +2,14 @@ package com.cx1337.nine_nether_regions.datagen;
 
 import com.cx1337.nine_nether_regions.NineNetherRegions;
 import com.cx1337.nine_nether_regions.block.ModBlocks;
-import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.TallFlowerBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
-import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -68,27 +66,57 @@ public class ModBlockStatesProvider extends BlockStateProvider {
         blockItem(ModBlocks.UNDERWORLD_BRICK_STAIRS);
         //blockItem(ModBlocks.???_TRAPDOOR, "_bottom");
 
-        flowerWithPot(ModBlocks.PINESAP);
-
         tallFlower(ModBlocks.MANJUSAKA);
+
+        //树木
+        logBlock(((RotatedPillarBlock) ModBlocks.HELLWOOD_LOG.get()));
+        axisBlock(((RotatedPillarBlock) ModBlocks.HELLWOOD_WOOD.get()), blockTexture(ModBlocks.HELLWOOD_LOG.get()),
+                blockTexture(ModBlocks.HELLWOOD_LOG.get()));
+        logBlock(((RotatedPillarBlock) ModBlocks.STRIPPED_HELLWOOD_LOG.get()));
+        axisBlock(((RotatedPillarBlock) ModBlocks.STRIPPED_HELLWOOD_WOOD.get()), blockTexture(ModBlocks.STRIPPED_HELLWOOD_LOG.get()),
+                blockTexture(ModBlocks.STRIPPED_HELLWOOD_LOG.get()));
+
+        blockItem(ModBlocks.HELLWOOD_LOG);
+        blockItem(ModBlocks.HELLWOOD_WOOD);
+        blockItem(ModBlocks.STRIPPED_HELLWOOD_LOG);
+        blockItem(ModBlocks.STRIPPED_HELLWOOD_WOOD);
+
+        blockWithItem(ModBlocks.HELLWOOD_PLANKS);
+
+        leavesBlock(ModBlocks.HELLWOOD_LEAVES);
+        saplingBlock(ModBlocks.HELLWOOD_SAPLING);
+
+        stairsBlock(ModBlocks.HELLWOOD_STAIRS.get(), blockTexture(ModBlocks.HELLWOOD_PLANKS.get()));
+        slabBlock(ModBlocks.HELLWOOD_SLAB.get(),blockTexture(ModBlocks.HELLWOOD_PLANKS.get()),
+                blockTexture(ModBlocks.HELLWOOD_PLANKS.get()));
+        buttonBlock(ModBlocks.HELLWOOD_BUTTON.get(), blockTexture(ModBlocks.HELLWOOD_PLANKS.get()));
+        pressurePlateBlock(ModBlocks.HELLWOOD_PRESSURE_PLATE.get(), blockTexture(ModBlocks.HELLWOOD_PLANKS.get()));
+
+        fenceBlock(ModBlocks.HELLWOOD_FENCE.get(), blockTexture(ModBlocks.HELLWOOD_PLANKS.get()));
+        fenceGateBlock(ModBlocks.HELLWOOD_FENCE_GATE.get(), blockTexture(ModBlocks.HELLWOOD_PLANKS.get()));
+
+        doorBlockWithRenderType(ModBlocks.HELLWOOD_DOOR.get(),
+                modLoc("block/hellwood_door_bottom"), modLoc("block/hellwood_door_top"), "cutout");
+        trapdoorBlockWithRenderType(ModBlocks.HELLWOOD_TRAPDOOR.get(),
+                modLoc("block/hellwood_trapdoor"), true, "cutout");
+
+        blockItem(ModBlocks.HELLWOOD_STAIRS);
+        blockItem(ModBlocks.HELLWOOD_SLAB);
+        blockItem(ModBlocks.HELLWOOD_PRESSURE_PLATE);
+        blockItem(ModBlocks.HELLWOOD_FENCE_GATE);
+        blockItem(ModBlocks.HELLWOOD_TRAPDOOR, "_bottom");
+    }
+    private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {
+        simpleBlock(blockRegistryObject.get(),
+                models().cross(BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get()).getPath(),
+                        blockTexture(blockRegistryObject.get())).renderType("cutout"));
     }
 
-    private void flowerWithPot(DeferredBlock<?> flowerBlock) {
-        String path = flowerBlock.getId().getPath();
-
-        ModelFile flowerModel = models().cross(path, modLoc("block/" + path)).renderType("cutout");
-        simpleBlock(flowerBlock.get(), flowerModel);
-        itemModels().withExistingParent(path, modLoc("block/" + path));
-
-        String pottedPath = "potted_" + path;
-        ResourceLocation pottedBlockId = ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, pottedPath);
-        Block pottedBlock = BuiltInRegistries.BLOCK.get(pottedBlockId);
-
-        if (pottedBlock != null && pottedBlock != Blocks.AIR) {
-            simpleBlock(pottedBlock, models().withExistingParent(pottedPath, "block/flower_pot_cross")
-                    .texture("plant", modLoc("block/" + path))
-                    .renderType("cutout"));
-        }
+    private void leavesBlock(DeferredBlock<Block> blockRegistryObject) {
+        simpleBlockWithItem(blockRegistryObject.get(),
+                models().singleTexture(BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get()).getPath(),
+                        ResourceLocation.parse("minecraft:block/leaves"),
+                        "all", blockTexture(blockRegistryObject.get())).renderType("cutout"));
     }
 
     private void tallFlower(DeferredBlock<?> flowerBlock) {

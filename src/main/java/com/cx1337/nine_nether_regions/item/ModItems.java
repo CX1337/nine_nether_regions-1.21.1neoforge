@@ -1,6 +1,7 @@
 package com.cx1337.nine_nether_regions.item;
 
 import com.cx1337.nine_nether_regions.NineNetherRegions;
+import com.cx1337.nine_nether_regions.block.ModBlocks;
 import com.cx1337.nine_nether_regions.effect.ModEffects;
 import com.cx1337.nine_nether_regions.sound.ModSounds;
 import net.minecraft.client.gui.screens.Screen;

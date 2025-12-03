@@ -36,8 +36,6 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        //add(ModBlocks.???_DOOR.get(),
-        //                     block -> createDoorTable(ModBlocks.???_DOOR.get()));
         dropSelf(ModBlocks.BLOODY_SAND.get());
         dropSelf(ModBlocks.BLOODBLADE_ROCK.get());
         dropSelf(ModBlocks.CRACKED_BLOODBLADE_ROCK.get());
@@ -52,6 +50,26 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.HELLALLOY_BLOCK.get());
         dropSelf(ModBlocks.HELLIGHT.get());
         dropSelf(ModBlocks.HELL_NUCLEUS.get());
+
+        dropSelf(ModBlocks.HELLWOOD_LOG.get());
+        dropSelf(ModBlocks.HELLWOOD_WOOD.get());
+        dropSelf(ModBlocks.STRIPPED_HELLWOOD_LOG.get());
+        dropSelf(ModBlocks.STRIPPED_HELLWOOD_WOOD.get());
+        dropSelf(ModBlocks.HELLWOOD_PLANKS.get());
+        dropSelf(ModBlocks.HELLWOOD_SAPLING.get());
+        add(ModBlocks.HELLWOOD_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.HELLWOOD_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        add(ModBlocks.HELLWOOD_SLAB.get(),
+                block -> createSlabItemTable(ModBlocks.HELLWOOD_SLAB.get()));
+        add(ModBlocks.HELLWOOD_DOOR.get(),
+                             block -> createDoorTable(ModBlocks.HELLWOOD_DOOR.get()));
+        dropSelf(ModBlocks.HELLWOOD_STAIRS.get());
+        dropSelf(ModBlocks.HELLWOOD_BUTTON.get());
+        dropSelf(ModBlocks.HELLWOOD_PRESSURE_PLATE.get());
+        dropSelf(ModBlocks.HELLWOOD_FENCE.get());
+        dropSelf(ModBlocks.HELLWOOD_FENCE_GATE.get());
+        dropSelf(ModBlocks.HELLWOOD_TRAPDOOR.get());
+
         dropSelf(ModBlocks.NULL_BLOCK.get());
         dropSelf(ModBlocks.NULL_GRASSBLOCK.get());
         dropSelf(ModBlocks.STYX_BLOCK.get());
@@ -73,7 +91,6 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
         add(ModBlocks.UNDERWORLD_CRYSTAL_ORE.get(),
                 block -> createMultipleOreDrops(ModBlocks.UNDERWORLD_CRYSTAL_ORE.get(), ModItems.UNDERWORLD_CRYSTAL.get(), 1, 4));
 
-        addFlowerWithPot(ModBlocks.PINESAP.get());
 
         add(ModBlocks.MANJUSAKA.get(), block -> createTallFlowerDrops(block));
 
@@ -87,29 +104,6 @@ public class ModBlockLootTablesProvider extends BlockLootSubProvider {
                                 .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
                                         .setProperties(StatePropertiesPredicate.Builder.properties()
                                                 .hasProperty(TallFlowerBlock.HALF, DoubleBlockHalf.LOWER))))));
-    }
-
-    private void addFlowerWithPot(Block flowerBlock) {
-        dropSelf(flowerBlock);
-
-        String flowerPath = flowerBlock.getDescriptionId().replace("block." + NineNetherRegions.MODID + ".", "");
-        ResourceLocation pottedBlockId = ResourceLocation.fromNamespaceAndPath(
-                NineNetherRegions.MODID, "potted_" + flowerPath
-        );
-
-        Block pottedBlock = BuiltInRegistries.BLOCK.get(pottedBlockId);
-
-        if (pottedBlock != null && pottedBlock != Blocks.AIR) {
-            add(pottedBlock, block -> createPotFlowerItemTable(flowerBlock));
-        }
-    }
-
-    protected LootTable.Builder createPotFlowerItemTable(Block flowerBlock) {
-        return LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .add(LootItem.lootTableItem(Blocks.FLOWER_POT)))
-                .withPool(LootPool.lootPool()
-                        .add(LootItem.lootTableItem(flowerBlock.asItem())));
     }
 
     protected LootTable.Builder createMultipleOreDrops(Block pBlock, Item item, float minDrops, float maxDrops) {

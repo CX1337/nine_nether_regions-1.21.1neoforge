@@ -1,10 +1,12 @@
 package com.cx1337.nine_nether_regions.datagen;
 
 import com.cx1337.nine_nether_regions.NineNetherRegions;
+import com.cx1337.nine_nether_regions.block.ModBlocks;
 import com.cx1337.nine_nether_regions.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
@@ -120,5 +122,15 @@ public class ModItemTagsProvider extends ItemTagsProvider {
                 .add(ModItems.HELLALLOY_SHOVEL.get())
                 .add(ModItems.HELLALLOY_AXE.get())
                 .add(ModItems.STYX_PICKAXE.get());
+
+        //木材
+        tag(ItemTags.LOGS_THAT_BURN)
+                .add(ModBlocks.HELLWOOD_LOG.get().asItem())
+                .add(ModBlocks.HELLWOOD_WOOD.get().asItem())
+                .add(ModBlocks.STRIPPED_HELLWOOD_LOG.get().asItem())
+                .add(ModBlocks.STRIPPED_HELLWOOD_WOOD.get().asItem());
+
+        tag(ItemTags.PLANKS)
+                .add(ModBlocks.HELLWOOD_PLANKS.asItem());
     }
 }

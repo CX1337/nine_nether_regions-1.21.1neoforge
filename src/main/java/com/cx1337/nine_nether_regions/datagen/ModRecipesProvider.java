@@ -741,22 +741,54 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy(getHasName(ModBlocks.RAINBOWGEM_BLOCK), has(ModBlocks.RAINBOWGEM_BLOCK))
                 .save(recipeOutput, NineNetherRegions.MODID + ":" +"rainbowgem_no2");
 
-        //标准栅栏/栅栏门预留。
-        //fenceBuilder(ModBlocks.???_FENCE.get(), Ingredient.of(ModItems/Blocks:???)).group("???")
-        //        .unlockedBy("has_???", has(???)).save(recipeOutput);
-        //fenceGateBuilder(ModBlocks.???_FENCE_GATE.get(), Ingredient.of(ModBlocks.???)).group("???")
-        //        .unlockedBy("has_???", has(ModBlocks.???)).save(recipeOutput);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.UNDERWORLD_BRICK_WALL.get(),
+                ModBlocks.UNDERWORLD_BRICKS.get(), 1);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.UNDERWORLD_BRICK_SLAB.get(),
+                ModBlocks.UNDERWORLD_BRICKS.get(), 2);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.UNDERWORLD_BRICK_STAIRS.get(),
+                ModBlocks.UNDERWORLD_BRICKS.get(), 1);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.UNDERWORLD_BRICK_FENCE.get(),
+                ModBlocks.UNDERWORLD_BRICKS.get(), 1);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.UNDERWORLD_BRICK_FENCE_GATE.get(),
+                ModBlocks.UNDERWORLD_BRICKS.get(), 1);
 
         wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.UNDERWORLD_BRICK_WALL.get(), ModBlocks.UNDERWORLD_BRICKS.get());
 
-        stairBuilder(ModBlocks.GLOWING_UNDERWORLD_BRICK_STAIRS.get(), Ingredient.of(ModBlocks.GLOWING_UNDERWORLD_BRICKS)).group("glowing_underworld_bricks")
+        stairBuilder(ModBlocks.GLOWING_UNDERWORLD_BRICK_STAIRS.get(),
+                Ingredient.of(ModBlocks.GLOWING_UNDERWORLD_BRICKS)).group("glowing_underworld_bricks")
                 .unlockedBy("has_glowing_underworld_bricks", has(ModBlocks.GLOWING_UNDERWORLD_BRICKS)).save(recipeOutput);
-        stairBuilder(ModBlocks.UNDERWORLD_BRICK_STAIRS.get(), Ingredient.of(ModBlocks.UNDERWORLD_BRICKS)).group("underworld_bricks")
+        stairBuilder(ModBlocks.HELLWOOD_STAIRS.get(),
+                Ingredient.of(ModBlocks.HELLWOOD_PLANKS)).group("hellwood_planks")
+                .unlockedBy("has_hellwood_planks", has(ModBlocks.HELLWOOD_PLANKS)).save(recipeOutput);
+        stairBuilder(ModBlocks.UNDERWORLD_BRICK_STAIRS.get(),
+                Ingredient.of(ModBlocks.UNDERWORLD_BRICKS)).group("underworld_bricks")
                 .unlockedBy("has_underworld_bricks", has(ModBlocks.UNDERWORLD_BRICKS)).save(recipeOutput);
-        slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.GLOWING_UNDERWORLD_BRICK_SLAB.get(), ModBlocks.GLOWING_UNDERWORLD_BRICKS.get());
-        slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.UNDERWORLD_BRICK_SLAB.get(), ModBlocks.UNDERWORLD_BRICKS.get());
+        slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS,
+                ModBlocks.GLOWING_UNDERWORLD_BRICK_SLAB.get(), ModBlocks.GLOWING_UNDERWORLD_BRICKS.get());
+        slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS,
+                ModBlocks.HELLWOOD_SLAB.get(), ModBlocks.HELLWOOD_PLANKS.get());
+        slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS,
+                ModBlocks.UNDERWORLD_BRICK_SLAB.get(), ModBlocks.UNDERWORLD_BRICKS.get());
+        buttonBuilder(ModBlocks.HELLWOOD_BUTTON.get(),
+                Ingredient.of(ModBlocks.HELLWOOD_PLANKS)).group("hellwood_planks")
+                .unlockedBy("has_hellwood_planks", has(ModBlocks.HELLWOOD_PLANKS)).save(recipeOutput);
+        pressurePlate(recipeOutput,
+                ModBlocks.HELLWOOD_PRESSURE_PLATE.get(), ModBlocks.HELLWOOD_PLANKS.get());
+        fenceBuilder(ModBlocks.HELLWOOD_FENCE.get(),
+                Ingredient.of(ModBlocks.HELLWOOD_PLANKS)).group("hellwood_planks")
+                .unlockedBy("has_hellwood_planks", has(ModBlocks.HELLWOOD_PLANKS)).save(recipeOutput);
+        fenceGateBuilder(ModBlocks.HELLWOOD_FENCE_GATE.get(),
+                Ingredient.of(ModBlocks.HELLWOOD_PLANKS)).group("hellwood_planks")
+                .unlockedBy("has_hellwood_planks", has(ModBlocks.HELLWOOD_PLANKS)).save(recipeOutput);
+        doorBuilder(ModBlocks.HELLWOOD_DOOR.get(),
+                Ingredient.of(ModBlocks.HELLWOOD_PLANKS)).group("hellwood_planks")
+                .unlockedBy("has_hellwood_planks", has(ModBlocks.HELLWOOD_PLANKS)).save(recipeOutput);
+        trapdoorBuilder(ModBlocks.HELLWOOD_TRAPDOOR.get(),
+                Ingredient.of(ModBlocks.HELLWOOD_PLANKS)).group("hellwood_planks")
+                .unlockedBy("has_hellwood_planks", has(ModBlocks.HELLWOOD_PLANKS)).save(recipeOutput);
 
-        //压力板的builder同半砖相似；门和活板门与其他一致。
+
+
         //需要熔炼的物品请先到下方注册。Smelt熔炉，Blast高炉。
         oreBlasting(recipeOutput, BLOODBLADE_ESSENCE, RecipeCategory.MISC, ModItems.BLOODBLADE_ESSENCE, 1.40f, 244, "bloodblade_essence");
         oreSmelting(recipeOutput, CRACKED_BLOODBLADE_ROCK, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRACKED_BLOODBLADE_ROCK, 0.10f, 200, "cracked_bloodblade_rock");

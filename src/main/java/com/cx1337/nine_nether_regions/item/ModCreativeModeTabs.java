@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.awt.desktop.OpenURIEvent;
 import java.util.function.Supplier;
 
 public class ModCreativeModeTabs {
@@ -124,7 +125,6 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.HELLIGHT);
                         output.accept(ModBlocks.HELL_NUCLEUS);
                         output.accept(ModBlocks.MANJUSAKA);
-                        output.accept(ModBlocks.PINESAP);
                         output.accept(ModBlocks.BLOODBLADE_ORE);
                         output.accept(ModBlocks.BLOODBLADE_ROCK);
                         output.accept(ModBlocks.CRACKED_BLOODBLADE_ROCK);
@@ -153,6 +153,22 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.UNDERWORLD_BRICK_SLAB);
                         output.accept(ModBlocks.UNDERWORLD_BRICK_STAIRS);
                         output.accept(ModBlocks.UNDERWORLD_BRICK_WALL);
+
+                        output.accept(ModBlocks.HELLWOOD_LOG);
+                        output.accept(ModBlocks.HELLWOOD_WOOD);
+                        output.accept(ModBlocks.STRIPPED_HELLWOOD_LOG);
+                        output.accept(ModBlocks.STRIPPED_HELLWOOD_WOOD);
+                        output.accept(ModBlocks.HELLWOOD_PLANKS);
+                        output.accept(ModBlocks.HELLWOOD_LEAVES);
+                        output.accept(ModBlocks.HELLWOOD_SAPLING);
+                        output.accept(ModBlocks.HELLWOOD_BUTTON);
+                        output.accept(ModBlocks.HELLWOOD_FENCE);
+                        output.accept(ModBlocks.HELLWOOD_FENCE_GATE);
+                        output.accept(ModBlocks.HELLWOOD_DOOR);
+                        output.accept(ModBlocks.HELLWOOD_TRAPDOOR);
+                        output.accept(ModBlocks.HELLWOOD_PRESSURE_PLATE);
+                        output.accept(ModBlocks.HELLWOOD_STAIRS);
+                        output.accept(ModBlocks.HELLWOOD_SLAB);
 
                         output.accept(ModBlocks.NULL_BLOCK);
                         output.accept(ModBlocks.NULL_GRASSBLOCK);

@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.minecraft.world.item.armortrim.TrimMaterials;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -72,6 +73,7 @@ public class ModItemModelsProvider extends ItemModelProvider {
         basicItem(ModItems.WEB_FRUIT.get());
         basicItem(ModItems.HELLALLOY_ROD.get());
         basicItem(ModItems.NETHERITE_ROD.get());
+        basicItem(ModBlocks.HELLWOOD_DOOR.asItem());
 
         //盔甲。
         for (var sup : List.of(ModItems.HELLALLOY_HELMET, ModItems.HELLALLOY_CHESTPLATE,ModItems.HELLALLOY_LEGGINGS,
@@ -120,12 +122,17 @@ public class ModItemModelsProvider extends ItemModelProvider {
         //basicItem(ModBlocks.???_DOOR.asItem),门和活板门有专用贴图需要绘制。
 
         buttonItem(ModBlocks.UNDERWORLD_BRICK_BUTTON,ModBlocks.UNDERWORLD_BRICKS);
+        buttonItem(ModBlocks.HELLWOOD_BUTTON, ModBlocks.HELLWOOD_PLANKS);
         fenceItem(ModBlocks.UNDERWORLD_BRICK_FENCE, ModBlocks.UNDERWORLD_BRICKS);
+        fenceItem(ModBlocks.HELLWOOD_FENCE, ModBlocks.HELLWOOD_PLANKS);
         wallItem(ModBlocks.UNDERWORLD_BRICK_WALL, ModBlocks.UNDERWORLD_BRICKS);
 
         //花
-        withExistingParent("pinesap", mcLoc("item/generated"))
-                .texture("layer0", modLoc("block/pinesap"));
+        withExistingParent("manjusaka", mcLoc("item/generated"))
+                .texture("layer0", modLoc("block/manjusaka_top"));
+
+        //树苗
+        saplingItem(ModBlocks.HELLWOOD_SAPLING);
     }
 
 
@@ -145,6 +152,12 @@ public class ModItemModelsProvider extends ItemModelProvider {
         this.withExistingParent(block.getId().getPath(), mcLoc("block/wall_inventory"))
                 .texture("wall", ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID,
                         "block/" + baseBlock.getId().getPath()));
+    }
+
+    private ItemModelBuilder saplingItem(DeferredBlock<Block> item) {
+        return withExistingParent(item.getId().getPath(),
+                ResourceLocation.parse("item/generated")).texture("layer0",
+                ResourceLocation.fromNamespaceAndPath(NineNetherRegions.MODID, "block/" + item.getId().getPath()));
     }
 }
 

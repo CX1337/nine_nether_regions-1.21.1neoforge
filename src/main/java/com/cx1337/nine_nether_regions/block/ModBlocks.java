@@ -1,8 +1,12 @@
 package com.cx1337.nine_nether_regions.block;
 
 import com.cx1337.nine_nether_regions.NineNetherRegions;
+import com.cx1337.nine_nether_regions.block.custom.ModFlammableRotatedPillarBlock;
+import com.cx1337.nine_nether_regions.block.custom.ModSaplingBlock;
 import com.cx1337.nine_nether_regions.item.ModItems;
+import com.cx1337.nine_nether_regions.worldgen.tree.ModTreeGrowers;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -70,6 +74,85 @@ public class ModBlocks {
                     .lightLevel(p_50872_ -> 6)
                     .sound(SoundType.DEEPSLATE)));
 
+    public static final DeferredBlock<Block> HELLWOOD_LOG =
+            registerBlocks("hellwood_log", () -> new ModFlammableRotatedPillarBlock(
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_STEM)));
+    public static final DeferredBlock<Block> HELLWOOD_WOOD =
+            registerBlocks("hellwood_wood", () -> new ModFlammableRotatedPillarBlock(
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_HYPHAE)));
+    public static final DeferredBlock<Block> STRIPPED_HELLWOOD_LOG =
+            registerBlocks("stripped_hellwood_log", () -> new ModFlammableRotatedPillarBlock(
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_WARPED_STEM)));
+    public static final DeferredBlock<Block> STRIPPED_HELLWOOD_WOOD =
+            registerBlocks("stripped_hellwood_wood", () -> new ModFlammableRotatedPillarBlock(
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_WARPED_HYPHAE)));
+
+    public static final DeferredBlock<Block> HELLWOOD_PLANKS =
+            registerBlocks("hellwood_planks", () -> new Block(
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS)){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 2;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 4;
+                }
+            });
+    public static final DeferredBlock<Block> HELLWOOD_LEAVES =
+            registerBlocks("hellwood_leaves", () -> new LeavesBlock(
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.CHERRY_LEAVES)){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 6;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 3;
+                }
+            });
+    public static final DeferredBlock<Block> HELLWOOD_SAPLING =
+            registerBlocks("hellwood_sapling", () -> new SaplingBlock(ModTreeGrowers.HELLWOOD,
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_FUNGUS)));
+
+    public static final DeferredBlock<StairBlock> HELLWOOD_STAIRS =
+            registerBlocks("hellwood_stairs", () -> new StairBlock(ModBlocks.HELLWOOD_PLANKS.get().defaultBlockState(),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_STAIRS)));
+    public static final DeferredBlock<SlabBlock> HELLWOOD_SLAB =
+            registerBlocks("hellwood_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_SLAB)));
+
+    public static final DeferredBlock<PressurePlateBlock> HELLWOOD_PRESSURE_PLATE =
+            registerBlocks("hellwood_pressure_plate", () -> new PressurePlateBlock(BlockSetType.WARPED,
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PRESSURE_PLATE)));
+    public static final DeferredBlock<ButtonBlock> HELLWOOD_BUTTON =
+            registerBlocks("hellwood_button", () -> new ButtonBlock(BlockSetType.WARPED, 30,
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_BUTTON).noCollission()));
+
+    public static final DeferredBlock<FenceBlock> HELLWOOD_FENCE =
+            registerBlocks("hellwood_fence", () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_FENCE)));
+    public static final DeferredBlock<FenceGateBlock> HELLWOOD_FENCE_GATE =
+            registerBlocks("hellwood_fence_gate", () -> new FenceGateBlock(WoodType.WARPED,
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_FENCE_GATE)));
+
+    public static final DeferredBlock<DoorBlock> HELLWOOD_DOOR =
+            registerBlocks("hellwood_door", () -> new DoorBlock(BlockSetType.WARPED,
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_DOOR).noOcclusion()));
+    public static final DeferredBlock<TrapDoorBlock> HELLWOOD_TRAPDOOR =
+            registerBlocks("hellwood_trapdoor", () -> new TrapDoorBlock(BlockSetType.WARPED,
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_TRAPDOOR).noOcclusion()));
+
     public static final DeferredBlock<Block> COMPACT_OBSIDIAN =
             registerBlocks("compact_obsidian", () -> new Block(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_BLACK)
@@ -77,7 +160,6 @@ public class ModBlocks {
                     .strength(52F,2400F)
                     .sound(SoundType.STONE)
                     .requiresCorrectToolForDrops()));
-
     public static final DeferredBlock<Block> REINFORCED_OBSIDIAN =
             registerBlocks("reinforced_obsidian", () -> new Block(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_BLACK)
@@ -110,15 +192,6 @@ public class ModBlocks {
                     .sound(SoundType.AMETHYST)
                     .requiresCorrectToolForDrops()
                     .lightLevel(p_50872_ -> 12)));
-
-    public static final DeferredBlock<Block> PINESAP =
-            registerFlowerWithPot("pinesap", () -> new FlowerBlock(MobEffects.LUCK, 24, BlockBehaviour.Properties.of()
-                    .mapColor(MapColor.COLOR_LIGHT_GREEN)
-                    .noCollission()
-                    .instabreak()
-                    .sound(SoundType.GLASS)
-                    .lightLevel(p_50872_ -> 12)
-                    .pushReaction(PushReaction.DESTROY)));
 
     public static final DeferredBlock<Block> MANJUSAKA =
             registerBlocks("manjusaka", () -> new TallFlowerBlock(BlockBehaviour.Properties.of()

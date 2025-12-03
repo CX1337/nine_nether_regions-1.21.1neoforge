@@ -59,14 +59,6 @@ public class NineNetherRegions {
     }
 
     public void onCommonSetup(FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            // 获取花盆方块实例并注册植物
-            FlowerPotBlock flowerPot = (FlowerPotBlock) Blocks.FLOWER_POT;
-            flowerPot.addPlant(
-                    ResourceLocation.fromNamespaceAndPath(MODID, "pinesap"),
-                    () -> ModBlocks.PINESAP.get() // 使用 Supplier 提供花的 Block 实例
-            );
-        });
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
