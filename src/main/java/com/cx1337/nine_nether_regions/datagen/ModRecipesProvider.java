@@ -151,6 +151,16 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy(getHasName(ModItems.FIRE_CORE), has(ModItems.FIRE_CORE))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.ENDER_STAFF, 1)
+                .pattern("$#$")
+                .pattern(" R ")
+                .pattern(" R ")
+                .define('#', Items.NETHER_STAR)
+                .define('$', Items.ENDER_PEARL)
+                .define('R', Items.DIAMOND)
+                .unlockedBy(getHasName(Items.ENDER_PEARL), has(Items.ENDER_PEARL))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.WITHER_CORE, 1)
                 .pattern("#$#")
                 .pattern("$R$")

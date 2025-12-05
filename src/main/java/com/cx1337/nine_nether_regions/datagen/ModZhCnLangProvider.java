@@ -74,6 +74,7 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add(ModItems.WOOD_CHESTPLATE.get(), "木胸甲");
         add(ModItems.WOOD_LEGGINGS.get(), "木护腿");
         add(ModItems.WOOD_BOOTS.get(), "木靴子");
+        add(ModItems.ENDER_STAFF.get(), "末影传送杖");
         add(ModItems.FIRE_CORE.get(), "烈焰核心");
         add(ModItems.FIRE_STAFF.get(), "烈焰法杖");
         add(ModItems.WITHER_CORE.get(), "凋灵核心");
@@ -242,6 +243,7 @@ public class ModZhCnLangProvider extends LanguageProvider {
         add("tooltip.nine_nether_regions.hellalloy_boots", "§8§o按下§r§3§oAlt§r§8§o以显示更多。");
         add("tooltip.nine_nether_regions.hellalloy_longbow", "§8§o更精准，更强大。");
         add("tooltip.nine_nether_regions.reinforced_obsidian", "§8§o它真的很硬……一定有它的用武之地。");
+        add("tooltip.nine_nether_regions.ender_staff", "§8§o汲取了末影珍珠的传送之力，并被下界之星所强化。\n按下右键传送至准星所指的地方，最远传送半径为64格。");
         add("tooltip.nine_nether_regions.fire_staff", "§8§o被来自下界的火焰环绕着。\n按下右键以发射烈焰人火球。");
         add("tooltip.nine_nether_regions.wither_staff", "§8§o凝聚着来自凋灵的毁灭之力。\n按下右键以发射黑色凋灵之首。");
         add("tooltip.nine_nether_regions.void_staff", "§8§o充盈着来自虚空与那巨龙的力量。\n按下右键以发射末影龙火球。");

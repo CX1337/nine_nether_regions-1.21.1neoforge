@@ -73,6 +73,7 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(ModItems.WOOD_CHESTPLATE.get(), "Wood Chestplate");
         add(ModItems.WOOD_LEGGINGS.get(), "Wood Leggings");
         add(ModItems.WOOD_BOOTS.get(), "Wood Boots");
+        add(ModItems.ENDER_STAFF.get(), "Ender Teleport Staff");
         add(ModItems.FIRE_CORE.get(), "Fire Core");
         add(ModItems.FIRE_STAFF.get(), "Fire Staff");
         add(ModItems.WITHER_CORE.get(), "Wither Core");
@@ -239,6 +240,7 @@ public class ModEnUsLangProvider extends LanguageProvider {
                 "§6§oIndestructible:§r§8§oUnder normal circumstances, the durability of this equipment will not be depleted. If the durability of the equipment is damaged by some means, its durability will quickly recover (42 points restored every 4 ticks)\n§r§6§oFull Set Effect - Immovable as Mountains:§r§8§oWhen original damage ≤3 points or of type §r§5§oMagic, §r§e§oExplosion, §r§3§oFreeze, §r§1§oWarden's Sonic Boom§r§8§o, forcibly reduces damage to 0; continuously provides §r§6§oResistance Boost and Damage Absorption§r§8§o effects (all effects level 3); forcibly restores 1.5 health point every 10 ticks and provides 72% all damage reduction.\n §r§6§oSingle Piece Effect:§r§8§oContinuously provides §r§6§oSpeed§r§8§o effect (level 3), and grants immunity to §7§oSlowness, Levitation, Infested§r§8§o effects, while also providing 85% resistance to fall damage.");
         add("tooltip.nine_nether_regions.hellalloy_longbow", "§8§oMore precise,more powerful.");
         add("tooltip.nine_nether_regions.reinforced_obsidian", "§8§oIt's REALLY hard...It must have some purpose.");
+        add("tooltip.nine_nether_regions.ender_staff", "§8§oDraws upon the teleportation power of Ender Pearls, enhanced by a Nether Star.\\nRight-click to teleport to the location pointed by the crosshair, with a maximum range of 64 blocks.");
         add("tooltip.nine_nether_regions.fire_staff", "§8§oSurrounded by flames from the Nether. \nRight-click to launch a Blaze fireball.");
         add("tooltip.nine_nether_regions.wither_staff", "§8§oCondenses the destructive power of the Wither.\nRight-click to launch a black wither skull.");
         add("tooltip.nine_nether_regions.void_staff", "§8§oInfused with power from the Void and the great dragon.\nRight-click to launch a dragon fireball.");
